@@ -17,11 +17,11 @@ div.photo-box {
 div.bio-box {
     background-color: #DAE0F2;
     padding: 10px;
-    width: 1425px;
-    float: right;
+    right: 2em;
     height: 250px;
     border: 10px solid #EFE9E7;
     margin-top: 50px;
+    margin-left: 420px;
 }
 div.project-box {
     background-color: #DAE0F2;
