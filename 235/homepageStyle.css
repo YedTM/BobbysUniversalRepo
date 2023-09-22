@@ -18,7 +18,7 @@ div.bio-box {
     background-color: #DAE0F2;
     padding: 10px;
     right: 2em;
-    height: 250px;
+    height: 2vr;
     border: 10px solid #EFE9E7;
     margin-top: 50px;
     margin-left: 420px;
@@ -26,20 +26,20 @@ div.bio-box {
 div.project-box {
     background-color: #DAE0F2;
     padding: 10px;
-    width: 675px;
-    float: left;
-    height: 150px;
+    right: 2em;
+    height: 2vr;
     border: 10px solid #EFE9E7;
-    margin-left: 22px;
+    margin-top: 50px;
+    margin-left: 420px;
 }
 div.repo-box {
     background-color: #DAE0F2;
     padding: 10px;
-    width: 710px;
-    float: right;
-    height: 150px;
+    right: 2em;
+    height: 2vr;
     border: 10px solid #EFE9E7;
-    margin-left: 0px;
+    margin-top: 50px;
+    margin-left: 420px;
 }
 body {
     margin-left: 15px;
