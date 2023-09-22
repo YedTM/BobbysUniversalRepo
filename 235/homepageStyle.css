@@ -1,0 +1,76 @@
+a {text-decoration: underline;}
+a:link {color:#99ADAA;}
+a:visited {color: #521945; text-decoration: line-through;}
+a:focus {color:#99ADAA; background-color: #2E2F2F;}
+a:hover {color:#99ADAA; background-color: #2E2F2F;}
+a:active {color: red; background-color: #2E2F2F;}
+div.photo-box {
+    background-color: #DAE0F2;
+    padding: 10px;
+    width: 370px;
+    float: left;
+    height: 370px;
+    border: 10px solid #EFE9E7;
+    margin-top: 50px;
+            
+}
+div.bio-box {
+    background-color: #DAE0F2;
+    padding: 10px;
+    width: 1425px;
+    float: right;
+    height: 250px;
+    border: 10px solid #EFE9E7;
+    margin-top: 50px;
+}
+div.project-box {
+    background-color: #DAE0F2;
+    padding: 10px;
+    width: 675px;
+    float: left;
+    height: 150px;
+    border: 10px solid #EFE9E7;
+    margin-left: 22px;
+}
+div.repo-box {
+    background-color: #DAE0F2;
+    padding: 10px;
+    width: 710px;
+    float: right;
+    height: 150px;
+    border: 10px solid #EFE9E7;
+    margin-left: 0px;
+}
+body {
+    margin-left: 15px;
+    background-color: #CDDDDD;
+    
+}
+h1, h2{
+    color:#78678E;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+}
+h2 {
+    margin-left: 20px;
+}
+header {
+    border-bottom: 2px solid rgb(151, 39, 39);
+    text-align: center;
+}
+p {
+    margin-left: 25px;
+    font-size: large;
+}
+ul {
+    font-size: large;
+}
+img.side
+{
+    margin-left: 3px;
+}
+#Projects{
+    text-decoration: underline;
+}
+#Repo{
+    text-decoration: underline;
+}
