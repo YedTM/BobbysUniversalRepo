@@ -1,0 +1,29 @@
+h2 {
+    border-bottom: 1px solid red;
+    clear: right;
+}
+figure {
+    float: right;
+    width: 40%;
+    margin-left: 100px;
+}
+figure img {
+    width: 600px;
+}
+div.tet {
+    float: left;
+    width: 30%;
+    border: 1px solid black;
+
+}
+footer {
+    clear: left;
+    /*position: relative;
+    bottom: 500px; */
+    /*position: absolute;
+    top: 1em;*/
+    position: fixed;
+    top: 1em;
+    right: 1em;
+    z-index: -5;
+}
