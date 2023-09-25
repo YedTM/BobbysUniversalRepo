@@ -7,7 +7,7 @@ figure {
 figure img {
     width: 100%;
 }
-header, main, footer{
+header, main, footer {
     width: 90vw;
     margin-left: auto;
     margin-right: auto;
@@ -21,7 +21,7 @@ header, main, footer{
     border: 1px solid black;
     text-align: center;
 }
-.tet img{
+.tet img {
     width: 60%;
 }
 .square img {
@@ -42,9 +42,6 @@ span {
     text-align: left;
     margin: 1em;
 }
-.long .aliases{
+.long .aliases {
     margin-top: 4em;
 }
-/*How to prevent or enable shrinking or growing
-flex: 1 0 200px; 1 is to grow, 0 is to not shrink, 200px is the max growth limit
-flex-grow: 1, flex- shrink: 0, 
