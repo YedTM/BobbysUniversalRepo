@@ -42,6 +42,24 @@ body {
     border: 5px solid blue;
     grid-area: itsy;
 }
+#itsyBitsy h1, #itsyBitsy h3, #itsyBitsy h4, #itsyBitsy p {
+    margin-left: 5rem;
+}
+#itsyBitsy h1 {
+    margin-top: -1rem;
+}
+#itsyBitsy h3
+{
+    color: white;
+    margin-top: -1rem;
+}
+#itsyBitsy h4 {
+    color: red;
+}
+#turnRed {
+    display: inline-block;
+    color: red;
+}
 #perfect {
     border: 5px solid orange;
     background-color: rgb(221, 125, 0);
@@ -76,11 +94,26 @@ body {
     object-fit: fill;
 }
 #keep {
-    border: 5px solid black;
+    border: 5px solid rgb(104, 182, 185);
     background-color: rgb(27, 29, 31);
     grid-area: keep;
+    color: white;
+}
+#keep h2 {
+    margin-top: -2rem;
+    color: black;
 }
 #keep img {
     width: 100%;
     object-fit: fill;
+    margin-top: -1rem;
+}
+#keep h1, #keep p {
+    margin-left: 1rem;
+}
+#keep p {
+    column-count: 3;
+    column-gap: 10px;
+    column-span: all;
+    column-width: 100px;
 }
