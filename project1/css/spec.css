@@ -2,12 +2,12 @@ body {
     width: 1100px;
     margin: 1rem auto;
     background-color: rgb(240, 236, 224);
-    font-family: Arial, Helvetica, sans-serif;
 }
 p {
     line-height: 1.5em;
     hyphens: auto;
     font-family: 'Noto Sans', sans-serif;
+    font-size: 0.95rem;
 }
 ul li {
     margin-bottom: -1rem;
@@ -104,6 +104,7 @@ ul li {
     margin: auto;
     transform: rotate(38deg);
     margin-left: 13%;
+    margin-top: 5.5rem;
 }
 #rolo img{
     width: 100%;
@@ -116,10 +117,11 @@ ul li {
     color: white;
 }
 #keep h2 {
-    margin-top: -1.5rem;
-    margin-bottom: .65rem;
+    margin-top: -2.1rem;
+    margin-bottom: .55rem;
     color: black;
     letter-spacing: -3px;
+    font-size: 2rem;
 }
 #keep img {
     width: 100%;
@@ -139,6 +141,7 @@ ul li {
     column-gap: 10px;
     column-span: all;
     column-width: 100px;
+    margin-right: 20px;
 }
 h1, h2, h3, h4 {
     font-family: 'Lexend', sans-serif;
