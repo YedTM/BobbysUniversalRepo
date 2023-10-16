@@ -4,9 +4,87 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@500&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/spec.css">
+    <style>
+        a {
+            text-decoration: underline;
+        }
+        a:link {
+            color:rgb(63, 122, 182);
+        }
+        a:visited {
+            color:rgb(209, 125, 14);
+            text-decoration: line-through;
+        }
+        a:focus {
+            color:#99ADAA; 
+            background-color: #2E2F2F;
+        }
+        a:hover {
+            color:#99ADAA; 
+            background-color: #2E2F2F;
+        }
+        a:active {
+            color: rgb(179, 21, 21); background-color: #2E2F2F;
+        }
+        #layoutOne {
+            float: left;
+        }
+        #layoutTwo {
+            float: right;
+        }
+        #textBelow {
+            clear: both;
+        }
+        #lexend {
+            font-family: 'Lexend', sans-serif;
+        }
+
+    </style>
 </head>
 <body>
-    <h1>Documentation for Phase 1</h1>
-    <a href="/IGME-235/project1/src/buzz.pdf" target="_blank">Click here to see the source image</a>
+    <header><h1>Documentation for Phase 1</h1></header>
+    <main>
+        <p><a href="/IGME-235/project1/src/buzz.pdf" target="_blank">Click here to see the source image</a></p>
+        <p><a href="/IGME-235/project1/spec.html" target="_blank">Click here to visit the recreation (spec.html)</a></p>
+        <p>Two of the images in spec.html (The man with the spider and the set of images above the Keep section) come from the above pdf</p>
+        <p>The picture of the PDA (The rotated device next to the Keep section) can be found here: 
+            <a href="https://www.amazon.ae/Xircom-Rex-3-DS-Organizer-Docking/dp/B00000J58C" target="_blank">Image here!</a>
+        </p>
+        <p>The fonts used were: 
+            <a href="https://fonts.google.com/noto/specimen/Noto+Sans?preview.text=This%20is%20for%20the%20paragraphs&preview.size=48&query=noto+sans" target="_blank">Noto-Sans</a>
+            and
+            <a href="https://fonts.google.com/specimen/Lexend?preview.text=This%20is%20for%20the%20headings&preview.size=48&stroke=Sans+Serif&query=lexend" target="_blank" id="lexend">Lexend</a>
+        </p>
+        <p>Only one other resource was utilized and that was <a href="https://www.w3schools.com/" target="_blank">W3Schools</a>, 
+            which helped when I couldn't recall the correct way to code certain things (ex. the indentation in the Keep section)
+        </p>
+        <div id="layoutOne">
+            <img src="src/phase_one_layout.jpg" alt="The drawn layout of phase one" width="400" height="530"> 
+            <p>This is the drawn layout of Phase 1</p>
+        </div>
+        <div id="layoutTwo">
+            <img src="src/responsive_design_phase_one.jpg" alt="The drawn layout of a responsive phase one" width="400" height="530"> 
+            <p>This is the drawn layout of a responsive Phase 1</p>
+        </div>
+        <div id="textBelow">
+            <p>The goal of this site (that being spec.html) is to recreate the article in the pdf. It aimed to copy the layout, font, and colors.</p>
+            <p>The audience I would assume is my teacher, his TA, and potentially my fellow classmates. 
+                This made me work extra hard at copying the article, because I want it to look nice for the people viewing it.
+            </p>
+            <p>There is only one thing I'd like to point out about the project and that is the indentation
+                of the text in column one of the Keep section. The code is a bit jarring, but that was the only way
+                I could get the indentation to look and work properly. Sorry in advance if you see it and its a bit jarring.
+            </p>
+        </div>
+         
+    </main>
+    
 </body>
 </html>

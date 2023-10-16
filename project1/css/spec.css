@@ -12,6 +12,19 @@ p {
 ul li {
     margin-bottom: -1rem;
 }
+h1, h2, h3, h4 {
+    font-family: 'Lexend', sans-serif;
+}
+h1 {
+    letter-spacing: -2px;
+    font-weight: 900;
+    font-size: 2.3rem;
+    transform: scaleY(1.2);
+}
+.turnRed {
+    display: inline-block;
+    color: rgb(202, 0, 0);
+}
 #layout {
     display: grid;
     grid-template-rows: 500px 400px;
@@ -67,10 +80,6 @@ ul li {
     color: rgb(202, 0, 0);
     margin-bottom: 1rem;
     transform: scaleY(1.1);
-}
-#turnRed {
-    display: inline-block;
-    color: rgb(202, 0, 0);
 }
 #perfect {
     margin-top: 25px;
@@ -142,13 +151,4 @@ ul li {
     column-span: all;
     column-width: 100px;
     margin-right: 20px;
-}
-h1, h2, h3, h4 {
-    font-family: 'Lexend', sans-serif;
-}
-h1 {
-    letter-spacing: -2px;
-    font-weight: 900;
-    font-size: 2.3rem;
-    transform: scaleY(1.2);
 }
