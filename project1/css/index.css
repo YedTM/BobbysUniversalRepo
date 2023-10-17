@@ -1,0 +1,154 @@
+body {
+    width: 1100px;
+    margin: 1rem auto;
+    background-color: rgb(240, 236, 224);
+}
+p {
+    line-height: 1.5em;
+    hyphens: auto;
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 0.95rem;
+}
+ul li {
+    margin-bottom: -1rem;
+}
+h1, h2, h3, h4 {
+    font-family: 'Lexend', sans-serif;
+}
+h1 {
+    letter-spacing: -2px;
+    font-weight: 900;
+    font-size: 2.3rem;
+    transform: scaleY(1.2);
+}
+.turnRed {
+    display: inline-block;
+    color: rgb(202, 0, 0);
+}
+#layout {
+    display: grid;
+    grid-template-rows: 500px 400px;
+    grid-template-columns: 54% 21% 25%;
+    grid-template-areas: 
+    "top    top    skills"
+    "info  simplified   skills";
+}
+#topImage {
+    grid-area: top;
+}
+#topImage img{
+    width: 100%;
+    height: 500px;
+    object-fit: fill;
+}
+#newProducts {
+    grid-area: skills;
+}
+#newProducts h1 {
+    margin-top: 3rem;
+    margin-left: 1.3rem;
+    line-height: 1.1em;
+}
+#newProducts ul {
+    list-style-type: square;
+    color: rgb(202, 0, 0);
+}
+#newProducts p {
+    color: black;
+    margin-right: 1rem;
+}
+#itsyBitsy {
+    grid-area: info;
+    margin-top: -0.3rem;
+}
+#itsyBitsy p {
+    margin-right: 1rem;
+}
+#itsyBitsy h1, #itsyBitsy h3, #itsyBitsy h4, #itsyBitsy p {
+    margin-left: 5rem;
+}
+#itsyBitsy h1 {
+    margin-top: -1rem;
+    margin-bottom: -5px;
+}
+#itsyBitsy h3
+{
+    color: white;
+    margin-top: -0.9rem;
+}
+#itsyBitsy h4 {
+    color: rgb(202, 0, 0);
+    margin-bottom: 1rem;
+    transform: scaleY(1.1);
+}
+#perfect {
+    margin-top: 25px;
+    background-color: rgb(221, 125, 0);
+    grid-area: simplified;
+}
+#perfect p {
+    margin: 0 1rem;
+    margin-bottom: 1rem; 
+    font-size: 0.85rem;
+    font-weight: bold;
+}
+#perfect h2 {
+    margin-left: 1rem;
+    margin-bottom: 0rem;
+    margin-top: 5px;
+    font-size: 1.3rem;
+    letter-spacing: -1px;
+}
+#bottom {
+    margin-top: 2.7rem;
+    display: grid;
+    grid-template-rows: 400px;
+    grid-template-columns: 25% 75%;
+    grid-template-areas:
+    "bottom  personal";
+}
+#rolo {
+    width: 125%;
+    grid-area: bottom;
+    margin: auto;
+    transform: rotate(38deg);
+    margin-left: 13%;
+    margin-top: 5.5rem;
+}
+#rolo img{
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+}
+#keep {
+    background-color: rgb(27, 29, 31);
+    grid-area: personal;
+    color: white;
+}
+#keep h2 {
+    margin-top: -2.1rem;
+    margin-bottom: .55rem;
+    color: black;
+    letter-spacing: -3px;
+    font-size: 2rem;
+}
+#keep img {
+    width: 100%;
+    object-fit: fill;
+    margin-top: -1rem;
+}
+#keep h1, #keep p {
+    margin-left: 1rem;
+}
+#keep h1 {
+    color: rgb(221, 125, 0);
+    margin-top: -1px;
+    margin-bottom: -1px;
+}
+#keep p {
+    column-count: 3;
+    column-gap: 10px;
+    column-span: all;
+    column-width: 100px;
+    margin-right: 20px;
+}
