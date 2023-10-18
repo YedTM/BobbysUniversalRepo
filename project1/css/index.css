@@ -181,7 +181,7 @@ h1 {
     letter-spacing: -1px;
 }
 .bottomLayout {
-    margin-top: 4rem;
+    margin-top: 100px;
     display: grid;
     grid-template-rows: 400px;
     grid-template-columns: 25% 75%;
