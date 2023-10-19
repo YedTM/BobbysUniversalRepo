@@ -7,7 +7,7 @@ main {
 }
 a {
     text-decoration: underline;
-    background-color: rgb(95, 93, 107);
+    background-color: rgb(58, 57, 65);
 }
 a:link {
     color:rgb(77, 145, 212);
@@ -18,15 +18,15 @@ a:visited {
 }
 a:focus {
     color:#99ADAA; 
-    background-color: #9c8484;
+    background-color: rgb(95, 93, 107);
 }
 a:hover {
     color:#99ADAA; 
-    background-color: #9c8484;
+    background-color: rgb(95, 93, 107);
 }
 a:active {
     color: rgb(179, 21, 21); 
-    background-color: #9c8484;
+    background-color: rgb(95, 93, 107);
 }
 p {
     line-height: 1.5em;
@@ -167,18 +167,28 @@ h1 {
     background-color: rgb(61, 61, 61);
     grid-area: simplified;
 }
+#description ul {
+    list-style: disc;
+    color: rgb(163, 161, 161);
+}
+#description li {
+    margin-bottom: 40px;
+    font-size: 1.4rem;
+}
 #description p {
     margin: 0 1rem;
     margin-bottom: 1rem; 
-    font-size: 0.85rem;
+    font-size: 1.4rem;
     font-weight: bold;
 }
 #description h2 {
     margin-left: 1rem;
-    margin-bottom: 0rem;
+    margin-bottom: 30px;
     margin-top: 5px;
-    font-size: 1.3rem;
+    font-size: 1.5rem;
     letter-spacing: -1px;
+    text-decoration: underline;
+    transform: scaleY(1.2);
 }
 .bottomLayout {
     margin-top: 100px;
