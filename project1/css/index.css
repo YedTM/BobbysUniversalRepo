@@ -172,6 +172,66 @@ ul li {
 #reflection {
     background-image: url(../media/reflection.png);
 }
+#stab {
+    background-image: url(../media/sacrificial_stab.png);
+}
+#abyssal {
+    background-image: url(../media/abyssal_artillery.png);
+}
+#curse {
+    background-image: url(../media/weakening_curse.png);
+}
+#wyrd {
+    background-image: url(../media/wyrd_reconstruction.png);
+}
+#pull {
+    background-image: url(../media/daemons_pull.png);
+}
+#hand {
+    background-image: url(../media/hand_of_light.png);
+}
+#illumination {
+    background-image: url(../media/illumination.png);
+}
+#judgement {
+    background-image: url(../media/judgement.png);
+}
+#divine {
+    background-image: url(../media/divine_grace.png);
+}
+#fortitude {
+    background-image: url(../media/consecration_of_fortitude.png);
+}
+#punish {
+    background-image: url(../media/punish.png);
+}
+#fester {
+    background-image: url(../media/fester.png);
+}
+#deathless {
+    background-image: url(../media/deathless.png);
+}
+#endure {
+    background-image: url(../media/endure.png);
+}
+#lashs {
+    background-image: url(../media/lashs_gift.png);
+}
+#collect {
+    background-image: url(../media/collect_bounty.png);
+}
+#marked {
+    background-image: url(../media/mark_for_death.png);
+}
+#come {
+    background-image: url(../media/come_hither.png);
+}
+#caltrops {
+    background-image: url(../media/caltrops.png);
+}
+#flashbang {
+    background-image: url(../media/flashbang.png);
+}
 
 
 
