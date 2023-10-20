@@ -41,7 +41,8 @@ ul li {
     margin-bottom: -1rem;
     font-size: 0.5rem;
 }
-#noxious {
+#skills li
+{
     margin-top: -20px;
     margin-bottom: -45px;
     margin-left: -20px;
@@ -50,48 +51,130 @@ ul li {
 	background-repeat: no-repeat;
 	background-position: left center;
 	background-size: 80px;
+}
+#noxious {
     background-image: url(../media/noxious_blast.png);   
 }
 #blinding {
-    margin-bottom: -45px;
-    margin-left: -20px;
-	padding: 10px 0px 10px 84px;
-	list-style: none;
-	background-repeat: no-repeat;
-	background-position: left center;
-	background-size: 80px;
     background-image: url(../media/blinding_gas.png);   
 }
 #incision {
-    margin-bottom: -45px;
-    margin-left: -20px;
-	padding: 10px 0px 10px 84px;
-	list-style: none;
-	background-repeat: no-repeat;
-	background-position: left center;
-	background-size: 80px;
     background-image: url(../media/incision.png);   
 }
 #medicine {
-    margin-bottom: -45px;
-    margin-left: -20px;
-	padding: 10px 0px 10px 84px;
-	list-style: none;
-	background-repeat: no-repeat;
-	background-position: left center;
-	background-size: 80px;
     background-image: url(../media/battlefield_medicine.png);
 }
 #ounce {
-    margin-bottom: -45px;
-    margin-left: -20px;
-	padding: 10px 0px 10px 84px;
-	list-style: none;
-	background-repeat: no-repeat;
-	background-position: left center;
-	background-size: 80px;
     background-image: url(../media/ounce_of_prevention.png);
 }
+#pick {
+    background-image: url(../media/pick_to_the_face.png);
+}
+#thrown {
+    background-image: url(../media/thrown_dagger.png);
+}
+#flashing {
+    background-image: url(../media/flashing_daggers.png);
+}
+#poison {
+    background-image: url(../media/poison_dart.png);
+}
+#absinthe {
+    background-image: url(../media/absinthe.png);
+}
+#wicked {
+    background-image: url(../media/wicked_hack.png);
+}
+#pistol {
+    background-image: url(../media/pistol_shot.png);
+}
+#advance {
+    background-image: url(../media/duelists_advance.png);
+}
+#tracking {
+    background-image: url(../media/tracking_shot.png);
+}
+#aim {
+    background-image: url(../media/take_aim.png);
+}
+#crush {
+    background-image: url(../media/crush.png);
+}
+#rampart {
+    background-image: url(../media/rampart.png);
+}
+#defender {
+    background-image: url(../media/defender.png);
+}
+#bolster {
+    background-image: url(../media/bolster.png);
+}
+#hold {
+    background-image: url(../media/hold_the_line.png);
+}
+#hack {
+    background-image: url(../media/wicked_hack.png);
+}
+#iron {
+    background-image: url(../media/iron_swan.png);
+}
+#barbaric {
+    background-image: url(../media/barbaric_yawp!.png);
+}
+#ifIt {
+    background-image: url(../media/if_it_bleeds.png);
+}
+#toe {
+    background-image: url(../media/toe_to_toe.png);
+}
+#searing {
+    background-image: url(../media/searing_blade.png);
+}
+#firefly {
+    background-image: url(../media/firefly.png);
+}
+#smokescreen {
+    background-image: url(../media/smokescreen.png);
+}
+#run {
+    background-image: url(../media/run_and_hide.png);
+}
+#hearth {
+    background-image: url(../media/hearthlight.png);
+}
+#razors {
+    background-image: url(../media/razors_wit.png);
+}
+#fade {
+    background-image: url(../media/fade_to_black.png);
+}
+#slice {
+    background-image: url(../media/slice_off.png);
+}
+#battle {
+    background-image: url(../media/battle_ballad.png);
+}
+#inspiring {
+    background-image: url(../media/inspiring_tune.png);
+}
+#chop {
+    background-image: url(../media/chop.png);
+}
+#purge {
+    background-image: url(../media/purge.png);
+}
+#withstand {
+    background-image: url(../media/withstand.png);
+}
+#solemnity {
+    background-image: url(../media/solemnity.png);
+}
+#reflection {
+    background-image: url(../media/reflection.png);
+}
+
+
+
 h1, h2, h3, h4 {
     font-family: 'Lexend', sans-serif;
     color: rgb(240, 160, 12);
