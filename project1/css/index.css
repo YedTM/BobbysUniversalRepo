@@ -41,6 +41,49 @@ ul li {
     margin-bottom: -1rem;
     font-size: 0.5rem;
 }
+h1, h2, h3, h4 {
+    font-family: 'Lexend', sans-serif;
+    color: rgb(240, 160, 12);
+}
+h1 {
+    letter-spacing: -2px;
+    font-weight: 900;
+    font-size: 2.3rem;
+    transform: scaleY(1.2);
+}
+.turnRed {
+    display: inline-block;
+    color: rgb(202, 0, 0);
+}
+.layout {
+    display: grid;
+    grid-template-rows: 500px 400px;
+    grid-template-columns: 54% 21% 25%;
+    grid-template-areas: 
+    "top    top    skills"
+    "info  simplified   skills";
+}
+#topImage {
+    grid-area: top;
+}
+#topImage img{
+    width: 100%;
+    height: 500px;
+    object-fit: fill;
+}
+#skills {
+    grid-area: skills;
+}
+#skills h1 {
+    margin-top: 1.4rem;
+    margin-left: 2rem;
+    line-height: 1.1em;
+    font-size: 2rem;
+}
+#skills ul {
+    list-style-type: square;
+    color: rgb(202, 0, 0);
+}
 #skills li
 {
     margin-top: -20px;
@@ -83,7 +126,7 @@ ul li {
     background-image: url(../media/absinthe.png);
 }
 #wicked {
-    background-image: url(../media/wicked_hack.png);
+    background-image: url(../media/wicked_slice.png);
 }
 #pistol {
     background-image: url(../media/pistol_shot.png);
@@ -232,52 +275,6 @@ ul li {
 #flashbang {
     background-image: url(../media/flashbang.png);
 }
-
-
-
-h1, h2, h3, h4 {
-    font-family: 'Lexend', sans-serif;
-    color: rgb(240, 160, 12);
-}
-h1 {
-    letter-spacing: -2px;
-    font-weight: 900;
-    font-size: 2.3rem;
-    transform: scaleY(1.2);
-}
-.turnRed {
-    display: inline-block;
-    color: rgb(202, 0, 0);
-}
-.layout {
-    display: grid;
-    grid-template-rows: 500px 400px;
-    grid-template-columns: 54% 21% 25%;
-    grid-template-areas: 
-    "top    top    skills"
-    "info  simplified   skills";
-}
-#topImage {
-    grid-area: top;
-}
-#topImage img{
-    width: 100%;
-    height: 500px;
-    object-fit: fill;
-}
-#skills {
-    grid-area: skills;
-}
-#skills h1 {
-    margin-top: 1.4rem;
-    margin-left: 2rem;
-    line-height: 1.1em;
-    font-size: 2rem;
-}
-#skills ul {
-    list-style-type: square;
-    color: rgb(202, 0, 0);
-}
 #skills p {
     margin-right: 1rem;
 }
@@ -341,11 +338,28 @@ h1 {
     grid-template-areas:
     "bottom  personal";
 }
+#plague_doctor .bottomLayout, #highwayman .bottomLayout {
+    margin-bottom: 2rem;
+}
+#grave_robber .bottomLayout {
+    margin-bottom: 3rem;
+}
+#highwayman .bottomLayout {
+    margin-top: 125px;
+}
+#man-at-arms .bottomLayout {
+    margin-top: 225px;
+    margin-bottom: 8rem;
+}
+#hellion .bottomLayout {
+    margin-bottom: 6rem;
+}
 #bottomImage {
     width: 125%;
     grid-area: bottom;
     margin: auto;
     margin-left: 9%;
+    
 }
 #bottomImage img{
     width: 75%;
@@ -375,12 +389,12 @@ h1 {
     margin-top: -1px;
     margin-bottom: -1px;
 }
-#input p {
-    column-count: 3;
-    column-gap: 10px;
-    column-span: all;
-    column-width: 100px;
-    margin-right: 20px;
+#colOne, #colTwo, #colThree{
+    width: 32%;
+    float: left;
+}
+#colOne, #colTwo {
+    margin-right: 10px;
 }
 #navigation {
     overflow: hidden;
