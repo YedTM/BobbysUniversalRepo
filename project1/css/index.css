@@ -315,6 +315,9 @@ h1 {
     margin-bottom: 40px;
     font-size: 1.4rem;
 }
+#occultist #description li {
+    margin-bottom: 30px;
+}
 #description p {
     margin: 0 1rem;
     margin-bottom: 1rem; 
@@ -338,10 +341,10 @@ h1 {
     grid-template-areas:
     "bottom  personal";
 }
-#plague_doctor .bottomLayout, #highwayman .bottomLayout {
+#plague_doctor .bottomLayout, #highwayman .bottomLayout, #jester .bottomLayout {
     margin-bottom: 2rem;
 }
-#grave_robber .bottomLayout {
+#grave_robber .bottomLayout, #runaway .bottomLayout {
     margin-bottom: 3rem;
 }
 #highwayman .bottomLayout {
@@ -353,6 +356,23 @@ h1 {
 }
 #hellion .bottomLayout {
     margin-bottom: 6rem;
+}
+#leper .bottomLayout {
+    margin-top: 325px;
+    margin-bottom: 11rem;
+}
+#occultist .bottomLayout {
+    margin-bottom: 16rem;
+}
+#vestal .bottomLayout {
+    margin-top: 175px;
+}
+#flagellant .bottomLayout {
+    margin-top: 325px; 
+    margin-bottom: 17rem;
+}
+#bounty_hunter .bottomLayout {
+    margin-top: 225px;
 }
 #bottomImage {
     width: 125%;
