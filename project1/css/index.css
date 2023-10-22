@@ -341,6 +341,9 @@ h1 {
     grid-template-areas:
     "bottom  personal";
 }
+#plague_doctor .bottomLayout {
+    margin-top: 125px;
+}
 #plague_doctor .bottomLayout, #highwayman .bottomLayout, #jester .bottomLayout {
     margin-bottom: 2rem;
 }
@@ -379,7 +382,6 @@ h1 {
     grid-area: bottom;
     margin: auto;
     margin-left: 9%;
-    
 }
 #bottomImage img{
     width: 75%;
@@ -431,4 +433,121 @@ h1 {
     float: left;
     text-align: center;
     padding: 14px 16px;
+}
+#resp_nav {
+    display: none;
+    text-align: center;
+}
+
+@media screen and (max-width:600px) {
+    .layout {
+        display: grid;
+        grid-template-rows: 500px 400px 400px 500px;
+        grid-template-columns: 100vw;
+        grid-template-areas: 
+        "top"
+        "info"
+        "simplified"
+        "skills"
+    }
+    .bottomLayout {
+        display: grid;
+        grid-template-rows: 400px 400px;
+        grid-template-columns: 100vw;
+        grid-template-areas:
+        "bottom"  
+        "personal";
+    }
+    #navigation {
+        display: block;
+    }
+    #navigation a {
+        display: none;
+    }
+    #resp_nav {
+        display: block;
+        color:rgb(77, 145, 212);
+        background-color: rgb(58, 57, 65);
+        padding: 14px 16px;
+    }
+    #resp_nav:hover {
+        background-color: rgb(95, 93, 107);
+    }
+    #resp_nav:focus {
+        background-color: rgb(95, 93, 107);
+    }
+    #navigation:hover a {
+        float: none;
+        position: relative;
+        display: block;
+    }
+    #navigation:focus a {
+        float: none;
+        position: relative;
+        display: block;
+        margin-top: 50px;
+    }
+    #topImage {
+        width: 100vw;
+    }
+    #description {
+        width: 50vw;
+        justify-self: center;
+    }
+    #bottomImage img {
+        width: 80vw;
+        height: 400px;
+    }
+    #backstory h1, #backstory h3, #backstory h4, #backstory p {
+        margin-left: 1rem;
+        margin-right: 2rem;
+    }
+    #input img {
+        width: 95vw;
+        object-fit: fill;
+    }
+    #colOne, #colTwo, #colThree {
+        width: 32vw;
+        float: left;
+        margin-right: 1px;
+    }
+    #colThree {
+        margin-left: -10px;
+    }
+    #plague_doctor .bottomLayout {
+        margin-top: 125px;
+    }
+    #plague_doctor .bottomLayout, #highwayman .bottomLayout, #jester .bottomLayout {
+        margin-bottom: 8rem;
+    }
+    #grave_robber .bottomLayout, #runaway .bottomLayout {
+        margin-bottom: 10rem;
+    }
+    #highwayman .bottomLayout {
+        margin-top: 125px;
+    }
+    #man-at-arms .bottomLayout {
+        margin-top: 225px;
+        margin-bottom: 12rem;
+    }
+    #hellion .bottomLayout {
+        margin-bottom: 6rem;
+    }
+    #leper .bottomLayout {
+        margin-top: 325px;
+        margin-bottom: 11rem;
+    }
+    #occultist .bottomLayout {
+        margin-bottom: 16rem;
+    }
+    #vestal .bottomLayout {
+        margin-top: 175px;
+    }
+    #flagellant .bottomLayout {
+        margin-top: 325px; 
+        margin-bottom: 17rem;
+    }
+    #bounty_hunter .bottomLayout {
+        margin-top: 225px;
+    }
 }
