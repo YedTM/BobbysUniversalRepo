@@ -342,7 +342,7 @@ h1 {
     "bottom  personal";
 }
 #plague_doctor .bottomLayout {
-    margin-top: 125px;
+    margin-top: 175px;
 }
 #plague_doctor .bottomLayout, #highwayman .bottomLayout, #jester .bottomLayout {
     margin-bottom: 2rem;
@@ -494,6 +494,9 @@ h1 {
         width: 50vw;
         justify-self: center;
     }
+    #leper #description {
+        margin-top: 65px;
+    }
     #bottomImage img {
         width: 80vw;
         height: 400px;
@@ -514,40 +517,42 @@ h1 {
     #colThree {
         margin-left: -10px;
     }
-    #plague_doctor .bottomLayout {
-        margin-top: 125px;
-    }
     #plague_doctor .bottomLayout, #highwayman .bottomLayout, #jester .bottomLayout {
         margin-bottom: 8rem;
     }
     #grave_robber .bottomLayout, #runaway .bottomLayout {
         margin-bottom: 10rem;
     }
-    #highwayman .bottomLayout {
+    #highwayman .bottomLayout, #runaway .bottomLayout, #occultist .bottomLayout {
         margin-top: 125px;
     }
     #man-at-arms .bottomLayout {
         margin-top: 225px;
-        margin-bottom: 12rem;
+        margin-bottom: 17rem;
     }
     #hellion .bottomLayout {
-        margin-bottom: 6rem;
+        margin-top: 175px;
+        margin-bottom: 12rem;
+    }
+    #jester .bottomLayout {
+        margin-top: 150px;
     }
     #leper .bottomLayout {
-        margin-top: 325px;
-        margin-bottom: 11rem;
+        margin-top: 225px;
+        margin-bottom: 22rem;
     }
     #occultist .bottomLayout {
-        margin-bottom: 16rem;
+        margin-bottom: 27rem;
     }
     #vestal .bottomLayout {
         margin-top: 175px;
+        margin-bottom: 6rem;
     }
     #flagellant .bottomLayout {
-        margin-top: 325px; 
-        margin-bottom: 17rem;
+        margin-top: 200px; 
+        margin-bottom: 29rem;
     }
     #bounty_hunter .bottomLayout {
-        margin-top: 225px;
+        margin-top: 175px;
     }
 }
