@@ -41,7 +41,50 @@ ul li {
     margin-bottom: -1rem;
     font-size: 0.5rem;
 }
-#skills li
+h1, h2, h3, h4 {
+    font-family: 'Lexend', sans-serif;
+    color: rgb(240, 160, 12);
+}
+h1 {
+    letter-spacing: -2px;
+    font-weight: 900;
+    font-size: 2.3rem;
+    transform: scaleY(1.2);
+}
+.turnRed {
+    display: inline-block;
+    color: rgb(202, 0, 0);
+}
+.layout {
+    display: grid;
+    grid-template-rows: 500px 400px;
+    grid-template-columns: 54% 21% 25%;
+    grid-template-areas: 
+    "top    top    skills"
+    "info  simplified   skills";
+}
+.topImage {
+    grid-area: top;
+}
+.topImage img{
+    width: 100%;
+    height: 500px;
+    object-fit: fill;
+}
+.skills {
+    grid-area: skills;
+}
+.skills h1 {
+    margin-top: 1.4rem;
+    margin-left: 2rem;
+    line-height: 1.1em;
+    font-size: 2rem;
+}
+.skills ul {
+    list-style-type: square;
+    color: rgb(202, 0, 0);
+}
+.skills li
 {
     margin-top: -20px;
     margin-bottom: -45px;
@@ -83,7 +126,7 @@ ul li {
     background-image: url(../media/absinthe.png);
 }
 #wicked {
-    background-image: url(../media/wicked_hack.png);
+    background-image: url(../media/wicked_slice.png);
 }
 #pistol {
     background-image: url(../media/pistol_shot.png);
@@ -232,99 +275,56 @@ ul li {
 #flashbang {
     background-image: url(../media/flashbang.png);
 }
-
-
-
-h1, h2, h3, h4 {
-    font-family: 'Lexend', sans-serif;
-    color: rgb(240, 160, 12);
-}
-h1 {
-    letter-spacing: -2px;
-    font-weight: 900;
-    font-size: 2.3rem;
-    transform: scaleY(1.2);
-}
-.turnRed {
-    display: inline-block;
-    color: rgb(202, 0, 0);
-}
-.layout {
-    display: grid;
-    grid-template-rows: 500px 400px;
-    grid-template-columns: 54% 21% 25%;
-    grid-template-areas: 
-    "top    top    skills"
-    "info  simplified   skills";
-}
-#topImage {
-    grid-area: top;
-}
-#topImage img{
-    width: 100%;
-    height: 500px;
-    object-fit: fill;
-}
-#skills {
-    grid-area: skills;
-}
-#skills h1 {
-    margin-top: 1.4rem;
-    margin-left: 2rem;
-    line-height: 1.1em;
-    font-size: 2rem;
-}
-#skills ul {
-    list-style-type: square;
-    color: rgb(202, 0, 0);
-}
-#skills p {
+.skills p {
     margin-right: 1rem;
 }
-#backstory {
+.backstory {
     grid-area: info;
     margin-top: -0.3rem;
 }
-#backstory p {
+.backstory p {
     margin-right: 1rem;
 }
-#backstory h1, #backstory h3, #backstory h4, #backstory p {
+.backstory h1, .backstory h3, .backstory h4, .backstory p {
     margin-left: 5rem;
 }
-#backstory h1 {
+.backstory h1 {
     margin-top: -1rem;
     margin-bottom: -5px;
 }
-#backstory h3
+.backstory h3
 {
     color: white;
     margin-top: -0.9rem;
 }
-#backstory h4 {
+.backstory h4 {
     color: rgb(202, 0, 0);
     margin-bottom: 1rem;
     transform: scaleY(1.1);
 }
-#description {
+.description {
     margin-top: 25px;
     background-color: rgb(61, 61, 61);
     grid-area: simplified;
 }
-#description ul {
+.description ul {
     list-style: disc;
     color: rgb(163, 161, 161);
 }
-#description li {
+.description li {
     margin-bottom: 40px;
     font-size: 1.4rem;
 }
-#description p {
+#occultist .description li {
+    margin-bottom: 30px;
+}
+.description p {
     margin: 0 1rem;
     margin-bottom: 1rem; 
     font-size: 1.4rem;
     font-weight: bold;
 }
-#description h2 {
+.description h2 {
     margin-left: 1rem;
     margin-bottom: 30px;
     margin-top: 5px;
@@ -341,46 +341,82 @@ h1 {
     grid-template-areas:
     "bottom  personal";
 }
-#bottomImage {
+#plague_doctor .bottomLayout {
+    margin-top: 175px;
+}
+#plague_doctor .bottomLayout, #highwayman .bottomLayout, #jester .bottomLayout {
+    margin-bottom: 2rem;
+}
+#grave_robber .bottomLayout, #runaway .bottomLayout {
+    margin-bottom: 3rem;
+}
+#highwayman .bottomLayout {
+    margin-top: 125px;
+}
+#man-at-arms .bottomLayout {
+    margin-top: 225px;
+    margin-bottom: 8rem;
+}
+#hellion .bottomLayout {
+    margin-bottom: 6rem;
+}
+#leper .bottomLayout {
+    margin-top: 325px;
+    margin-bottom: 11rem;
+}
+#occultist .bottomLayout {
+    margin-bottom: 16rem;
+}
+#vestal .bottomLayout {
+    margin-top: 175px;
+}
+#flagellant .bottomLayout {
+    margin-top: 325px; 
+    margin-bottom: 17rem;
+}
+#bounty_hunter .bottomLayout {
+    margin-top: 225px;
+}
+.bottomImage {
     width: 125%;
     grid-area: bottom;
     margin: auto;
     margin-left: 9%;
 }
-#bottomImage img{
+.bottomImage img{
     width: 75%;
     height: 75%;
     object-fit: fill;
 }
-#input {
+.input {
     grid-area: personal;
 }
-#input h2 {
+.input h2 {
     margin-top: -2.1rem;
     margin-bottom: .55rem;
     color: rgb(228, 154, 16);;
     letter-spacing: -3px;
     font-size: 2rem;
 }
-#input img {
+.input img {
     width: 100%;
     object-fit: fill;
     margin-top: -1rem;
 }
-#input h1, #input p {
+.input h1, .input p {
     margin-left: 1rem;
 }
-#input h1 {
+.input h1 {
     color: rgb(221, 125, 0);
     margin-top: -1px;
     margin-bottom: -1px;
 }
-#input p {
-    column-count: 3;
-    column-gap: 10px;
-    column-span: all;
-    column-width: 100px;
-    margin-right: 20px;
+.colOne, .colTwo, .colThree{
+    width: 32%;
+    float: left;
+}
+.colOne, .colTwo {
+    margin-right: 10px;
 }
 #navigation {
     overflow: hidden;
@@ -397,4 +433,126 @@ h1 {
     float: left;
     text-align: center;
     padding: 14px 16px;
+}
+#resp_nav {
+    display: none;
+    text-align: center;
+}
+
+@media screen and (max-width:600px) {
+    .layout {
+        display: grid;
+        grid-template-rows: 500px 400px 400px 500px;
+        grid-template-columns: 100vw;
+        grid-template-areas: 
+        "top"
+        "info"
+        "simplified"
+        "skills"
+    }
+    .bottomLayout {
+        display: grid;
+        grid-template-rows: 400px 400px;
+        grid-template-columns: 100vw;
+        grid-template-areas:
+        "bottom"  
+        "personal";
+    }
+    #navigation {
+        display: block;
+    }
+    #navigation a {
+        display: none;
+    }
+    #resp_nav {
+        display: block;
+        color:rgb(77, 145, 212);
+        background-color: rgb(58, 57, 65);
+        padding: 14px 16px;
+    }
+    #resp_nav:hover {
+        background-color: rgb(95, 93, 107);
+    }
+    #resp_nav:focus {
+        background-color: rgb(95, 93, 107);
+    }
+    #navigation:hover a {
+        float: none;
+        position: relative;
+        display: block;
+    }
+    #navigation:focus a {
+        float: none;
+        position: relative;
+        display: block;
+        margin-top: 50px;
+    }
+    .topImage {
+        width: 100vw;
+    }
+    .description {
+        width: 50vw;
+        justify-self: center;
+    }
+    #leper .description {
+        margin-top: 65px;
+    }
+    .bottomImage img {
+        width: 80vw;
+        height: 400px;
+    }
+    .backstory h1, .backstory h3, .backstory h4, .backstory p {
+        margin-left: 1rem;
+        margin-right: 2rem;
+    }
+    .input img {
+        width: 95vw;
+        object-fit: fill;
+    }
+    .colOne, .colTwo, .colThree {
+        width: 32vw;
+        float: left;
+        margin-right: 1px;
+    }
+    .colThree {
+        margin-left: -10px;
+    }
+    #plague_doctor .bottomLayout, #highwayman .bottomLayout, #jester .bottomLayout {
+        margin-bottom: 8rem;
+    }
+    #grave_robber .bottomLayout, #runaway .bottomLayout {
+        margin-bottom: 10rem;
+    }
+    #highwayman .bottomLayout, #runaway .bottomLayout, #occultist .bottomLayout {
+        margin-top: 125px;
+    }
+    #man-at-arms .bottomLayout {
+        margin-top: 225px;
+        margin-bottom: 17rem;
+    }
+    #hellion .bottomLayout {
+        margin-top: 175px;
+        margin-bottom: 12rem;
+    }
+    #jester .bottomLayout {
+        margin-top: 150px;
+    }
+    #leper .bottomLayout {
+        margin-top: 225px;
+        margin-bottom: 22rem;
+    }
+    #occultist .bottomLayout {
+        margin-bottom: 27rem;
+    }
+    #vestal .bottomLayout {
+        margin-top: 175px;
+        margin-bottom: 6rem;
+    }
+    #flagellant .bottomLayout {
+        margin-top: 200px; 
+        margin-bottom: 29rem;
+    }
+    #bounty_hunter .bottomLayout {
+        margin-top: 175px;
+    }
 }
