@@ -34,13 +34,19 @@
     document.body.style.color = "rgb(178, 21, 21)";
 
     let pFirst = document.querySelector("p");
-    pFirst.innerHTML = "Report your UFO sightings here: http://www.nuforc.org";
-    //Figure out how to add link
+    pFirst.innerHTML = "Report your UFO sightings here: <a href='http://www.nuforc.org'>http://www.nuforc.org</a>";
     pFirst.style.color = "green";
     pFirst.style.fontWeight = "bold";
     pFirst.style.fontSize = "2em";
     pFirst.style.textTransform = "uppercase";
     pFirst.style.textShadow = "3px 2px #A44";
+    let pSecond = document.querySelector("p:nth-of-type(2)");
+    pSecond.innerHTML = "";
+    let pThird = document.querySelector("p:nth-of-type(3)");
+    pThird.innerHTML = "<img src='ufo.png' alt='A picture of a ufo'>";
+    
+    let footer = document.querySelector("footer");
+    footer.innerHTML = "&copy; 2023 Robert Casabianca";
 
 
 	</script>
