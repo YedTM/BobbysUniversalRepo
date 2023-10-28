@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<title>Web Apps-4-HW</title>
+	<style>
+		body{border:1px solid gray;}
+	</style>
+</head>
+<body>
+<h1>My Favorites</h1>
+<h2>My Favorite Colors</h2>
+
+<ol id="colorsList">
+	
+</ol>
+
+<h2>My Favorite Foods</h2>
+
+<ol id="foodsList">
+	
+</ol>
+
+<h2>My Favorite Links</h2>
+
+<ol id="linksList">
+	
+</ol>
+
+<script>
+"use strict";
+
+function createList(listElement,array = new Array("puppydogs", "butterflies", "lollipops")) {
+    for (let item of array) {
+        let li = document.createElement("li");
+        let text = document.createTextNode(item);
+        li.appendChild(text);
+        listElement.appendChild(li);
+    }
+}
+let colors = ["red","green","blue","purple","pink"];
+let bands = [];
+
+colors.push("white", "gray", "brown");
+bands.push("The Strokes", "Gorillaz", "311", "Franz Ferdinand", "Sir Chloe");
+
+createList(document.querySelector("ol"), colors);
+
+createList(document.querySelector("ol:nth-of-type(2)"), bands);
+
+let links = {
+		"RIT": "http://www.rit.edu",
+		"RWAG" : "https://www.facebook.com/RWAGclub",
+		"New Media Club" : "http://newmediaclub.cias.rit.edu"
+}
+
+for (let site in links) {
+    if (Object.hasOwnProperty.call(links, site)) {
+        let linkedSite = links[site];
+        let li = document.createElement("li");
+        let link = document.createElement("a");
+        link.innerHTML = site;
+        link.href = linkedSite;
+        li.appendChild(link);
+        document.body.children[6].appendChild(li);
+    }
+    
+}
+</script>
+</body>
+</html>
