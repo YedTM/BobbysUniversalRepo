@@ -1,0 +1,63 @@
+body {
+    font-family: 'Bree Serif', serif;
+    background-color: rgb(74, 73, 82);
+    font-weight: bold;
+    color: rgb(36, 36, 133);
+}
+#content {
+    background-image: url(jacket_looking.jpg);
+    background-position: center;
+    background-size: cover;
+    display: block;
+    height: 500px;
+    width: 40%;
+    text-align: center;
+    margin: auto;
+    margin-top: 15vh;
+}
+#text {
+    display: grid;
+    grid-template-rows: calc(160px - 4.1vw) calc(220px + 5vw) 80px 30px;
+    grid-template-columns: 100%;
+    grid-template-areas: 
+    "header"
+    "phrases"
+    "button"
+    "footer";
+}
+header {
+    background-color: rgba(75, 100, 109, 0.6);
+    grid-area: header;
+    margin-top: 20px;
+    text-align: center;
+}
+h1 {
+    font-size: 2em;
+    margin-top: 5px;
+}
+#randomSection {
+    grid-area: phrases;
+    font-size: 1.2em;
+    margin-top: 20px;
+}
+button {
+    grid-area: button;
+    background-color:rgb(75, 100, 109);
+    width: 50%;
+    margin: 0 auto;
+    font-family: 'Bree Serif', serif;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: rgb(29, 29, 112);
+}
+button:hover {
+    background-color: rgb(61, 57, 88);
+    color: rgb(36, 36, 133);
+}
+button:active {
+    background-color: rgb(106, 108, 145);
+    color: rgb(94, 5, 5);
+}
+footer {
+    grid-area: footer;
+}

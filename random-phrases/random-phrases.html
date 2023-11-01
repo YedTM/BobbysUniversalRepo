@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Phrases</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bree+Serif&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="random.css">
+</head>
+<body>
+    <section id="content">
+        <section id="text">
+            <header><h1>What Would Jacket Say?</h1></header>
+            <div id="randomSection"></div>
+            <button>New Quote?</button>
+            <footer>Made by Robert Casabianca</footer>
+        </section>
+        
+    </section>
+    <script>
+        let phrases = ["Un guardia.","The doctor is in the house.",
+        "You have reached Dennaton Enterprises, we can't take your call at the moment. Please leave a message after the beep and we'll get back to you.",
+        "Analysis of the air indicates presence of offensive matter.", "Did you know that 'banana chips' are deep-fried or dried slices of bananas?",
+        "Mi gato es un perro.","Do you know what time it is?"];
+        let displayed = document.querySelector("#randomSection");
+        let button = document.querySelector("button");
+        function displayQuote() {
+            displayed.innerHTML = phrases[Math.floor(Math.random() * phrases.length)];
+        }
+        displayed.onload = displayQuote();
+        button.onclick = displayQuote;
+    </script>
+</body>
+</html>
