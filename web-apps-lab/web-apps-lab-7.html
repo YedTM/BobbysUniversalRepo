@@ -22,7 +22,8 @@
          */
         window.onload = function () {
             makeSampleMonsters();
-            showMonsters();
+            showMonsters("Goomba", "#goombas");
+            showMonsters("Boo","#boos");
         }
 
         /**
@@ -40,26 +41,34 @@
             monsters.push(monster);
             monster = makeBoo("Greg", 40, 10, 400);
             monsters.push(monster);
+            monster = makeBoo("Paul", 50, 20, 200);
+            monsters.push(monster);
+            monster = makeBoo("Maurice", 10, 50, 100);
+            monsters.push(monster);
         }
 
         /**
          * Function that shows our monsters (just Goombas for now)
          * 
          */
-        function showMonsters() {
-            let goombaList = document.querySelector("#goombas");
+        function showMonsters(monster, list) {
+            let monsterList = document.querySelector(list);
 
             for (let i = 0; i < monsters.length; i++) {
-                let liStr = "";
-                let li = document.createElement("li");
+                if (monsters[i].species == monster)
+                {
+                    let liStr = "";
+                    let li = document.createElement("li");
 
-                for (let key in monsters[i]) {
-                    if (typeof monsters[i][key] !== "function") {
+                    for (let key in monsters[i]) {
+                        if (typeof monsters[i][key] !== "function") {
                         liStr += `<b>${key}:</b> ${monsters[i][key]}<br />`;
+                        }
                     }
+                    
+                    li.innerHTML = liStr;
+                    monsterList.appendChild(li);
                 }
-                li.innerHTML = liStr;
-                goombaList.appendChild(li);
             }
         }
 
@@ -73,6 +82,7 @@
                 hp: 100,
                 speed: 10,
                 score: 100,
+                species: "", 
                 status: function () {
                     console.log("name: " + this.name + ", hp: " + this.hp + ", speed: " + this.speed + ", score: " + this.score);
                 }
@@ -89,6 +99,7 @@
             goomba.hp = hp;
             goomba.speed = speed;
             goomba.score = score;
+            goomba.species = "Goomba";
             goomba.takeDamage = function (dmgVal) {
                 goomba.hp -= dmgVal;
             }
@@ -114,6 +125,7 @@
             boo.hp = hp;
             boo.speed = speed;
             boo.score = score;
+            boo.species = "Boo";
             boo.takeDamage = function (dmgVal) {
                 boo.hp -= dmgVal;
             }
