@@ -23,7 +23,7 @@
         url += "&q=" + term;
 
         let limit = document.querySelector("#limit").value;
-        url += "&limit" + limit;
+        url += "&limit=" + limit;
         
         document.querySelector("#status").innerHTML = "<b>Searching for '" + displayTerm + "'</b>";
 
@@ -57,7 +57,22 @@
         console.log("results.length = " + results.length);
         let bigString = "<p><i>Here are " + results.length + " results for '" + displayTerm + "'</i></p>";
 
-        
+        for (let i=0;i<results.length;i++){
+            let result = results[i];
+
+            let smallURL = result.images.fixed_width_small.url;
+            if (!smallURL) smallURL = "images/no-image-found.png";
+
+            let url = result.url;
+
+            let line = `<div class='result'><img src='${smallURL}' title= '${result.id}' />`;
+            line += `<span><a target='_blank' href='${url}'>View on Giphy</a></span></div>`;
+
+            bigString += line;
+        }
+
+        document.querySelector("#content").innerHTML = bigString;
+        document.querySelector("#status").innerHTML = "<b>Success!</b>";
     }
 
     function dataError(e){
