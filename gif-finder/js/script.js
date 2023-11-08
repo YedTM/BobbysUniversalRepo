@@ -1,80 +1,81 @@
 
-  	window.onload = (e) => {document.querySelector("#search").onclick = searchButtonClicked};
-	let displayTerm = "";
-	
-	function searchButtonClicked(){
-		console.log("searchButtonClicked() called");
-		
-        const GIPHY_URL = "https://api.giphy.com/v1/gifs/search?";
-        const GIPHY_KEY = "5PuWjWVnwpHUQPZK866vd7wQ2qeCeqg7";
+window.onload = (e) => {document.querySelector("#search").onclick = searchButtonClicked};
+let displayTerm = "";
 
-        let url = GIPHY_URL;
-        url += "api_key=" + GIPHY_KEY;
+function searchButtonClicked(){
+    console.log("searchButtonClicked() called");
+    
+    const GIPHY_URL = "https://api.giphy.com/v1/gifs/search?";
+    const GIPHY_KEY = "5PuWjWVnwpHUQPZK866vd7wQ2qeCeqg7";
 
-        let term = document.querySelector("#searchterm").value;
-        displayTerm = term;
+    let url = GIPHY_URL;
+    url += "api_key=" + GIPHY_KEY;
 
-        term = term.trim();
+    let term = document.querySelector("#searchterm").value;
+    displayTerm = term;
 
-        term= encodeURIComponent(term);
+    term = term.trim();
 
-        if (term.length < 1) return;
+    term= encodeURIComponent(term);
 
-        url += "&q=" + term;
+    if (term.length < 1) return;
 
-        let limit = document.querySelector("#limit").value;
-        url += "&limit=" + limit;
-        
-        document.querySelector("#status").innerHTML = "<b>Searching for '" + displayTerm + "'</b>";
+    url += "&q=" + term;
 
-        console.log(url);
+    let limit = document.querySelector("#limit").value;
+    url += "&limit=" + limit;
+    
+    document.querySelector("#status").innerHTML = "<b>Searching for '" + displayTerm + "'</b>";
 
-        getData(url);
-	}
+    console.log(url);
 
-    function getData(url){
-        let xhr = new XMLHttpRequest();
+    getData(url);
+}
 
-        xhr.onload = dataLoaded;
+function getData(url){
+    let xhr = new XMLHttpRequest();
 
-        xhr.onerror = dataError;
+    xhr.onload = dataLoaded;
 
-        xhr.open("GET", url);
-        xhr.send();
-    }
-	
-    function dataLoaded(e){
-        let xhr = e.target;
-        console.log(xhr.responseText);
+    xhr.onerror = dataError;
 
-        let obj = JSON.parse(xhr.responseText);
-        if(!obj.data || obj.data.length == 0){
-            document.querySelector("#status").innerHTML = "<b>No reuslts found for '" + displayTerm + "'</b>";
-            return;
-        }
+    xhr.open("GET", url);
+    xhr.send();
+}
 
-        let results = obj.data;
-        console.log("results.length = " + results.length);
-        let bigString = "<p><i>Here are " + results.length + " results for '" + displayTerm + "'</i></p>";
+function dataLoaded(e){
+    let xhr = e.target;
+    console.log(xhr.responseText);
 
-        for (let i=0;i<results.length;i++){
-            let result = results[i];
-
-            let smallURL = result.images.fixed_width_small.url;
-            if (!smallURL) smallURL = "images/no-image-found.png";
-
-            let url = result.url;
-
-            let line = `<div class='result'><img src='${smallURL}' title= '${result.id}' />`;
-            line += `<span><a target='_blank' href='${url}'>View on Giphy</a></span></div>`;
-
-            bigString += line;
-        }
-
-        document.querySelector("#content").innerHTML = bigString;
-        document.querySelector("#status").innerHTML = "<b>Success!</b>";
+    let obj = JSON.parse(xhr.responseText);
+    if(!obj.data || obj.data.length == 0){
+        document.querySelector("#status").innerHTML = "<b>No reuslts found for '" + displayTerm + "'</b>";
+        return;
     }
 
-    function dataError(e){
-        console.log("An error occured");
+    let results = obj.data;
+    console.log("results.length = " + results.length);
+    let bigString = "";
+
+    for (let i=0;i<results.length;i++){
+        let result = results[i];
+
+        let smallURL = result.images.fixed_width.url;
+        if (!smallURL) smallURL = "images/no-image-found.png";
+
+        let url = result.url;
+
+
+        let line = `<div class='result'>Rating: ${result.rating.toUpperCase()}<br /><img src='${smallURL}' title= '${result.id}' />`;
+        line += `<span><a target='_blank' href='${url}'>View on Giphy</a></span></div>`;
+
+        bigString += line;
     }
+
+    document.querySelector("#content").innerHTML = bigString;
+    document.querySelector("#status").innerHTML = "<b>Success!</b><p><i>Here are " + results.length + " results for '" + displayTerm + "'</i></p>";
+}
+
+function dataError(e){
+    console.log("An error occured");
+}
