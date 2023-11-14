@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+ 	<title>Dog Finder</title>
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+     <link href="https://fonts.googleapis.com/css2?family=Bree+Serif&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    
+  <script src="js/search.js"></script>
+</head>
+<body>
+<header>
+	<h1>Find That Dog!</h1>
+    <h3>See any breed you want!</h3>
+</header>
+
+<div class="widgets">
+	Enter Dog Breed -> 
+	<!-- <input id="searchterm" type="text" size="20" maxlength="20" autofocus value="labrador"/> -->
+    <select id="dog-selector">
+        <option value="labrador">labrador</option>
+        <option value="basenji">basenji</option>
+    </select>
+</div>
+
+<div class="widgets">
+	Max # results -> 
+	<input id="limit" type="text" size="20" maxlength="3" autofocus value="5"/>
+</div>
+
+<div class="widgets">
+	<button type="button" id="search">Show me those dogs!<br></button>
+</div>
+<div id="status">Good to Go!</div>
+<hr>
+
+<h2>Showing Those Dogs!</h2>
+<div id="content">
+	<p>No dogs yet...</p>
+</div>
+ 
+
+</body>
+</html>
