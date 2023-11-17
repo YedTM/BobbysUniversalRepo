@@ -3,12 +3,12 @@
 <head>
 	<meta charset="utf-8" />
  	<title>Dog Finder</title>
-     <link rel="preconnect" href="https://fonts.googleapis.com">
-     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-     <link href="https://fonts.googleapis.com/css2?family=Bree+Serif&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bree+Serif&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     
-  <script src="js/search.js"></script>
+  
 </head>
 <body>
 <header>
@@ -18,7 +18,7 @@
 
 <div class="widgets">
 	Select Dog Breed -> 
-    <select id="dog-selector" onchange="getChangeArray('https://dog.ceo/api/breeds/list/all')">
+    <select id="dog-selector" onchange="selectorOnChange()">
     </select>
 </div>
 
@@ -44,6 +44,6 @@
 	<p>No dogs yet...</p>
 </div>
  
-
 </body>
+<script src="js/search.js"></script>
 </html>

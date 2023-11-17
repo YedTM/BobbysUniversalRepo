@@ -5,9 +5,9 @@ let displaySubTerm = "";
 function searchButtonClicked(){
     console.log("searchButtonClicked() called");
     
-    const GIPHY_URL = "https://dog.ceo/api/breed/";
+    const image_url = "https://dog.ceo/api/breed/";
 
-    let url = GIPHY_URL;
+    let url = image_url;
 
     let term = document.querySelector("#dog-selector").value;
     displayTerm = term;
@@ -80,8 +80,7 @@ function dataLoaded(e){
 
         let smallURL = result;
 
-        let line = `<div class='result'><img src='${smallURL}' title= '${smallURL}' />`;
-        line += `<span><a target='_blank' href='${smallURL}'>View On Its Own</a></span></div>`;
+        let line = `<div class='result'><img src='${smallURL}' title= '${smallURL}'></div>`;
 
         bigString += line;
     }
@@ -114,11 +113,11 @@ function getArray(url){
 
 function createInitialArray(e){
     let xhr = e.target;
-    // console.log(xhr.responseText);
+    console.log(xhr.responseText);
 
     let obj = JSON.parse(xhr.responseText);
-    // console.log(obj);
-    // console.log(obj.message);
+    console.log(obj);
+    console.log(obj.message);
     let results = obj.message;
     
     let userInitialSelection = document.querySelector("#dog-selector");
@@ -127,15 +126,12 @@ function createInitialArray(e){
         let breed = document.createElement("option");
         breed.text = dog;
         userInitialSelection.add(breed);
-        if (dog == userInitialSelection.value)
-        {
-            let subURL = "http://dog.ceo/api/breed/";
-            subURL += dog;
-            subURL += "/list";
-            getSubArray(subURL);
-        }
     }
-
+    userInitialSelection.value = storedBreed;
+    let subURL = "http://dog.ceo/api/breed/";
+    subURL += storedBreed;
+    subURL += "/list";
+    getSubArray(subURL);
 }
 
 function getChangeArray(url){
@@ -210,5 +206,26 @@ function createSubArray(e){
 
 document.onload = getArray("https://dog.ceo/api/breeds/list/all");
 
+const breedField = document.querySelector("#dog-selector");
+const prefix = "rcc3452-";
+const breedKey = prefix + "breed";
+
+const storedBreed = localStorage.getItem(breedKey);
+
+if (storedBreed){
+	document.querySelector("#dog-selector").value = storedBreed;
+}
+else {
+	breedField.value = "affenpinscher";
+}
+
+function storingBreed(){
+    localStorage.setItem(breedKey, breedField.value);
+}
+
+function selectorOnChange(){
+    getChangeArray('https://dog.ceo/api/breeds/list/all');
+    storingBreed();
+}
 
 
