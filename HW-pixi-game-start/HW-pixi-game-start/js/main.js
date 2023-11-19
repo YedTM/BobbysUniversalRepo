@@ -287,8 +287,11 @@ function gameLoop(){
                 createExplosion(c.x,c.y,64,64, explosionTextures);
                 gameScene.removeChild(c);
                 c.isAlive = false;
-                gameScene.removeChild(b);
-                b.isAlive = false;
+                if (score < 100)
+                {
+                    gameScene.removeChild(b);
+                    b.isAlive = false;
+                }
                 increaseScoreBy(1);
             }
 
@@ -332,7 +335,7 @@ function gameLoop(){
 
 function createCircles(numCircles){
     for(let i=0;i<numCircles;i++){
-        let c = new Circle(10,0xFFFF00);
+        let c = new Circle(10,0xFFFF00, (40 + (levelNum * 10)));
         c.x = Math.random() * (sceneWidth - 50) + 25;
         c.y = Math.random() * (sceneHeight - 400) + 25;
         circles.push(c);
@@ -381,7 +384,7 @@ function fireBullet(e){
     }
     else
     {
-        if (bullets.length <= 30)
+        if (bullets.length <= 18)
         {
             for (let i = 0; i < 3; i++)
             {
