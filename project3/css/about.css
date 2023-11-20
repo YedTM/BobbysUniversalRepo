@@ -1,0 +1,12 @@
+.rightImage {
+    margin-left: 50px;
+}
+.leftImage, .rightImage {
+    width: 600px;
+    height: 400px;
+    float: left;
+    margin-bottom: 20px;
+}
+.underImages {
+    clear: both;
+}
