@@ -1,6 +1,8 @@
 window.onload = (e) => {document.querySelector("#search").onclick = searchButtonClicked};
 let displayTerm = "";
 let displaySubTerm = "";
+let resultsArray;
+let savedArray = [];
 
 function searchButtonClicked(){
     console.log("searchButtonClicked() called");
@@ -48,6 +50,7 @@ function searchButtonClicked(){
     console.log(url);
 
     getData(url);
+
 }
 
 function getData(url){
@@ -93,6 +96,12 @@ function dataLoaded(e){
     else
     {
         document.querySelector("#status").innerHTML = "<b>Success!</b><p><i>Here are " + results.length + " results for '" + displayTerm + "'</i></p>";
+    }
+
+    resultsArray = document.querySelectorAll("img");
+
+    for (let i = 0; i < resultsArray.length; i++) {
+        resultsArray[i].onclick = (e) => {if(savedArray.includes(resultsArray[i]) == false){savedArray.push(resultsArray[i])}};
     }
 }
 
@@ -227,5 +236,6 @@ function selectorOnChange(){
     getChangeArray('https://dog.ceo/api/breeds/list/all');
     storingBreed();
 }
+
 
 
