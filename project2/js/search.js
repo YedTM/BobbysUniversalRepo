@@ -101,7 +101,20 @@ function dataLoaded(e){
     resultsArray = document.querySelectorAll("img");
 
     for (let i = 0; i < resultsArray.length; i++) {
-        resultsArray[i].onclick = (e) => {if(savedArray.includes(resultsArray[i]) == false){savedArray.push(resultsArray[i])}};
+        resultsArray[i].onclick = (e) => 
+            {if(JSON.parse(localStorage.getItem("rcc3452-favorite")) != null)
+             {
+                if (JSON.parse(localStorage.getItem("rcc3452-favorite")).includes(resultsArray[i].src) == false)
+                {
+                    savedArray.push(resultsArray[i].src), localStorage.setItem(prefix + "favorite", JSON.stringify(savedArray))
+                }
+             }
+             else if(savedArray.includes(resultsArray[i].src) == false)
+             {
+                savedArray.push(resultsArray[i].src), localStorage.setItem(prefix + "favorite", JSON.stringify(savedArray))
+             }
+                
+            }
     }
 }
 
@@ -136,11 +149,18 @@ function createInitialArray(e){
         breed.text = dog;
         userInitialSelection.add(breed);
     }
-    userInitialSelection.value = storedBreed;
+    if (storedBreed){
+        breedField.value = storedBreed;
+    }
+    else {
+        breedField.value = "affenpinscher";
+    }
+    userInitialSelection.value = breedField.value;
     let subURL = "http://dog.ceo/api/breed/";
-    subURL += storedBreed;
+    subURL += breedField.value;
     subURL += "/list";
     getSubArray(subURL);
+
 }
 
 function getChangeArray(url){
@@ -220,13 +240,6 @@ const prefix = "rcc3452-";
 const breedKey = prefix + "breed";
 
 const storedBreed = localStorage.getItem(breedKey);
-
-if (storedBreed){
-	document.querySelector("#dog-selector").value = storedBreed;
-}
-else {
-	breedField.value = "affenpinscher";
-}
 
 function storingBreed(){
     localStorage.setItem(breedKey, breedField.value);

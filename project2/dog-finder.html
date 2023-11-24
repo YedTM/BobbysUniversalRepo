@@ -19,18 +19,25 @@
 <div class="widgets">
 	Select Dog Breed -> 
     <select id="dog-selector" onchange="selectorOnChange()">
+
     </select>
 </div>
 
 <div class="widgets">
     Select Sub-Breed ->
     <select id="sub-selector">
+
     </select>
 </div>
 
 <div class="widgets">
 	Max # results -> 
-	<input id="limit" type="text" size="20" maxlength="3" autofocus value="5"/>
+	<select id="limit">
+        <option>5</option>
+        <option>10</option>
+        <option>25</option>
+        <option>50</option>
+    </select>
 </div>
 
 <div class="widgets">
@@ -40,10 +47,14 @@
 <hr>
 
 <h2>Showing Those Dogs!</h2>
+<h3>Click a dog to add it to your favorites</h3>
 <div id="content">
 	<p>No dogs yet...</p>
 </div>
  
+<footer>
+    <a href="favorite-dogs.html" target="_blank">Click Here To View Favorite Images</a>
+</footer>
 </body>
 <script src="js/search.js"></script>
 </html>
