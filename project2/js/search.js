@@ -156,7 +156,7 @@ function createInitialArray(e){
         breedField.value = "affenpinscher";
     }
     userInitialSelection.value = breedField.value;
-    let subURL = "http://dog.ceo/api/breed/";
+    let subURL = "https://dog.ceo/api/breed/";
     subURL += breedField.value;
     subURL += "/list";
     getSubArray(subURL);
