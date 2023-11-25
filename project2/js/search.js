@@ -188,7 +188,7 @@ function createChangeArray(e){
     {
         if (dog == userInitialSelection.value)
         {
-            let subURL = "http://dog.ceo/api/breed/";
+            let subURL = "https://dog.ceo/api/breed/";
             subURL += dog;
             subURL += "/list";
             getSubArray(subURL);
