@@ -39,9 +39,11 @@ if (savedDogs != null)
     imageArea.innerHTML = dog;
 }
 
-let clearButton = document.querySelector("#clear");
+document.querySelector("#clear").onclick = removeImages;
 
-clearButton.onclick = localStorage.removeItem("rcc3452-savedImages");
-
-
+function removeImages()
+{
+    localStorage.removeItem("rcc3452-savedImages");
+    localStorage.removeItem("rcc3452-favorite");
+}
 
