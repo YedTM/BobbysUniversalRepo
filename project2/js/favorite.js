@@ -2,7 +2,7 @@ let imageArea = document.querySelector("#content");
 
 let currentLikedDogs = JSON.parse(localStorage.getItem("rcc3452-favorite"));
 
-let savedDogs = "";
+let savedDogs = [];
 
 
 if(localStorage.getItem("rcc3452-savedImages") == "null" || localStorage.getItem("rcc3452-savedImages") == null)
@@ -15,7 +15,10 @@ else if (localStorage.getItem("rcc3452-favorite") != null)
     savedDogs = JSON.parse(localStorage.getItem("rcc3452-savedImages"));
     for (let i = 0; i < currentLikedDogs.length; i++)
     {
-        savedDogs.push(currentLikedDogs[i]);
+        if (savedDogs.includes(currentLikedDogs[i]) == false)
+        {
+            savedDogs.push(currentLikedDogs[i]);
+        }
     }
     localStorage.setItem("rcc3452-savedImages", JSON.stringify(savedDogs));
 }

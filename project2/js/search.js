@@ -233,7 +233,7 @@ function createSubArray(e){
     }
 }
 
-document.onload = getArray("https://dog.ceo/api/breeds/list/all");
+document.onload = getArray("https://dog.ceo/api/breeds/list/all"), localStorage.removeItem("rcc3452-favorite");
 
 const breedField = document.querySelector("#dog-selector");
 const prefix = "rcc3452-";
