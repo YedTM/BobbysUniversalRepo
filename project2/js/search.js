@@ -83,7 +83,9 @@ function dataLoaded(e){
 
         let smallURL = result;
 
-        let line = `<div class='result'><img src='${smallURL}' title= '${smallURL}'></div>`;
+        let line = "";
+
+        line = `<div class='result'><img src='${smallURL}' title= '${smallURL}' onerror='changeImage(this)'></div>`;
 
         bigString += line;
     }
@@ -250,5 +252,9 @@ function selectorOnChange(){
     storingBreed();
 }
 
+function changeImage(e){
+    e.src = "images/no_image.png";
+    e.title = "No Image Found";
+}
 
 
