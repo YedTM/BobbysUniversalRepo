@@ -95,7 +95,7 @@ button{
   text-decoration : none;
   border-color: #c87800;
   background: #c87800;
-  background: linear-gradient(top, #c87800 0%,#8c4f00 100%);
+  background: linear-gradient(to top, #c87800 0%,#8c4f00 100%);
 }
 
 button:hover{

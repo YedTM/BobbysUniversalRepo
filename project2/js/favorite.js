@@ -4,13 +4,8 @@ let currentLikedDogs = JSON.parse(localStorage.getItem("rcc3452-favorite"));
 
 let savedDogs = "";
 
-if(localStorage.getItem("rcc3452-savedImages") == null)
-{
-    localStorage.setItem("rcc3452-savedImages", "");
-}
 
-
-if(localStorage.getItem("rcc3452-savedImages") == "")
+if(localStorage.getItem("rcc3452-savedImages") == "null" || localStorage.getItem("rcc3452-savedImages") == null)
 {
     localStorage.setItem("rcc3452-savedImages", localStorage.getItem("rcc3452-favorite"));
     savedDogs = JSON.parse(localStorage.getItem("rcc3452-savedImages"));
@@ -45,5 +40,6 @@ function removeImages()
 {
     localStorage.removeItem("rcc3452-savedImages");
     localStorage.removeItem("rcc3452-favorite");
+    savedDogs = null;
 }
 

@@ -1,4 +1,4 @@
-window.onload = (e) => {document.querySelector("#search").onclick = searchButtonClicked};
+window.onload = (e) => {(document.querySelector("#search").onclick = searchButtonClicked), localStorage.removeItem("rcc3452-favorite");};
 let displayTerm = "";
 let displaySubTerm = "";
 let resultsArray;
