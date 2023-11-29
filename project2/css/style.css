@@ -109,6 +109,10 @@ button:active{
 
 button:focus {outline:0;}
 
+#clear {
+    margin-bottom: 30px;
+}
+
 .widgets{
     margin-top: 1em;
     margin-bottom:1em;
