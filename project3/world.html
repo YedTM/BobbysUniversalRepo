@@ -47,6 +47,17 @@
 	        moveUp(){this.y--;}
         });
 
+		window.onload = ()=>{
+			gameWorld = worldLayout["layout"];
+			let numCols = gameWorld[0].length;
+			let numRows = gameWorld.length;
+			createGridElements(numRows,numCols);
+			drawGrid(gameWorld);
+			loadLevel(currentLevelNumber);
+			drawGameObjects(gameObjects);
+			setupEvents();
+		}
+
         // III. FUNCTIONS
         // the elements on the screen that won't change - our "view"
         function createGridElements(numRows,numCols){
@@ -108,18 +119,6 @@
                     
                 		case worldTile.WALL:
                 		element.classList.add("wall");
-                		break;
-                    
-                		case worldTile.GRASS:
-                		element.classList.add("grass");
-                		break;
-                    
-                		case worldTile.WATER:
-                		element.classList.add("water");
-                		break;
-                    
-                		case worldTile.GROUND:
-                		element.classList.add("ground");
                 		break;
         			}
         		}
@@ -213,17 +212,7 @@
         	// selectedCell.classList.add('cellSelected');
         	console.log(`${col},${row}`);
         }
-        
-        
-        
-        
-        
-        
-        
-        
-
-
-
+		
     </script>
 </body>
 </html>

@@ -23,35 +23,14 @@ div#game{
 span.floor{
 	width:32px;
 	height:32px;
-	background: url(../sprites/basic_floor.png);
+	background: url(../sprites/new_floor.png);
 }
 
 span.wall{
 	width:32px;
 	height:32px;
-	background: url(../images/terrain.png);
+	background: url(../sprites/wall.png);
 	background-position: -32px -32px;
-}
-
-span.grass{
-	width:32px;
-	height:32px;
-	background: url(../images/terrain.png);
-	background-position: -64px -64px;
-}
-
-span.water{
-	width:32px;
-	height:32px;
-	background: url(../images/terrain.png);
-	background-position: -96px -96px;
-}
-
-span.ground{
-	width:32px;
-	height:32px;
-	background: url(../images/terrain.png);
-	background-position: -128px -128px;
 }
 
 span.cell{
@@ -98,7 +77,7 @@ span.key1{
 	position:absolute;
 	left: -100px;
 	top: -100px;
-	background-position: -1024px -448px;
+	background: url(../sprites/case_key.png);
 }
 
 span.monster1{ 
@@ -106,7 +85,7 @@ span.monster1{
 	left: -100px;
 	top: -100px;
 	z-index: 500; /* layered between other game objects and player */
-	background-position: -96px -32px;
+	background: url(../sprites/enemy.png);
 }
 
 span.monster2{ 
@@ -127,8 +106,7 @@ span.monster3{
 
 /* player style */
 span.player{ 
-	background: url(../images/nethack-32x32.png);
-	background-position: -96px -96px;
+	background: url(../sprites/world_player.png);
 	z-index: 1000; /* On top of everything */
 	transition-property: all;
 	transition-duration: .25s;
