@@ -1,20 +1,26 @@
+body{
+	display: flex;
+	justify-content: center;
+	height: 100vh;
+	margin: 0;
+	background-color: #333;
+}
 
 h1{
     font-family: 'Playball', cursive;
 	display: inline-block;
 	position:absolute;
-	font-size:1.3em;
+	font-size: 3em;
 	top: 0;
-	left:1000px;
 	line-height:1.5em;
+	color: white;
 }
 
 div#game{
-	top:5px;
-	left:5px;
+	margin-left: -27%;
+	margin-top: 25vh;
 	padding:0;
-	display:inline-block;
-	position:absolute;
+	position: absolute;
 	z-index: 0; /* underneath everything */
 }
 
@@ -30,7 +36,12 @@ span.wall{
 	width:32px;
 	height:32px;
 	background: url(../sprites/wall.png);
-	background-position: -32px -32px;
+}
+
+span.shelf {
+	width: 32px;
+	height: 32px;
+	background: url(../sprites/shelf.png);
 }
 
 span.cell{
@@ -59,49 +70,24 @@ span.gameObject{
 	height:32px;
 	width:32px;
 	position:absolute;
-	left: -100px;
-	top: -100px;
 	z-index: 100; /* layered between background tiles and player */
 	background-color:black;
-	background: url(../images/nethack-32x32.png);
 }
 
-span.chest1{ 
+span.locked{ 
 	position:absolute;
-	left: -100px;
-	top: -100px;
-	background-position: -1088px -288px;
+	background: url(../sprites/locked.png);
 }
 
 span.key1{ 
 	position:absolute;
-	left: -100px;
-	top: -100px;
 	background: url(../sprites/case_key.png);
 }
 
-span.monster1{ 
+span.monster1, span.monster2{ 
 	position:absolute;
-	left: -100px;
-	top: -100px;
 	z-index: 500; /* layered between other game objects and player */
 	background: url(../sprites/enemy.png);
-}
-
-span.monster2{ 
-	position:absolute;
-	left: -100px;
-	top: -100px;
-	z-index: 500; /* layered between other game objects and player */
-	background-position: -192px -128px;
-}
-
-span.monster3{ 
-	position:absolute;
-	left: -100px;
-	top: -100px;
-	z-index: 500; /* layered between other game objects and player */
-	background-position: -192px -224px;
 }
 
 /* player style */
@@ -112,23 +98,22 @@ span.player{
 	transition-duration: .25s;
 }
 
-span.ring1{ 
+span.portal{ 
 	position:absolute;
-	left: -100px;
-	top: -100px;
-	background-position: -320px -448px;
+	background: url(../sprites/portal.png)
 }
 
-span.treasure1{ 
+span.power1{ 
 	position:absolute;
-	left: -100px;
-	top: -100px;
-	background-position: -448px -448px;
+	background: url(../sprites/flame_power.png);
 }
 
-span.treasure2{ 
+span.power2{ 
 	position:absolute;
-	left: -100px;
-	top: -100px;
-	background-position: -928px -448px;
+	background: url(../sprites/lightning_power.png);
+}
+
+span.power3{ 
+	position:absolute;
+	background: url(../sprites/nature_power.png);
 }

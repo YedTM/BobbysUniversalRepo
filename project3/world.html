@@ -30,7 +30,8 @@
 
         let worldTile = ({
             FLOOR: 0,
-            WALL: 1
+            WALL: 1,
+			SHELF: 2
         });
 
         let currentLevelNumber = 1;
@@ -120,6 +121,10 @@
                 		case worldTile.WALL:
                 		element.classList.add("wall");
                 		break;
+
+						case worldTile.SHELF:
+						element.classList.add("shelf");
+						break;
         			}
         		}
         	}
