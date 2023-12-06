@@ -30,7 +30,8 @@
         let worldTile = ({
             FLOOR: 0,
             WALL: 1,
-			SHELF: 2
+			SHELF: 2,
+			CORNER: 3
         });
 
         let currentLevelNumber = 1;
@@ -123,6 +124,10 @@
 
 						case worldTile.SHELF:
 						element.classList.add("shelf");
+						break;
+
+						case worldTile.CORNER:
+						element.classList.add("corner");
 						break;
         			}
         		}

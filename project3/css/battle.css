@@ -31,20 +31,32 @@ span {
 
 /* Background Tile Styles */
 span.floor{
+	width: 32px;
+    height: 32px;
 	background: url(../sprites/new_floor.png);
 }
 
 span.wall{
-	background: url(../sprites/wall.png);
+	width: 32px;
+    height: 32px;
+	background: url(../sprites/bounds_hor.png);
 }
 
 span.shelf {
-	background: url(../sprites/shelf.png);
+	width: 32px;
+    height: 32px;
+	background: url(../sprites/bounds_vert.png);
+}
+
+span.corner {
+	width: 32px;
+    height: 32px;
+	background: url(../sprites/bounds_corner.png);
 }
 
 span.cell{
 	border: 1px solid #333; /* actual width & height is 32px because of border */
-	background-color: #ccc;
+
 	padding:0;
 	margin:0;
 	position:absolute;

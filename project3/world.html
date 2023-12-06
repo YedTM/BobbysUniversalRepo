@@ -22,6 +22,7 @@
         let spaces = [];
 
         let keyboard = ({
+			ENTER: 13,
             LEFT: 37,
             UP: 38,
             RIGHT: 39,
@@ -173,6 +174,15 @@
         		if(checkIsLegalMove(nextX,nextY)) player.moveUp();
         		break;
         	}
+
+			switch(e.keyCode){
+				case keyboard.ENTER:
+				if (player.x == 15 && player.y == 1)
+				{
+					let treePower = document.querySelector(".gameObject.power3");
+					gameArea.removeChild(treePower);
+				}
+			}
         
         	function checkIsLegalMove(nextX,nextY){
         		let nextTile = gameWorld[nextY][nextX];
@@ -184,6 +194,7 @@
         		}
         	}
         }
+		//settimeout for mi8lliseconds, check for time methods
         
         
         // IV. EVENTS
