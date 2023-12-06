@@ -24,25 +24,29 @@ div#game{
 	z-index: 0; /* underneath everything */
 }
 
-span {
-    width: 64px;
-    height: 64px;
-}
 
 /* Background Tile Styles */
 span.floor{
+	width:32px;
+	height:32px;
 	background: url(../sprites/new_floor.png);
 }
 
 span.wall{
+	width:32px;
+	height:32px;
 	background: url(../sprites/wall.png);
 }
 
 span.shelf {
+	width: 32px;
+	height: 32px;
 	background: url(../sprites/shelf.png);
 }
 
 span.cell{
+	height:32px;
+	width:32px;
 	border: 1px solid #333; /* actual width & height is 32px because of border */
 	background-color: #ccc;
 	padding:0;
@@ -51,6 +55,8 @@ span.cell{
 }
 
 span.cellSelected{
+	height:32px;
+	width:32px;
 	border:0;
 	background-color: red;
 	padding:0;
@@ -61,6 +67,8 @@ span.cellSelected{
 
 /* Game Object Styles */
 span.gameObject{
+	height:32px;
+	width:32px;
 	position:absolute;
 	z-index: 100; /* layered between background tiles and player */
 	background-color:black;
@@ -79,12 +87,12 @@ span.key1{
 span.monster1, span.monster2{ 
 	position:absolute;
 	z-index: 500; /* layered between other game objects and player */
-	background: url(../sprites/battle_enemy.png);
+	background: url(../sprites/enemy.png);
 }
 
 /* player style */
 span.player{ 
-	background: url(../sprites/battle_player.png);
+	background: url(../sprites/world_player.png);
 	z-index: 1000; /* On top of everything */
 	transition-property: all;
 	transition-duration: .25s;
@@ -96,21 +104,16 @@ span.portal{
 }
 
 span.power1{ 
-    width: 64px;
-    height: 192px;
 	position:absolute;
-	background: url(../sprites/spell_fire.png);
+	background: url(../sprites/flame_power.png);
 }
 
 span.power2{ 
-    height: 32px;
 	position:absolute;
-	background: url(../sprites/spell_lightning.png);
+	background: url(../sprites/lightning_power.png);
 }
 
 span.power3{ 
-    width: 64px;
-    height: 192px;
 	position:absolute;
-	background: url(../sprites/spell_wall.png);
+	background: url(../sprites/nature_power.png);
 }
