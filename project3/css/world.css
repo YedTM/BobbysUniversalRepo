@@ -4,23 +4,50 @@ body{
 	height: 100vh;
 	margin: 0;
 	background-color: #333;
+	font-family: 'Playball', cursive;
+	color: white;
 }
 
 h1{
-    font-family: 'Playball', cursive;
 	display: inline-block;
 	position:absolute;
 	font-size: 3em;
 	top: 0;
 	line-height:1.5em;
-	color: white;
+	margin-top: 75px;
+}
+
+h2 {
+	font-size: 2em;
+}
+
+#desc {
+	margin-top: 175px;
+	font-weight: 600;
+}
+
+#win {
+	margin: 0;
+  	position: absolute;
+  	top: 50%;
+  	left: 50%;
+  	-ms-transform: translate(-50%, -50%);
+  	transform: translate(-50%, -50%);
+	text-align: center;
+	width: 500px;
+	z-index: -1;
+}
+
+#win p {
+	font-size: 1.5em;
 }
 
 div#game{
-	margin-left: -27%;
-	margin-top: 25vh;
-	padding:0;
-	position: absolute;
+	margin: 0;
+  	position: absolute;
+	top: 50%;
+ 	left: 50%;
+  	transform: translate(-272px, -192px);
 	z-index: 0; /* underneath everything */
 }
 

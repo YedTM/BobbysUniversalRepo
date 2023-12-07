@@ -13,25 +13,34 @@
 <body>
     <div id="game"></div>
     <h1>Fight Them Off!</h1>
+	<h2 id="desc">Use the arrow keys to move. Press Space to shoot. Press Z, X, and C to use your spells.</h2>
 
     <script>
         let spaceWidth = 32;
         let spaceSpacing = 0;
         let gameArea = document.querySelector("#game");
         let spaces = [];
+		let arrayContents = [];
 
         let keyboard = ({
+			SPACE: 32,
             LEFT: 37,
             UP: 38,
             RIGHT: 39,
-            DOWN: 40
+            DOWN: 40,
+			C:	67,
+			X:	88,
+			Z:	90
         });
 
         let worldTile = ({
             FLOOR: 0,
             WALL: 1,
 			SHELF: 2,
-			CORNER: 3
+			CORNER: 3,
+			CORNERTR: 4,
+			CORNERBR: 5,
+			CORNERBL: 6
         });
 
         let currentLevelNumber = 1;
@@ -101,6 +110,7 @@
         		clone.element.classList.add(obj.className); // add the className so we see the right image
         		gameObjects.push(clone);				// add to currentGameObjects array  (so it gets moved onto the map)
         		gameArea.appendChild(clone.element);		// add to DOM tree (so we can see it!)
+				arrayContents.push(clone);
         	}
         }
         
@@ -129,6 +139,18 @@
 						case worldTile.CORNER:
 						element.classList.add("corner");
 						break;
+
+						case worldTile.CORNERTR:
+						element.classList.add("corner_top_right");
+						break;
+
+						case worldTile.CORNERBR:
+						element.classList.add("corner_bottom_right");
+						break;
+
+						case worldTile.CORNERBL:
+						element.classList.add("corner_bottom_left");
+						break;
         			}
         		}
         	}
@@ -154,14 +176,14 @@
         	let nextY;
         	switch(e.keyCode){
         		case keyboard.RIGHT:
-        		nextX = player.x + 1;
+        		nextX = player.x + 2;
         		nextY = player.y;
         		if(checkIsLegalMove(nextX,nextY)) player.moveRight();
         		break;
             
         		case keyboard.DOWN:
         		nextX = player.x;
-        		nextY = player.y + 1;
+        		nextY = player.y + 2;
         		if(checkIsLegalMove(nextX,nextY)) player.moveDown();
         		break;
             
@@ -177,6 +199,26 @@
         		if(checkIsLegalMove(nextX,nextY)) player.moveUp();
         		break;
         	}
+
+			switch(e.keyCode){
+        		case keyboard.SPACE:
+
+				createProjectile("playerShot");
+
+        		break;
+            
+        		case keyboard.Z:
+        		createProjectile("powerOne");
+        		break;
+            
+        		case keyboard.X:
+        		createProjectile("powerTwo");
+        		break;
+            
+        		case keyboard.C:
+        		createProjectile("powerThree");
+        		break;
+        	}
         
         	function checkIsLegalMove(nextX,nextY){
         		let nextTile = gameWorld[nextY][nextX];
@@ -187,6 +229,19 @@
         			return false;
         		}
         	}
+
+			function createProjectile(e)
+			{
+				const node =  document.createElement("span");
+				let obj = allGameObjects[e];
+        		const clone = Object.assign({}, obj);
+        		clone.element = node.cloneNode(true); 		
+        		clone.element.classList.add(obj.className); 
+        		gameObjects.push(clone);				
+        		gameArea.appendChild(clone.element);
+				clone.element.style.left = `${clone.x * (spaceWidth + spaceSpacing)}px`;
+        		clone.element.style.top = `${clone.y * (spaceWidth + spaceSpacing)}px`;
+			}
         }
         
         

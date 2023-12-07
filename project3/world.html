@@ -13,6 +13,14 @@
 <body>
     <div id="game"></div>
     <h1>'Til The Very Bookend</h1>
+	<h2 id="desc">Use the arrow keys to move, Space to pick up items</h2>
+	<section id="win">
+		<h2>You Won!</h2>
+		<p>Laslow the Wizard has successfully obtained his favorite book. Thank you 
+			for helping him escape successfully!
+		</p>
+	</section>
+	
 
 
     <script>
@@ -20,9 +28,10 @@
         let spaceSpacing = 0;
         let gameArea = document.querySelector("#game");
         let spaces = [];
+		let arrayContents = [];
 
         let keyboard = ({
-			ENTER: 13,
+			SPACE: 32,
             LEFT: 37,
             UP: 38,
             RIGHT: 39,
@@ -101,6 +110,7 @@
         		clone.element = node.cloneNode(true); 		// clone the element
         		clone.element.classList.add(obj.className); // add the className so we see the right image
         		gameObjects.push(clone);				// add to currentGameObjects array  (so it gets moved onto the map)
+				arrayContents.push(clone);
         		gameArea.appendChild(clone.element);		// add to DOM tree (so we can see it!)
         	}
         }
@@ -176,11 +186,67 @@
         	}
 
 			switch(e.keyCode){
-				case keyboard.ENTER:
+				case keyboard.SPACE:
+				//If the player is on the nature power, then remove it from the game and 
+				//add it to the currently equipped power in local storage
+				//(Add that last part)
 				if (player.x == 15 && player.y == 1)
 				{
 					let treePower = document.querySelector(".gameObject.power3");
-					gameArea.removeChild(treePower);
+					if (gameArea.contains(treePower))
+					{
+						gameArea.removeChild(treePower);
+						gameObjects.splice(gameObjects.indexOf(arrayContents[9]), 1);
+					}
+				}
+				else if (player.x == 1 && player.y == 3)
+				{
+					let lightningPower = document.querySelector(".gameObject.power2");
+					if (gameArea.contains(lightningPower))
+					{
+						gameArea.removeChild(lightningPower);
+						gameObjects.splice(gameObjects.indexOf(arrayContents[8]), 1);
+					}
+				}
+				else if (player.x == 1 && player.y == 11)
+				{
+					let firePower = document.querySelector(".gameObject.power1");
+					if (gameArea.contains(firePower))
+					{
+						gameArea.removeChild(firePower);
+						gameObjects.splice(gameObjects.indexOf(arrayContents[7]), 1);
+					}
+				}
+				else if (player.x == 1 && player.y == 9)
+				{
+					let key = document.querySelector(".gameObject.key1");
+					if (gameArea.contains(key))
+					{
+						gameArea.removeChild(key);
+						gameObjects.splice(gameObjects.indexOf(arrayContents[6]), 1);
+					}
+				}
+				else if (player.x == 15 && player.y == 11)
+				{
+					let key = document.querySelector(".gameObject.key1");
+					let locked = document.querySelector(".gameObject.locked")
+					if (gameArea.contains(key) == false && gameArea.contains(locked))
+					{
+						gameArea.removeChild(locked);
+						gameObjects.splice(gameObjects.indexOf(arrayContents[5]), 1);
+					}
+				}
+				else if (player.x == 1 && player.y == 1)
+				{
+					let locked = document.querySelector(".gameObject.locked")
+					let portal = document.querySelector(".gameObject.portal")
+					if (gameArea.contains(locked) == false && gameArea.contains(portal))
+					{
+						gameArea.removeChild(portal);
+						gameObjects.splice(gameObjects.indexOf(arrayContents[10]), 1);
+						gameArea.remove();
+						gameObjects = [];
+					}
 				}
 			}
         
