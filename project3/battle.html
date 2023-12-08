@@ -202,21 +202,33 @@
 
 			switch(e.keyCode){
         		case keyboard.SPACE:
-
-				createProjectile("playerShot");
-
+				if (player.x != 12)
+				{
+					createProjectile("playerShot");
+				}
         		break;
             
         		case keyboard.Z:
-        		createProjectile("powerOne");
+				if (player.x != 11 && player.x != 12 && 
+					player.y != 1 && player.y != 2 && player.y != 13 && player.y != 14)
+				{
+					createProjectile("powerOne");
+				}
         		break;
             
         		case keyboard.X:
-        		createProjectile("powerTwo");
+				if (player.x != 11 && player.x != 12)
+				{
+					createProjectile("powerTwo");
+				}
         		break;
             
         		case keyboard.C:
-        		createProjectile("powerThree");
+				if (player.x != 9 && player.x != 10 && player.x != 11 && player.x != 12 && 
+					player.y != 1 && player.y != 2 && player.y != 13 && player.y != 14)
+				{
+					createProjectile("powerThree");
+				}
         		break;
         	}
         
@@ -234,6 +246,21 @@
 			{
 				const node =  document.createElement("span");
 				let obj = allGameObjects[e];
+				if (e == "playerShot" || e == "powerTwo")
+				{
+					obj.x = player.x + 2;
+					obj.y = player.y + 1;
+				}
+				else if (e == "powerOne")
+				{
+					obj.x = player.x + 2;
+					obj.y = player.y - 2;
+				}
+				else if (e == "powerThree")
+				{
+					obj.x = player.x + 4;
+					obj.y = player.y - 2;
+				}
         		const clone = Object.assign({}, obj);
         		clone.element = node.cloneNode(true); 		
         		clone.element.classList.add(obj.className); 
@@ -276,6 +303,62 @@
         	// selectedCell.classList.add('cellSelected');
         	console.log(`${col},${row}`);
         }
+		
+		function updatePositions(){
+			for (let i = gameObjects.length - 1; i >= 0; i--)
+			{
+				if (gameObjects[i].className == "pShot" || gameObjects[i].className == "power1" || 
+					gameObjects[i].className == "power2")
+				{
+					if ((gameObjects[i].className == "power1" || gameObjects[i].className == "power2") 
+						&& gameObjects[i].x == 12)
+					{
+						if (gameObjects[i].className == "power1")
+						{
+							let power1 = document.querySelector(".power1");
+							if (gameArea.contains(power1))
+							{
+								gameArea.removeChild(power1);
+								gameObjects.splice(gameObjects.indexOf(power1), 1);
+							}
+						}
+						else if (gameObjects[i].className == "power2")
+						{
+							let power2 = document.querySelector(".power2");
+							if (gameArea.contains(power2))
+							{
+								gameArea.removeChild(power2);
+								gameObjects.splice(gameObjects.indexOf(power2), 1);
+							}
+						}
+						
+					}
+					else if (gameObjects[i].className == "pShot" && gameObjects[i].x == 13)
+					{
+						let pShot = document.querySelector(".pShot");
+						if (gameArea.contains(pShot))
+						{
+							gameArea.removeChild(pShot);
+							gameObjects.splice(gameObjects.indexOf(pShot), 1);
+						}
+					}
+					else
+					{
+						gameObjects[i].x++;
+					}
+					
+
+				}
+				else if (gameObjects[i].className == "eShot")
+				{
+					gameObjects[i].x--;
+				}
+			}
+
+			drawGameObjects(gameObjects);
+		}
+
+		setInterval(updatePositions, 500);
 		
     </script>
 </body>
