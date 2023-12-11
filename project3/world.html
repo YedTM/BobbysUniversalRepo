@@ -11,9 +11,18 @@
     <script src="javascript/world.js"></script>
 </head>
 <body>
+	<section id="instruct">
+		<h2>A bit of backstory</h2>
+		<p>You play as Laslow the Wizard, who loves books a bit too much. He'll do anything to get them and stealing is not beneath him.
+			Laslow heard about his favorite novel having a collector's edition stored in a nearby library and he needs to get his hands on it.
+			<u>Your goal is to grab the key to the glass case on the pedestal, grab the book from the pedestal, and return to the portal you came from.</u>
+			Be sure to grab any other books you may find, as they might help you if you get yourself into trouble.
+		</p>
+		<p id="continue">Click Here To Continue</p>
+	</section>
     <div id="game"></div>
     <h1>'Til The Very Bookend</h1>
-	<h2 id="desc">Use the arrow keys to move, Space to pick up items</h2>
+	<h2 id="desc">Use the arrow keys to move, Space to interact with items</h2>
 	<section id="win">
 		<h2>You Won!</h2>
 		<p>Laslow the Wizard has successfully obtained his favorite book. Thank you 
@@ -29,6 +38,7 @@
         let gameArea = document.querySelector("#game");
         let spaces = [];
 		let arrayContents = [];
+		let cont = document.querySelector("#continue");
 
         let keyboard = ({
 			SPACE: 32,
@@ -249,15 +259,24 @@
 					}
 				}
 			}
-        
-        	function checkIsLegalMove(nextX,nextY){
-        		let nextTile = gameWorld[nextY][nextX];
-        		if (nextTile != worldTile.WALL && nextTile != worldTile.SHELF){
-        			return true;
-        		}else{
-        			effectAudio.play();
-        			return false;
-        		}
+			
+			for (let i = gameObjects.length - 1; i >= 0; i--)
+			{
+				if ((gameObjects[i].className == "monster1" || gameObjects[i].className == "monster2") 
+					&& player.x == gameObjects[i].x && player.y == gameObjects[i].y)
+				{
+					window.open("https://www.reddit.com/media?url=https%3A%2F%2Fi.redd.it%2Fpx403qw7693a1.jpg", "_blank"); //Use "_self" in the final product
+				}
+			}
+        }
+
+		function checkIsLegalMove(nextX,nextY){
+        	let nextTile = gameWorld[nextY][nextX];
+        	if (nextTile != worldTile.WALL && nextTile != worldTile.SHELF){
+        		return true;
+        	}else{
+        		effectAudio.play();
+        		return false;
         	}
         }
 		//settimeout for mi8lliseconds, check for time methods
@@ -294,6 +313,49 @@
         	// selectedCell.classList.add('cellSelected');
         	console.log(`${col},${row}`);
         }
+
+		function continueClicked(){
+			let instruct = document.querySelector("#instruct");
+			instruct.remove();
+		}
+
+		cont.onclick = continueClicked;
+
+		function updatePositions(){
+			function getRandomInt() {
+  				return Math.floor(Math.random() * 5);
+			}
+
+			for (let i = gameObjects.length - 1; i >= 0; i--)
+			{
+				if (gameObjects[i].className == "monster1")
+				{
+					let randomDirection = getRandomInt();
+					if (randomDirection == 0 && checkIsLegalMove(gameObjects[i].x - 1, gameObjects[i].y))
+					{
+						gameObjects[i].x--;
+					}
+					else if (randomDirection == 1 && checkIsLegalMove(gameObjects[i].x, gameObjects[i].y + 1))
+					{
+						gameObjects[i].y++;
+					}
+					else if (randomDirection == 2 && checkIsLegalMove(gameObjects[i].x, gameObjects[i].y - 1))
+					{
+						gameObjects[i].y--;
+					}
+					else if (randomDirection == 3 && checkIsLegalMove(gameObjects[i].x + 1, gameObjects[i].y))
+					{
+						gameObjects[i].x++;
+					}
+				}
+			}
+
+			drawGameObjects(gameObjects);
+		}
+
+		
+
+		setInterval(updatePositions, 1500);
 		
     </script>
 </body>

@@ -26,7 +26,6 @@ const cssClass = {
 	LOCKED: 	"locked",
 	KEY1: 		"key1",
 	MONSTER1: 	"monster1",
-	MONSTER2:	"monster2",
 	PLAYER: 	"player",
 	PORTAL: 	"portal",
 	POWER1: 	"power1",
@@ -39,8 +38,8 @@ const cssClass = {
 const allGameObjects = {
 	// we aren't using .type yet
 	level1:[
-		{x:10, y:5, type:"monster", 	className: cssClass.MONSTER1},
-		{x:12, y:5, type:"monster",	className: cssClass.MONSTER1}
+		{x:8, y:5, type:"monster", className: cssClass.MONSTER1, lives: 10},
+		{x:12, y:5, type:"monster",	className: cssClass.MONSTER1, lives: 1}
 	],
     playerShot: {x:5,  y:5, type:"shot",	className: cssClass.PLAYER_SHOT},
     enemyShot: {x:-1,  y:-1, type:"shot",	className: cssClass.ENEMY_SHOT},

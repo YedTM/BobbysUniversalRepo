@@ -34,6 +34,7 @@ const allGameObjects = {
 	level1:[
 		{x:10, y:5, type:"monster", 	className: cssClass.MONSTER1},
 		{x:12, y:5, type:"monster",	className: cssClass.MONSTER1},
+		{x:3, y:5, type:"monster",	className: cssClass.MONSTER1},
 		{x:5, y:1, type:"monster",	className: cssClass.MONSTER2},
 		{x:4, y:9, type:"monster",	className: cssClass.MONSTER2},
 		{x:14, y:10, type:"monster",	className: cssClass.MONSTER2},

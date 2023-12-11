@@ -21,6 +21,9 @@
         let gameArea = document.querySelector("#game");
         let spaces = [];
 		let arrayContents = [];
+		let usedPower1 = false;
+		let usedPower2 = false;
+		let usedPower3 = false;
 
         let keyboard = ({
 			SPACE: 32,
@@ -66,6 +69,9 @@
 			loadLevel(currentLevelNumber);
 			drawGameObjects(gameObjects);
 			setupEvents();
+			usedPower1 = false;
+			usedPower2 = false;
+			usedPower3 = false;
 		}
 
         // III. FUNCTIONS
@@ -169,6 +175,16 @@
         	}
         
         }
+
+		function checkIsLegalMove(nextX,nextY){
+        		let nextTile = gameWorld[nextY][nextX];
+        		if (nextTile != worldTile.WALL && nextTile != worldTile.SHELF){
+        			return true;
+        		}else{
+        			effectAudio.play();
+        			return false;
+        		}
+        	}
         
         
         function movePlayer(e){
@@ -212,14 +228,22 @@
 				if (player.x != 11 && player.x != 12 && 
 					player.y != 1 && player.y != 2 && player.y != 13 && player.y != 14)
 				{
-					createProjectile("powerOne");
+					if (usedPower1 == false)
+					{
+						createProjectile("powerOne");
+						usedPower1 = true;
+					}
 				}
         		break;
             
         		case keyboard.X:
 				if (player.x != 11 && player.x != 12)
 				{
-					createProjectile("powerTwo");
+					if (usedPower2 == false)
+					{
+						createProjectile("powerTwo");
+						usedPower2 = true;
+					}
 				}
         		break;
             
@@ -227,19 +251,13 @@
 				if (player.x != 9 && player.x != 10 && player.x != 11 && player.x != 12 && 
 					player.y != 1 && player.y != 2 && player.y != 13 && player.y != 14)
 				{
-					createProjectile("powerThree");
+					if (usedPower3 == false)
+					{
+						createProjectile("powerThree");
+						usedPower3 = true;
+					}
 				}
         		break;
-        	}
-        
-        	function checkIsLegalMove(nextX,nextY){
-        		let nextTile = gameWorld[nextY][nextX];
-        		if (nextTile != worldTile.WALL && nextTile != worldTile.SHELF){
-        			return true;
-        		}else{
-        			effectAudio.play();
-        			return false;
-        		}
         	}
 
 			function createProjectile(e)
@@ -316,10 +334,11 @@
 						if (gameObjects[i].className == "power1")
 						{
 							let power1 = document.querySelector(".power1");
+							let position = gameObjects.indexOf(power1);
 							if (gameArea.contains(power1))
 							{
 								gameArea.removeChild(power1);
-								gameObjects.splice(gameObjects.indexOf(power1), 1);
+								gameObjects.splice(position, 1);
 							}
 						}
 						else if (gameObjects[i].className == "power2")
@@ -339,12 +358,48 @@
 						if (gameArea.contains(pShot))
 						{
 							gameArea.removeChild(pShot);
-							gameObjects.splice(gameObjects.indexOf(pShot), 1);
+							gameObjects.splice(i, 1);
 						}
 					}
 					else
 					{
 						gameObjects[i].x++;
+						for (let j = gameObjects.length - 1; j >= 0; j--)
+						{
+							if (gameObjects[j].className == "monster1")
+							{
+								if (gameObjects[i].x == gameObjects[j].x && (gameObjects[i].y == gameObjects[j].y || gameObjects[i].y == gameObjects[j].y + 1))
+								{
+									gameArea.removeChild(document.querySelector("." + gameObjects[i].className));
+									gameObjects.splice(i, 1);
+									gameObjects[j].lives--;
+									continue;
+								}
+								else if (gameObjects[i].className == "power1")
+								{
+									for (let k = 0; k < 6; k++)
+									{
+										if ((gameObjects[i].x == gameObjects[j].x || gameObjects[i].x + 1 == gameObjects[j].x) && (gameObjects[i].y + k == gameObjects[j].y || gameObjects[i].y + k == gameObjects[j].y + 1))
+										{
+											gameArea.removeChild(document.querySelector("." + gameObjects[i].className));
+											gameObjects.splice(i, 1);
+											gameObjects[j].lives--;
+											break;
+										}
+									}
+								}
+								else if (gameObjects[i].className == "power2")
+								{
+									if ((gameObjects[i].x == gameObjects[j].x || gameObjects[i].x + 1 == gameObjects[j].x) && (gameObjects[i].y == gameObjects[j].y || gameObjects[i].y == gameObjects[j].y + 1))
+									{
+										gameArea.removeChild(document.querySelector("." + gameObjects[i].className));
+										gameObjects.splice(i, 1);
+										gameObjects[j].lives--;
+										break;
+									}
+								}
+							}
+						}
 					}
 					
 
@@ -352,6 +407,39 @@
 				else if (gameObjects[i].className == "eShot")
 				{
 					gameObjects[i].x--;
+				}
+				else if (gameObjects[i].className == "monster1")
+				{
+					if (gameObjects[i].lives == 0)
+					{
+						if (gameObjects[i].x == 8)
+						{
+							gameArea.removeChild(document.querySelectorAll("." + gameObjects[i].className)[0]);
+							gameObjects.splice(i, 1);
+						}
+						else
+						{
+							gameArea.removeChild(document.querySelectorAll("." + gameObjects[i].className)[1]);
+							gameObjects.splice(i, 1);
+						}
+						
+					}
+					else 
+					{
+						function getRandomInt() {
+  							return Math.floor(Math.random() * 3);
+						}
+						let randomDirection = getRandomInt();
+						if (randomDirection == 0 && checkIsLegalMove(gameObjects[i].x, gameObjects[i].y - 1))
+						{
+							gameObjects[i].y--;
+						}
+						else if (randomDirection == 1 && checkIsLegalMove(gameObjects[i].x, gameObjects[i].y + 2))
+						{
+							gameObjects[i].y++;
+						}
+					}
+					
 				}
 			}
 
