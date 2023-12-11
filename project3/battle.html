@@ -338,7 +338,7 @@
 							if (gameArea.contains(power1))
 							{
 								gameArea.removeChild(power1);
-								gameObjects.splice(position, 1);
+								gameObjects.splice(i, 1);
 							}
 						}
 						else if (gameObjects[i].className == "power2")
@@ -347,7 +347,7 @@
 							if (gameArea.contains(power2))
 							{
 								gameArea.removeChild(power2);
-								gameObjects.splice(gameObjects.indexOf(power2), 1);
+								gameObjects.splice(i, 1);
 							}
 						}
 						
@@ -357,6 +357,7 @@
 						let pShot = document.querySelector(".pShot");
 						if (gameArea.contains(pShot))
 						{
+							console.log(gameObjects[i], i)
 							gameArea.removeChild(pShot);
 							gameObjects.splice(i, 1);
 						}
@@ -364,22 +365,25 @@
 					else
 					{
 						gameObjects[i].x++;
+
 						for (let j = gameObjects.length - 1; j >= 0; j--)
 						{
 							if (gameObjects[j].className == "monster1")
 							{
-								if (gameObjects[i].x == gameObjects[j].x && (gameObjects[i].y == gameObjects[j].y || gameObjects[i].y == gameObjects[j].y + 1))
+								if (gameObjects[i].x == gameObjects[j].x 
+									&& (gameObjects[i].y == gameObjects[j].y || gameObjects[i].y == gameObjects[j].y + 1))
 								{
 									gameArea.removeChild(document.querySelector("." + gameObjects[i].className));
 									gameObjects.splice(i, 1);
 									gameObjects[j].lives--;
-									continue;
+									
 								}
 								else if (gameObjects[i].className == "power1")
 								{
 									for (let k = 0; k < 6; k++)
 									{
-										if ((gameObjects[i].x == gameObjects[j].x || gameObjects[i].x + 1 == gameObjects[j].x) && (gameObjects[i].y + k == gameObjects[j].y || gameObjects[i].y + k == gameObjects[j].y + 1))
+										if ((gameObjects[i].x == gameObjects[j].x || gameObjects[i].x + 1 == gameObjects[j].x) 
+											&& (gameObjects[i].y + k == gameObjects[j].y || gameObjects[i].y + k == gameObjects[j].y + 1))
 										{
 											gameArea.removeChild(document.querySelector("." + gameObjects[i].className));
 											gameObjects.splice(i, 1);
@@ -390,7 +394,8 @@
 								}
 								else if (gameObjects[i].className == "power2")
 								{
-									if ((gameObjects[i].x == gameObjects[j].x || gameObjects[i].x + 1 == gameObjects[j].x) && (gameObjects[i].y == gameObjects[j].y || gameObjects[i].y == gameObjects[j].y + 1))
+									if ((gameObjects[i].x == gameObjects[j].x || gameObjects[i].x + 1 == gameObjects[j].x) 
+										&& (gameObjects[i].y == gameObjects[j].y || gameObjects[i].y == gameObjects[j].y + 1))
 									{
 										gameArea.removeChild(document.querySelector("." + gameObjects[i].className));
 										gameObjects.splice(i, 1);
