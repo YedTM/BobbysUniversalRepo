@@ -25,6 +25,8 @@
 		let usedPower2 = false;
 		let usedPower3 = false;
 		let shotCount = 0;
+		let playerLives = 5;
+		let hasDied = false;
 
         let keyboard = ({
 			SPACE: 32,
@@ -258,7 +260,7 @@
 				{
 					if (usedPower3 == false)
 					{
-						createProjectile("powerThree");
+						createPowerThree("powerThree");
 						usedPower3 = true;
 					}
 				}
@@ -279,16 +281,28 @@
 					obj.x = player.x + 2;
 					obj.y = player.y - 2;
 				}
-				else if (e == "powerThree")
-				{
-					obj.x = player.x + 4;
-					obj.y = player.y - 2;
-				}
         		const clone = Object.assign({}, obj);
         		clone.element = node.cloneNode(true); 		
         		clone.element.classList.add(obj.className); 
         		gameObjects.push(clone);				
         		gameArea.appendChild(clone.element);
+				clone.element.style.left = `${clone.x * (spaceWidth + spaceSpacing)}px`;
+        		clone.element.style.top = `${clone.y * (spaceWidth + spaceSpacing)}px`;
+
+			}
+
+			function createPowerThree(e)
+			{
+				const node =  document.createElement("span");
+				let obj = allGameObjects[e];
+				obj.x = player.x + 4;
+				obj.y = player.y - 2;
+				const clone = Object.assign({}, obj);
+        		clone.element = node.cloneNode(true); 		
+        		clone.element.classList.add(obj.className); 
+				const constant = Object.freeze(clone);
+        		gameObjects.push(constant);				
+        		gameArea.appendChild(constant.element);
 				clone.element.style.left = `${clone.x * (spaceWidth + spaceSpacing)}px`;
         		clone.element.style.top = `${clone.y * (spaceWidth + spaceSpacing)}px`;
 			}
@@ -423,11 +437,36 @@
 							gameObjects.splice(i, 1);
 						}
 					}
+					else if ((gameObjects[i].x == player.x || gameObjects[i].x == player.x + 1) && (gameObjects[i].y == player.y || gameObjects[i].y == player.y + 1))
+					{
+						playerLives--;
+						if (document.querySelector("." + gameObjects[i].numShot))
+						{
+							gameArea.removeChild(document.querySelector("." + gameObjects[i].numShot));
+							gameObjects.splice(i, 1);
+						}
 
+					}
 					else if (usedPower3)
 					{
-						console.log("win"); //Get collision here
-						//Try and see why the tree moves
+						for (let j = gameObjects.length - 1; j >= 0; j--)
+						{
+							if (gameObjects[j].className == "power3")
+							{
+								if ((gameObjects[i].x == gameObjects[j].x || gameObjects[i].x == gameObjects[j].x + 1) && 
+									(gameObjects[i].y == gameObjects[j].y || gameObjects[i].y == gameObjects[j].y + 1 || 
+								 	 gameObjects[i].y == gameObjects[j].y + 2 || gameObjects[i].y == gameObjects[j].y + 3 || 
+									 gameObjects[i].y == gameObjects[j].y + 4 || gameObjects[i].y == gameObjects[j].y + 5))
+								{
+									if (document.querySelector("." + gameObjects[i].numShot))
+									{
+										gameArea.removeChild(document.querySelector("." + gameObjects[i].numShot));
+										gameObjects.splice(i, 1);
+									}
+								}
+							}
+							
+						}
 					}
 
 					if (gameObjects[i])
@@ -493,6 +532,12 @@
 			}
 
 			drawGameObjects(gameObjects);
+			if (playerLives <= 0 && hasDied == false)
+			{
+				playerLives = 0;
+				hasDied = true;
+				gameArea.removeChild(document.querySelector(".player"));
+			}
 		}
 
 		setInterval(updatePositions, 500);
