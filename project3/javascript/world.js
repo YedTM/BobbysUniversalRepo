@@ -32,12 +32,12 @@ const cssClass = {
 const allGameObjects = {
 	// we aren't using .type yet
 	level1:[
-		{x:10, y:5, type:"monster", 	className: cssClass.MONSTER1},
-		{x:12, y:5, type:"monster",	className: cssClass.MONSTER1},
-		{x:3, y:5, type:"monster",	className: cssClass.MONSTER1},
-		{x:5, y:1, type:"monster",	className: cssClass.MONSTER2},
-		{x:4, y:9, type:"monster",	className: cssClass.MONSTER2},
-		{x:14, y:10, type:"monster",	className: cssClass.MONSTER2},
+		{x:10, y:5, type:"monster", 	className: cssClass.MONSTER1, classPlace: "one"},
+		{x:12, y:5, type:"monster",	className: cssClass.MONSTER1, classPlace: "two"},
+		{x:3, y:5, type:"monster",	className: cssClass.MONSTER1, classPlace: "three"},
+		{x:5, y:1, type:"monster",	className: cssClass.MONSTER2, classPlace: "one"},
+		{x:4, y:9, type:"monster",	className: cssClass.MONSTER2, classPlace: "two"},
+		{x:14, y:10, type:"monster",	className: cssClass.MONSTER2, classPlace: "three"},
 		{x:15, y:11, type:"locked",		className: cssClass.LOCKED},
 		{x:1, y:9,  type:"key",		className: cssClass.KEY1},
 		{x:1, y:11,  type:"power",	className: cssClass.POWER1},

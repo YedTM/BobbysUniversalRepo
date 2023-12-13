@@ -24,6 +24,7 @@
 		let usedPower1 = false;
 		let usedPower2 = false;
 		let usedPower3 = false;
+		let shotCount = 0;
 
         let keyboard = ({
 			SPACE: 32,
@@ -114,6 +115,10 @@
         		const clone = Object.assign({}, obj); 		// clone the object
         		clone.element = node.cloneNode(true); 		// clone the element
         		clone.element.classList.add(obj.className); // add the className so we see the right image
+				if (obj.className == "monster1")
+				{
+					clone.element.classList.add(obj.classPlace);
+				}
         		gameObjects.push(clone);				// add to currentGameObjects array  (so it gets moved onto the map)
         		gameArea.appendChild(clone.element);		// add to DOM tree (so we can see it!)
 				arrayContents.push(clone);
@@ -357,7 +362,6 @@
 						let pShot = document.querySelector(".pShot");
 						if (gameArea.contains(pShot))
 						{
-							console.log(gameObjects[i], i)
 							gameArea.removeChild(pShot);
 							gameObjects.splice(i, 1);
 						}
@@ -368,7 +372,7 @@
 
 						for (let j = gameObjects.length - 1; j >= 0; j--)
 						{
-							if (gameObjects[j].className == "monster1")
+							if (gameObjects[j].className == "monster1" && gameObjects[j].lives != 0)
 							{
 								if (gameObjects[i].x == gameObjects[j].x 
 									&& (gameObjects[i].y == gameObjects[j].y || gameObjects[i].y == gameObjects[j].y + 1))
@@ -376,7 +380,7 @@
 									gameArea.removeChild(document.querySelector("." + gameObjects[i].className));
 									gameObjects.splice(i, 1);
 									gameObjects[j].lives--;
-									
+									break;
 								}
 								else if (gameObjects[i].className == "power1")
 								{
@@ -411,7 +415,26 @@
 				}
 				else if (gameObjects[i].className == "eShot")
 				{
-					gameObjects[i].x--;
+					if (gameObjects[i].x <= 1)
+					{
+						if (document.querySelector("." + gameObjects[i].numShot))
+						{
+							gameArea.removeChild(document.querySelector("." + gameObjects[i].numShot));
+							gameObjects.splice(i, 1);
+						}
+					}
+
+					else if (usedPower3)
+					{
+						console.log("win"); //Get collision here
+						//Try and see why the tree moves
+					}
+
+					if (gameObjects[i])
+					{
+						gameObjects[i].x--;
+					}
+					
 				}
 				else if (gameObjects[i].className == "monster1")
 				{
@@ -419,22 +442,22 @@
 					{
 						if (gameObjects[i].x == 8)
 						{
-							gameArea.removeChild(document.querySelectorAll("." + gameObjects[i].className)[0]);
+							gameArea.removeChild(document.querySelector("." + gameObjects[i].className + "." + gameObjects[i].classPlace));
 							gameObjects.splice(i, 1);
 						}
 						else
 						{
-							gameArea.removeChild(document.querySelectorAll("." + gameObjects[i].className)[1]);
+							gameArea.removeChild(document.querySelector("." + gameObjects[i].className + "." + gameObjects[i].classPlace));
 							gameObjects.splice(i, 1);
 						}
 						
 					}
 					else 
 					{
-						function getRandomInt() {
-  							return Math.floor(Math.random() * 3);
+						function getRandomInt(e) {
+  							return Math.floor(Math.random() * e);
 						}
-						let randomDirection = getRandomInt();
+						let randomDirection = getRandomInt(3);
 						if (randomDirection == 0 && checkIsLegalMove(gameObjects[i].x, gameObjects[i].y - 1))
 						{
 							gameObjects[i].y--;
@@ -442,6 +465,27 @@
 						else if (randomDirection == 1 && checkIsLegalMove(gameObjects[i].x, gameObjects[i].y + 2))
 						{
 							gameObjects[i].y++;
+						}
+
+						let randomShot = getRandomInt(5);
+
+						if (randomShot == 0)
+						{
+							
+							const node =  document.createElement("span");
+							let obj = allGameObjects["enemyShot"];
+							obj.x = gameObjects[i].x - 1;
+							obj.y = gameObjects[i].y;
+							shotCount++; 
+							obj.numShot = "shot" + shotCount;
+        					const clone = Object.assign({}, obj);
+        					clone.element = node.cloneNode(true); 		
+        					clone.element.classList.add(obj.className);
+							clone.element.classList.add(obj.numShot);
+        					gameObjects.push(clone);				
+        					gameArea.appendChild(clone.element);
+							clone.element.style.left = `${clone.x * (spaceWidth + spaceSpacing)}px`;
+        					clone.element.style.top = `${clone.y * (spaceWidth + spaceSpacing)}px`;
 						}
 					}
 					

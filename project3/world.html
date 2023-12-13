@@ -119,6 +119,10 @@
         		const clone = Object.assign({}, obj); 		// clone the object
         		clone.element = node.cloneNode(true); 		// clone the element
         		clone.element.classList.add(obj.className); // add the className so we see the right image
+				if (obj.className == "monster1" || obj.className == "monster2")
+				{
+					clone.element.classList.add(obj.classPlace);
+				}
         		gameObjects.push(clone);				// add to currentGameObjects array  (so it gets moved onto the map)
 				arrayContents.push(clone);
         		gameArea.appendChild(clone.element);		// add to DOM tree (so we can see it!)
@@ -266,6 +270,9 @@
 					&& player.x == gameObjects[i].x && player.y == gameObjects[i].y)
 				{
 					window.open("https://www.reddit.com/media?url=https%3A%2F%2Fi.redd.it%2Fpx403qw7693a1.jpg", "_blank"); //Use "_self" in the final product
+
+					gameArea.removeChild(document.querySelector(".gameObject." + gameObjects[i].className + "." + gameObjects[i].classPlace));
+					gameObjects.splice(i, 1);
 				}
 			}
         }

@@ -38,11 +38,11 @@ const cssClass = {
 const allGameObjects = {
 	// we aren't using .type yet
 	level1:[
-		{x:8, y:5, type:"monster", className: cssClass.MONSTER1, lives: 1},
-		{x:12, y:5, type:"monster",	className: cssClass.MONSTER1, lives: 1}
+		{x:8, y:5, type:"monster", className: cssClass.MONSTER1, lives: 1, classPlace: "one"},
+		{x:12, y:5, type:"monster",	className: cssClass.MONSTER1, lives: 1, classPlace: "two"}
 	],
     playerShot: {x:5,  y:5, type:"shot",	className: cssClass.PLAYER_SHOT},
-    enemyShot: {x:-1,  y:-1, type:"shot",	className: cssClass.ENEMY_SHOT},
+    enemyShot: {x:-1,  y:-1, type:"shot",	className: cssClass.ENEMY_SHOT, numShot: "shot0"},
     powerOne: {x:1, y:9,  type:"power",	className: cssClass.POWER1},
     powerTwo: {x:6,  y:6, type:"power",	className: cssClass.POWER2},
     powerThree: {x:12,  y:9, type:"power",	className: cssClass.POWER3}
