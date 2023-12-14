@@ -14,7 +14,7 @@ h1{
 	font-size: 3em;
 	top: 0;
 	line-height:1.5em;
-	margin-top: 75px;
+	margin-top: 7.9vh;
 }
 
 h2 {
@@ -22,7 +22,7 @@ h2 {
 }
 
 #desc {
-	margin-top: 175px;
+	margin-top: 18.36vh;
 	font-weight: 600;
 }
 
@@ -45,6 +45,17 @@ section p {
 	z-index: -1;
 }
 
+#continue:focus, #continue:hover {
+	color: red;
+	text-decoration: underline;
+}
+
+#continue:active {
+	color:blue;
+	text-decoration: underline;
+	font-style: italic;
+}
+
 #instruct {
 	z-index: 1;
 	background-color: #333;
@@ -57,11 +68,9 @@ div#game{
   	position: absolute;
 	top: 50%;
  	left: 50%;
-  	transform: translate(-272px, -192px);
+  	transform: translate(-272px, -20.147vh); /* -20.147vh used to be 192px if you need to revert them */
 	z-index: 0; /* underneath everything */
 }
-
-
 
 /* Background Tile Styles */
 span.floor{

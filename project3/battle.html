@@ -14,6 +14,28 @@
     <div id="game"></div>
     <h1>Fight Them Off!</h1>
 	<h2 id="desc">Use the arrow keys to move. Press Space to shoot. Press Z, X, and C to use your spells.</h2>
+	<section id="win">
+		<h2>You Beat Them!</h2>
+		<p>You have successfully beaten the guards and can continue your heist!</p>
+		<p id="back">Click Here To Go Back</p>
+	</section>
+	<section id="loss">
+		<h2>You Lost...</h2>
+		<p>The guards have beaten you and threw you out. Now you must try again...</p>
+		<p id="restart">Click Here To Go Back</p>
+	</section>
+
+	<audio id="wallAudio" src="sounds/Bounds.wav"></audio>
+	<audio id="enemyShotAudio" src="sounds/Enemy_Shot.wav"></audio>
+	<audio id="playerShotAudio" src="sounds/Player_Shot.wav"></audio>
+	<audio id="enemyHit" src="sounds/Enemy_Hit.wav"></audio>
+	<audio id="playerHit" src="sounds/Player_Hit.wav"></audio>
+	<audio id="winAudio" src="sounds/Battle_Win.wav"></audio>
+	<audio id="lossAudio" src="sounds/Battle_Loss.wav"></audio>
+	<audio id="battleMusic" src="sounds/Battle_Music.wav"></audio>
+	<audio id="fireMusic" src="sounds/Summon_Fire.wav"></audio>
+	<audio id="lightningMusic" src="sounds/Summon_Lightning.wav"></audio>
+	<audio id="treeMusic" src="sounds/Summon_Tree.wav"></audio>
 
     <script>
         let spaceWidth = 32;
@@ -27,6 +49,8 @@
 		let shotCount = 0;
 		let playerLives = 5;
 		let hasDied = false;
+		let hasWon = false;
+		let hasGuard = true;
 
         let keyboard = ({
 			SPACE: 32,
@@ -48,6 +72,18 @@
 			CORNERBR: 5,
 			CORNERBL: 6
         });
+
+		let wallAudio = undefined;
+		let enemyShotAudio = undefined;
+		let playerShotAudio = undefined;
+		let enemyHitAudio = undefined;
+		let playerHitAudio = undefined;
+		let winAudio = undefined;
+		let lossAudio = undefined;
+		let battleMusic = undefined;
+		let fireAudio = undefined;
+		let lightningAudio = undefined;
+		let treeAudio = undefined;
 
         let currentLevelNumber = 1;
         let gameWorld = undefined;
@@ -71,6 +107,17 @@
 			drawGrid(gameWorld);
 			loadLevel(currentLevelNumber);
 			drawGameObjects(gameObjects);
+			wallAudio = document.querySelector("#wallAudio");
+			enemyShotAudio = document.querySelector("#enemyShotAudio");
+			playerShotAudio = document.querySelector("#playerShotAudio");
+			enemyHitAudio = document.querySelector("#enemyHit");
+			playerHitAudio = document.querySelector("#playerHit");
+			winAudio = document.querySelector("#winAudio");
+			lossAudio = document.querySelector("#lossAudio");
+			battleMusic = document.querySelector("#battleMusic");
+			fireAudio = document.querySelector("#fireMusic");
+			lightningAudio = document.querySelector("#lightningMusic");
+			treeAudio = document.querySelector("#treeMusic");
 			setupEvents();
 			usedPower1 = false;
 			usedPower2 = false;
@@ -188,7 +235,7 @@
         		if (nextTile != worldTile.WALL && nextTile != worldTile.SHELF){
         			return true;
         		}else{
-        			effectAudio.play();
+        			wallAudio.cloneNode(true).play();
         			return false;
         		}
         	}
@@ -228,6 +275,7 @@
 				if (player.x != 12)
 				{
 					createProjectile("playerShot");
+					playerShotAudio.cloneNode(true).play();
 				}
         		break;
             
@@ -238,6 +286,7 @@
 					if (usedPower1 == false)
 					{
 						createProjectile("powerOne");
+						fireAudio.play();
 						usedPower1 = true;
 					}
 				}
@@ -249,6 +298,7 @@
 					if (usedPower2 == false)
 					{
 						createProjectile("powerTwo");
+						lightningAudio.play();
 						usedPower2 = true;
 					}
 				}
@@ -261,6 +311,7 @@
 					if (usedPower3 == false)
 					{
 						createPowerThree("powerThree");
+						treeAudio.play();
 						usedPower3 = true;
 					}
 				}
@@ -342,6 +393,10 @@
         }
 		
 		function updatePositions(){
+			if (hasDied  == false && hasGuard == true)
+			{
+				battleMusic.play();
+			}
 			for (let i = gameObjects.length - 1; i >= 0; i--)
 			{
 				if (gameObjects[i].className == "pShot" || gameObjects[i].className == "power1" || 
@@ -394,6 +449,7 @@
 									gameArea.removeChild(document.querySelector("." + gameObjects[i].className));
 									gameObjects.splice(i, 1);
 									gameObjects[j].lives--;
+									enemyHitAudio.cloneNode(true).play();
 									break;
 								}
 								else if (gameObjects[i].className == "power1")
@@ -406,6 +462,7 @@
 											gameArea.removeChild(document.querySelector("." + gameObjects[i].className));
 											gameObjects.splice(i, 1);
 											gameObjects[j].lives--;
+											enemyHitAudio.cloneNode(true).play();
 											break;
 										}
 									}
@@ -418,6 +475,7 @@
 										gameArea.removeChild(document.querySelector("." + gameObjects[i].className));
 										gameObjects.splice(i, 1);
 										gameObjects[j].lives--;
+										enemyHitAudio.cloneNode(true).play();
 										break;
 									}
 								}
@@ -440,6 +498,7 @@
 					else if ((gameObjects[i].x == player.x || gameObjects[i].x == player.x + 1) && (gameObjects[i].y == player.y || gameObjects[i].y == player.y + 1))
 					{
 						playerLives--;
+						playerHitAudio.cloneNode(true).play();
 						if (document.querySelector("." + gameObjects[i].numShot))
 						{
 							gameArea.removeChild(document.querySelector("." + gameObjects[i].numShot));
@@ -510,7 +569,7 @@
 
 						if (randomShot == 0)
 						{
-							
+							enemyShotAudio.cloneNode(true).play();
 							const node =  document.createElement("span");
 							let obj = allGameObjects["enemyShot"];
 							obj.x = gameObjects[i].x - 1;
@@ -532,16 +591,63 @@
 			}
 
 			drawGameObjects(gameObjects);
+
 			if (playerLives <= 0 && hasDied == false)
 			{
 				playerLives = 0;
 				hasDied = true;
-				gameArea.removeChild(document.querySelector(".player"));
+				gameArea.remove();
+				document.querySelector("#win").remove();
+				gameObjects = [];
+				lossAudio.play();
 			}
+			
+			if (hasGuard)
+			{
+				for (let i = 0; i < gameObjects.length; i++)
+				{
+					if (gameObjects[i].className == "monster1")
+					{
+						hasGuard = true;
+						hasWon = false;
+						break;
+					}
+					else 
+					{
+						hasGuard = false;
+						hasWon = true;
+						
+					}
+					
+				}
+			}
+			else if (hasWon)
+			{
+				battleMusic.pause();
+				hasWon = false;
+				gameArea.remove();
+				document.querySelector("#loss").remove();
+				gameObjects = [];
+				winAudio.play();
+			}
+			
 		}
 
 		setInterval(updatePositions, 500);
+
+		function backClicked(){
+			window.open(href="world.html", "_blank");
+		}
+
+		//Eventually add clearing all local storage
+		function restartClicked(){
+			window.open(href="world.html", "_blank");
+		}
 		
+		document.querySelector("#back").onclick = backClicked;
+		document.querySelector("#restart").onclick = restartClicked;
+
+
     </script>
 </body>
 </html>

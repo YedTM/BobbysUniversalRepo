@@ -14,7 +14,7 @@ h1{
 	font-size: 3em;
 	top: 0;
 	line-height:1.5em;
-	margin-top: 35px;
+	margin-top: 3.7vh;
 }
 
 h2 {
@@ -22,8 +22,42 @@ h2 {
 }
 
 #desc {
-	margin-top: 135px;
+	margin-top: 13.7vh;
 	font-weight: 600;
+}
+
+section {
+	margin: 0;
+  	position: absolute;
+  	top: 50%;
+  	left: 50%;
+  	-ms-transform: translate(-50%, -50%);
+  	transform: translate(-50%, -50%);
+	text-align: center;
+	width: 400px;
+}
+
+section p {
+	font-size: 1.5em;
+}
+
+#win {
+	z-index: 0;
+}
+
+#loss {
+	z-index: 0;
+}
+
+#back:focus, #back:hover, #restart:focus, #restart:hover {
+	color: red;
+	text-decoration: underline;
+}
+
+#back:active, #restart:active {
+	color:blue;
+	text-decoration: underline;
+	font-style: italic;
 }
 
 div#game{
@@ -31,13 +65,14 @@ div#game{
   	position: absolute;
 	top: 50%;
  	left: 50%;
-  	transform: translate(-240px, -272px);
-	z-index: 0; /* underneath everything */
+  	transform: translate(-240px, -28.5vh);
+	z-index: 1; /* underneath everything */
 }
 
 span {
     width: 64px;
     height: 64px;
+	z-index: 2;
 }
 
 /* Background Tile Styles */

@@ -30,7 +30,11 @@
 		</p>
 	</section>
 	
-
+	<audio id="wallAudio" src="sounds/Bounds.wav"></audio>
+	<audio id="incorrect" src="sounds/Cant_Use.wav"></audio>
+	<audio id="correct" src="sounds/Can_Use.wav"></audio>
+	<audio id="world" src="sounds/World_Music.wav"></audio>
+	<audio id="winAudio" src="sounds/You_Won.wav"></audio>
 
     <script>
         let spaceWidth = 32;
@@ -39,6 +43,7 @@
         let spaces = [];
 		let arrayContents = [];
 		let cont = document.querySelector("#continue");
+		let hasWon = false;
 
         let keyboard = ({
 			SPACE: 32,
@@ -53,6 +58,12 @@
             WALL: 1,
 			SHELF: 2
         });
+
+		let wallAudio = undefined;
+		let incorrectAudio = undefined;
+		let correctAudio = undefined;
+		let worldMusic = undefined;
+		let winMusic = undefined;
 
         let currentLevelNumber = 1;
         let gameWorld = undefined;
@@ -76,6 +87,11 @@
 			drawGrid(gameWorld);
 			loadLevel(currentLevelNumber);
 			drawGameObjects(gameObjects);
+			wallAudio = document.querySelector("#wallAudio");
+			incorrectAudio = document.querySelector("#incorrect");
+			correctAudio = document.querySelector("#correct");
+			worldMusic = document.querySelector("#world");
+			winMusic = document.querySelector("#winAudio");
 			setupEvents();
 		}
 
@@ -211,6 +227,7 @@
 					{
 						gameArea.removeChild(treePower);
 						gameObjects.splice(gameObjects.indexOf(arrayContents[9]), 1);
+						correctAudio.play();
 					}
 				}
 				else if (player.x == 1 && player.y == 3)
@@ -220,6 +237,7 @@
 					{
 						gameArea.removeChild(lightningPower);
 						gameObjects.splice(gameObjects.indexOf(arrayContents[8]), 1);
+						correctAudio.play();
 					}
 				}
 				else if (player.x == 1 && player.y == 11)
@@ -229,6 +247,7 @@
 					{
 						gameArea.removeChild(firePower);
 						gameObjects.splice(gameObjects.indexOf(arrayContents[7]), 1);
+						correctAudio.play();
 					}
 				}
 				else if (player.x == 1 && player.y == 9)
@@ -238,6 +257,7 @@
 					{
 						gameArea.removeChild(key);
 						gameObjects.splice(gameObjects.indexOf(arrayContents[6]), 1);
+						correctAudio.play();
 					}
 				}
 				else if (player.x == 15 && player.y == 11)
@@ -248,6 +268,11 @@
 					{
 						gameArea.removeChild(locked);
 						gameObjects.splice(gameObjects.indexOf(arrayContents[5]), 1);
+						correctAudio.play();
+					}
+					else if (gameArea.contains(key))
+					{
+						incorrectAudio.cloneNode(true).play();
 					}
 				}
 				else if (player.x == 1 && player.y == 1)
@@ -260,6 +285,14 @@
 						gameObjects.splice(gameObjects.indexOf(arrayContents[10]), 1);
 						gameArea.remove();
 						gameObjects = [];
+						hasWon = true;
+						worldMusic.pause();
+						winMusic.play();
+						//correctAudio is not played on purpose to avoid conflicting with the victory audio
+					}
+					else if (gameArea.contains(locked))
+					{
+						incorrectAudio.cloneNode(true).play();
 					}
 				}
 			}
@@ -269,7 +302,7 @@
 				if ((gameObjects[i].className == "monster1" || gameObjects[i].className == "monster2") 
 					&& player.x == gameObjects[i].x && player.y == gameObjects[i].y)
 				{
-					window.open("https://www.reddit.com/media?url=https%3A%2F%2Fi.redd.it%2Fpx403qw7693a1.jpg", "_blank"); //Use "_self" in the final product
+					window.open(href="battle.html", "_blank"); //Use "_self" in the final product
 
 					gameArea.removeChild(document.querySelector(".gameObject." + gameObjects[i].className + "." + gameObjects[i].classPlace));
 					gameObjects.splice(i, 1);
@@ -282,7 +315,7 @@
         	if (nextTile != worldTile.WALL && nextTile != worldTile.SHELF){
         		return true;
         	}else{
-        		effectAudio.play();
+        		wallAudio.cloneNode(true).play();
         		return false;
         	}
         }
@@ -329,6 +362,10 @@
 		cont.onclick = continueClicked;
 
 		function updatePositions(){
+			if (hasWon == false)
+			{
+				worldMusic.play();
+			}
 			function getRandomInt() {
   				return Math.floor(Math.random() * 5);
 			}
