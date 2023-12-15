@@ -1,3 +1,5 @@
+/* All of the background color is a dark grey and all of the elements
+are to be centered horizontally */
 body{
 	display: flex;
 	justify-content: center;
@@ -26,6 +28,34 @@ h2 {
 	font-weight: 600;
 }
 
+/* The lives section of text is placed below the game area */
+/* The distance from the game area is depending on the window of the user and will
+adjust itself to make sure it is always below the game area */
+#lives {
+	position: absolute;
+	font-size: 1.4em;
+	top: 83vh;
+}
+
+@media screen and (max-height: 850px) {
+	#lives {
+		top: 92vh;
+	}
+}
+
+@media screen and (max-height: 770px) {
+	#lives {
+		top: 98vh;
+	}
+}
+
+@media screen and (max-height: 700px) {
+	#lives {
+		top: 700px;
+	}
+}
+
+/* The sections are placed in the center of the screen */
 section {
 	margin: 0;
   	position: absolute;
@@ -41,6 +71,8 @@ section p {
 	font-size: 1.5em;
 }
 
+/* The Win and Loss sections of text are placed beneath the game area, 
+this keeps them hidden during gameplay */
 #win {
 	z-index: 0;
 }
@@ -60,6 +92,8 @@ section p {
 	font-style: italic;
 }
 
+/* The game area has to be offset using transform due to its large size and 
+its anchoring point not being its center */
 div#game{
 	margin: 0;
   	position: absolute;
@@ -69,6 +103,8 @@ div#game{
 	z-index: 1; 
 }
 
+/* The text of #desc is squished when the max width is at or below 1080px 
+and the game area is moved down a bit to make up for this*/
 @media screen and (max-width: 1080px) {
 	#desc {
 		width: 650px;
@@ -78,19 +114,21 @@ div#game{
 	}
 }
 
+/* The game area moves down further when the max height is at or below 700px */
 @media screen and (max-height: 700px) {
 	div#game {
 		margin-top: 30px;
 	}
 }
 
+/* The following spans are used to display the correct sprites for 
+the floors and walls */
 span {
     width: 64px;
     height: 64px;
 	z-index: 2;
 }
 
-/* Background Tile Styles */
 span.floor{
 	width: 32px;
     height: 32px;
@@ -103,6 +141,8 @@ span.wall{
 	background: url(../sprites/bounds_hor.png);
 }
 
+/* This isn't a shelf and is rather the vertical walls.
+The name was kept the same due to 2 being the number for shelves */
 span.shelf {
 	width: 32px;
     height: 32px;
@@ -137,7 +177,7 @@ span.corner_bottom_left {
 }
 
 span.cell{
-	border: 1px solid #333; /* actual width & height is 32px because of border */
+	border: 1px solid #333;
 
 	padding:0;
 	margin:0;
@@ -153,7 +193,8 @@ span.cellSelected{
 }
 
 
-/* Game Object Styles */
+/* These spans are used to display the sprites of the game objects 
+and projectiles of the game */
 span.gameObject{
 	position:absolute;
 	z-index: 100; /* layered between background tiles and player */
@@ -172,11 +213,6 @@ span.player{
 	z-index: 1000; /* On top of everything */
 	transition-property: all;
 	transition-duration: .25s;
-}
-
-span.portal{ 
-	position:absolute;
-	background: url(../sprites/portal.png)
 }
 
 span.power1{ 

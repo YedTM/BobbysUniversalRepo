@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="css/about.css">
 </head>
 <body>
-    <header><h1>Proposal Page</h1></header>
+    <header><h1>Proposal/Documentation Page</h1></header>
     <section id="propDescription">
         <h2>'Til The Very Bookend</h2>
         <h3>High Concept</h3>
@@ -51,7 +51,63 @@
         </section>
 
         <br>
+        <hr>
+        <br>
 
+        <h2>Documentation Section</h2>
+        <h3>Process</h3>
+        <p>
+            The process used during the creation of this game involved a lot of trial and error. I would implement a new function or idea, it would fail, 
+            and then I would go on and fix it or scrap it. I also divided my creation process into goals to make my efforts more efficient. My first goal 
+            was to finish up the world part of the game. I focused heavily on the collision and pickup systems to ensure that they worked properly. My next goal 
+            was to finish the battle section, which also involved collisions, but also needed to have a system for projectiles moving. The final goal was local storage 
+            and how it would connect the world and battle parts of the game. This mainly came down to preserving positions and allowing certain powers to be used.
+        </p>
+        <h3>Sources</h3>
+        <p>
+            All sprites and music were created by me. The sprites were made using <a href="https://www.piskelapp.com/">Piskel</a> 
+            and the music and sounds were made using <a href="https://www.noteflight.com/home/myScores">Noteflight</a> (sorry if the link doesn't work 
+            I could only get the myScores section of the website due to being signed in).
+            <br>
+            The font used in game was <a href="https://fonts.google.com/specimen/Playball?query=playball">Playball. The font used in documentation
+            was <a href="https://fonts.google.com/specimen/Bree+Serif?query=bree">Bree Serif</a>.
+            </a>
+            <br>
+            I also used DOM Adventure! as the baseline of my code. The player movement (just the up down left and right), the cell creation, 
+            and other parts in the javascript came from Adventure!. I made a large amount of alterations to this base code and not many remnants 
+            from Adventure! remain unchanged.
+        </p>
+        <h3>Special</h3>
+        <p>There is nothing special that is needed to be pointed out. Everything you can see while playing is what you need to see.</p>
+        <h3>Requirements</h3>
+        <p>
+            I am going to use the rubric found in Project 3 - Final Code Submission to mark down each requirement.
+            <br>
+            ES6 Class: ES6 classes were created and used in world.js, they were not used in battle.js due to them breaking my code.
+            <br>
+            Validation: All css and html are valid.
+            <br>
+            Errors: No errors break the flow of gameplay and from what I can see, none appear in the console. Sometimes the bullets in the battle 
+            section will freeze in place after colliding with an enemy, but that doesn't break anything and is a visual bug.
+            <br>
+            Images: The images are optimized and look good during gameplay.
+            <br>
+            Proposal: It was submitted in time.
+            <br>
+            Critique: My prototype was present in class and was critiqued in class. The rubric says something about Slack, but I'm pretty sure 
+            the in-person critique day counts as well.
+            <br>
+            Code: The code is formatted well and is well commented.
+            <br>
+            Console: The console is clean during gameplay.
+            <br>
+            Above and Beyond: I believe that my implementation of sound, timed movement, and the creation of two games in one 
+            makes my efforts go above and beyond the basic requirements of this project. Sound was required, but I made sure that every 
+            aspect of my game has sound associated with it (except for simple movement). The movement is also based on time and not on
+            player input, which is how it was in DOM Adventure!. I also made two games instead of one, with the games being split between the world 
+            and battle sections of Til The Very Bookend.
+            <br>
+        </p>
 
     </section>
 </body>

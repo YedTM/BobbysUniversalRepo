@@ -16,6 +16,7 @@
     <div id="game"></div>
     <h1>Fight Them Off!</h1>
 	<h2 id="desc">Use the arrow keys to move. Press Space to shoot. Press Z, X, and C to use your spells.</h2>
+	<p id="lives"></p>
 	<section id="win">
 		<h2>You Beat Them!</h2>
 		<p>You have successfully beaten the guards and can continue your heist!</p>
@@ -54,6 +55,9 @@
 		let hasWon = false;
 		let hasGuard = true;
 		let hasMoved = false;
+		let firstLives = 0;
+		let secondLives = 0;
+		let livesText = document.querySelector("#lives");
 
         let keyboard = ({
 			SPACE: 32,
@@ -102,6 +106,9 @@
 	        moveUp(){this.y--;}
         });
 
+		// When the window is opened the game world is created and the gameObjects, tiles, 
+		// and audio is created and placed. The usedPower variables are also set to false
+		// to ensure the user can always use their powers at least once.
 		window.onload = ()=>{
 			gameWorld = worldLayout["layout"];
 			let numCols = gameWorld[0].length;
@@ -127,8 +134,7 @@
 			usedPower3 = false;
 		}
 
-        // III. FUNCTIONS
-        // the elements on the screen that won't change - our "view"
+		// This function creates the cells that create the grid that the player traverses
         function createGridElements(numRows,numCols){
         	const span = document.createElement('span');
         	span.className = 'cell';
@@ -144,39 +150,39 @@
         	}
         }
         
-        // the elements on the screen that can move and change - also part of the "view"
+        // This function loads in the the player and enemies into the game
         function loadLevel(levelNum = 1){
-        	gameObjects = []; // clear out the old array
+        	gameObjects = [];
         	const node =  document.createElement("span");
         	node.className = "gameObject";
-        
-        	// now initialize our player
+			
+			//This is where the player character gets loaded in
         	player.x = 1;
         	player.y = 1;
         	player.element = node.cloneNode(true);
         	player.element.classList.add("player");
         	gameArea.appendChild(player.element);
         
-        
-        	/* let's instantiate our game objects */
-        	// pull the current level data
         	const levelObjects = allGameObjects["level" + levelNum];
         
-        	// loop through this level's objects ... 
+        	//Then the objeccts found in level1 of allGameObjects (in battle.js), is looped through
+			// and loaded into the game
         	for (let obj of levelObjects){
-        		const clone = Object.assign({}, obj); 		// clone the object
-        		clone.element = node.cloneNode(true); 		// clone the element
-        		clone.element.classList.add(obj.className); // add the className so we see the right image
+        		const clone = Object.assign({}, obj); 		
+        		clone.element = node.cloneNode(true); 		
+        		clone.element.classList.add(obj.className); 
 				if (obj.className == "monster1")
 				{
 					clone.element.classList.add(obj.classPlace);
 				}
-        		gameObjects.push(clone);				// add to currentGameObjects array  (so it gets moved onto the map)
-        		gameArea.appendChild(clone.element);		// add to DOM tree (so we can see it!)
+        		gameObjects.push(clone);
+        		gameArea.appendChild(clone.element);	
 				arrayContents.push(clone);
         	}
         }
         
+		// This function creates the tiles that fill the grid cells, which
+		// lets you see the textures of the game
         function drawGrid(array){
         	const numCols = array[0].length;
         	const numRows = array.length;
@@ -185,7 +191,6 @@
         			const tile = array[row][col];
         			const element = spaces[row][col];
                 
-        			// ** can you figure our how to get rid of this switch? Maybe another enumeration, of the tile CSS classes? **
         			switch(tile) {
             			case worldTile.FLOOR:
                 		element.classList.add("floor")
@@ -219,7 +224,9 @@
         	}
         }
         
-        
+        // This function makes sure that the objects in the game are 
+		// displayed in the right positions by adjusting their left and top
+		// values based on the object's x and y value
         function drawGameObjects(array){
         	// player
         	player.element.style.left = `${player.x * (spaceWidth + spaceSpacing)}px`;
@@ -233,22 +240,31 @@
         
         }
 
+		//This checks if the player or enemy can move to their desired tile.
+		//If they can't, then the collision audio is played and the object doesn't move.
 		function checkIsLegalMove(nextX,nextY){
-        		let nextTile = gameWorld[nextY][nextX];
-        		if (nextTile != worldTile.WALL && nextTile != worldTile.SHELF){
-        			return true;
-        		}else{
-        			wallAudio.cloneNode(true).play();
-        			return false;
-        		}
+        	let nextTile = gameWorld[nextY][nextX];
+        	if (nextTile != worldTile.WALL && nextTile != worldTile.SHELF){
+        		return true;
         	}
+			else 
+			{ 
+        		wallAudio.cloneNode(true).play();
+        		return false;
+        	}
+        }
         
-        
+        //This function allows the user to use the keyboard to move
+		//the player and attack with either basic shots or powers
         function movePlayer(e){
         	let nextX;
         	let nextY;
 			hasMoved = true;
+			//This prevents the up and down keys from moving the page up and down
 			e.preventDefault();
+
+			//This switch statement is used for movement, if the user presses the arrow keys
+			//then they will move in the respective direction, if the move is a legal one
         	switch(e.keyCode){
         		case keyboard.RIGHT:
         		nextX = player.x + 2;
@@ -275,7 +291,11 @@
         		break;
         	}
 
+			//This switch statement is seperate from the previous one, solely due to its
+			//seperate functionality, which also allows attacks while moving. 
+			//These cases involve attacking enemies.
 			switch(e.keyCode){
+				//If the user presses the spacebar, then a normal player shot is created
         		case keyboard.SPACE:
 				if (player.x != 12)
 				{
@@ -283,11 +303,16 @@
 					playerShotAudio.cloneNode(true).play();
 				}
         		break;
-            
+				
+				//If the user presses the z key and is away from the bounds of the game, then
+				//powerOne will be created and fired out. It is then marked as being used so it can't
+				//be used again
         		case keyboard.Z:
 				if (player.x != 11 && player.x != 12 && 
 					player.y != 1 && player.y != 2 && player.y != 13 && player.y != 14)
 				{
+					//If the fire power was picked up in the world state of the game and hasn't been used
+					//previously, then the projectile will be fired
 					if (usedPower1 == false && JSON.parse(localStorage.getItem("rcc3452-fire")) == true)
 					{
 						createProjectile("powerOne");
@@ -297,10 +322,15 @@
 					}
 				}
         		break;
-            
+				
+				//If the user presses the x key and is away from the bounds of the game, then
+				//powerTwo will be created and fired out. It is then marked as being used so it can't
+				//be used again
         		case keyboard.X:
 				if (player.x != 11 && player.x != 12)
 				{
+					//If the lightning power was picked up in the world state of the game and hasn't been used
+					//previously, then the projectile will be fired
 					if (usedPower2 == false && JSON.parse(localStorage.getItem("rcc3452-lightning")) == true)
 					{
 						createProjectile("powerTwo");
@@ -311,10 +341,15 @@
 				}
         		break;
             
+				//If the user presses the c key and is away from the bounds of the game, then
+				//powerThree will be created and fired out. It is then marked as being used so it can't
+				//be used again
         		case keyboard.C:
 				if (player.x != 9 && player.x != 10 && player.x != 11 && player.x != 12 && 
 					player.y != 1 && player.y != 2 && player.y != 13 && player.y != 14)
 				{
+					//If the tree power was picked up in the world state of the game and hasn't been used
+					//previously, then the projectile will be fired
 					if (usedPower3 == false && JSON.parse(localStorage.getItem("rcc3452-tree")) == true)
 					{
 						createPowerThree("powerThree");
@@ -326,20 +361,26 @@
         		break;
         	}
 
+			//This function creates the projectiles fired by the player
 			function createProjectile(e)
 			{
 				const node =  document.createElement("span");
 				let obj = allGameObjects[e];
+				//If the projectile fired is playerShot or powerTwo, then
+				//the projectile will be fired from the wand of the player
 				if (e == "playerShot" || e == "powerTwo")
 				{
 					obj.x = player.x + 2;
 					obj.y = player.y + 1;
 				}
+				//If the projectile is powerOne, then the projectile will be fired
+				//higher than normal to offset the height of the projectile.
 				else if (e == "powerOne")
 				{
 					obj.x = player.x + 2;
 					obj.y = player.y - 2;
 				}
+				//The projectile is then cloned and pushed to gameObjects and the game itself
         		const clone = Object.assign({}, obj);
         		clone.element = node.cloneNode(true); 		
         		clone.element.classList.add(obj.className); 
@@ -350,6 +391,8 @@
 
 			}
 
+			//This function creates powerThree far away from the player and freezes
+			//it, to avoid the object from moving at all.
 			function createPowerThree(e)
 			{
 				const node =  document.createElement("span");
@@ -368,54 +411,43 @@
         }
         
         
-        // IV. EVENTS
+        //This function prevents the user from highlighting any elements
+		//by clicking.
+		//It also calls movePlayer and drawGameObjects when a key is pressed
         function setupEvents(){
         	window.onmouseup = (e) => {
         		e.preventDefault();
-        		gridClicked(e);
         	};
         
         	window.onkeydown = (e)=>{
-        		//console.log("keydown=" + e.keyCode);
-            
-        		// checking for other keys - ex. 'p' and 'P' for pausing
-        		var char = String.fromCharCode(e.keyCode);
-        		if (char == "p" || char == "P"){
-                
-        		}
         		movePlayer(e);
         		drawGameObjects(gameObjects);
         	};
         }
-        
-        function gridClicked(e){
-        	let rect = gameArea.getBoundingClientRect();
-        	let mouseX = e.clientX - rect.x;
-        	let mouseY = e.clientY - rect.y;
-        	let columnWidth = spaceWidth+spaceSpacing;
-        	let col = Math.floor(mouseX/columnWidth);
-        	let row = Math.floor(mouseY/columnWidth);
-        	let selectedCell = spaces[row][col];
-        	// selectedCell.classList.add('cellSelected');
-        	console.log(`${col},${row}`);
-        }
 		
+		//This function is what plays the battle music, determines collisions and what should be
+		//removed if a collision occurs, moves the projectiles, and moves the enemies.
 		function updatePositions(){
+			//Nothing will be updated until the player moves to avoid early deaths
 			if (hasMoved)
 			{
-				if (hasDied  == false && hasGuard == true)
+				//If the user is alive and guards exist AND the page is currently viewed, 
+				//then the battle music plays
+				if (hasDied  == false && hasGuard == true && !document.hidden)
 				{
 					battleMusic.play();
 				}
+				//If the page is not being viewed, the music stops. The game will continue to run though.
 				else if (document.hidden)
 				{
-					worldMusic.pause();
+					battleMusic.pause();
 				}
 				for (let i = gameObjects.length - 1; i >= 0; i--)
 				{
 					if (gameObjects[i].className == "pShot" || gameObjects[i].className == "power1" || 
 						gameObjects[i].className == "power2")
 					{
+						// These else if statements are used to remove power1/power2 if they hit the right wall
 						if ((gameObjects[i].className == "power1" || gameObjects[i].className == "power2") 
 							&& gameObjects[i].x == 12)
 						{
@@ -440,6 +472,7 @@
 							}
 
 						}
+						//This is used to remove pShot if it hits the right wall
 						else if (gameObjects[i].className == "pShot" && gameObjects[i].x == 13)
 						{
 							let pShot = document.querySelector(".pShot");
@@ -449,14 +482,19 @@
 								gameObjects.splice(i, 1);
 							}
 						}
+						//Otherwise the projectiles will move to the right
 						else
 						{
 							gameObjects[i].x++;
 
+							//The gameObjects are then looped through to find enemies that are alive
 							for (let j = gameObjects.length - 1; j >= 0; j--)
 							{
+								//If they are found and...
 								if (gameObjects[j].className == "monster1" && gameObjects[j].lives != 0)
 								{
+									//...if the current projectile hits the enemy, then the projectile will be removed and the enemy will
+									//have a life deducted
 									if (gameObjects[i].x == gameObjects[j].x 
 										&& (gameObjects[i].y == gameObjects[j].y || gameObjects[i].y == gameObjects[j].y + 1))
 									{
@@ -466,6 +504,8 @@
 										enemyHitAudio.cloneNode(true).play();
 										break;
 									}
+									//If the projectile is power1, then the collision is expanded due to the increased size
+									//of the projectile
 									else if (gameObjects[i].className == "power1")
 									{
 										for (let k = 0; k < 6; k++)
@@ -481,6 +521,8 @@
 											}
 										}
 									}
+									//If the projectile is power2, then the collision is expanded due to the increased size
+									//of the projectile
 									else if (gameObjects[i].className == "power2")
 									{
 										if ((gameObjects[i].x == gameObjects[j].x || gameObjects[i].x + 1 == gameObjects[j].x) 
@@ -499,8 +541,10 @@
 
 
 					}
+					//If the projectile is an enemy projectile,
 					else if (gameObjects[i].className == "eShot")
 					{
+						//Then the correct enemy shot will be removed if it hits the left wall
 						if (gameObjects[i].x <= 1)
 						{
 							if (document.querySelector("." + gameObjects[i].numShot))
@@ -509,6 +553,7 @@
 								gameObjects.splice(i, 1);
 							}
 						}
+						//If it instead hits the player, then the player will lose a life and the projectile will be destroyed
 						else if ((gameObjects[i].x == player.x || gameObjects[i].x == player.x + 1) && (gameObjects[i].y == player.y || gameObjects[i].y == player.y + 1))
 						{
 							playerLives--;
@@ -520,6 +565,7 @@
 							}
 
 						}
+						//If power3 is used, then enemy projectiles will be removed if they collide with the tree
 						else if (usedPower3)
 						{
 							for (let j = gameObjects.length - 1; j >= 0; j--)
@@ -542,34 +588,45 @@
 							}
 						}
 
+						//This lets the enemy projectile move left every time updatePositions is called
 						if (gameObjects[i])
 						{
 							gameObjects[i].x--;
 						}
 
 					}
+					//If the gameObject is an enemy,
 					else if (gameObjects[i].className == "monster1")
 					{
+						//And the enemy has no lives left
 						if (gameObjects[i].lives <= 0)
 						{
+							//Then the enemy will be removed and its respective lives counter will be set to zero.
+							//This is for the front enemy
 							if (gameObjects[i].x == 8)
 							{
+								firstLives = 0;
 								gameArea.removeChild(document.querySelector("." + gameObjects[i].className + "." + gameObjects[i].classPlace));
 								gameObjects.splice(i, 1);
 							}
+							//This is for the back enemy
 							else
 							{
+								secondLives = 0;
 								gameArea.removeChild(document.querySelector("." + gameObjects[i].className + "." + gameObjects[i].classPlace));
 								gameObjects.splice(i, 1);
 							}
 
 						}
+						//If they instead have lives
 						else 
 						{
+							//Then a random int will be generated using this function
 							function getRandomInt(e) {
   								return Math.floor(Math.random() * e);
 							}
 							let randomDirection = getRandomInt(3);
+							//And the enemy will move either up, down, or nowhere depending on the int generated
 							if (randomDirection == 0 && checkIsLegalMove(gameObjects[i].x, gameObjects[i].y - 1))
 							{
 								gameObjects[i].y--;
@@ -579,8 +636,9 @@
 								gameObjects[i].y++;
 							}
 
+							//Another int is then generated
 							let randomShot = getRandomInt(5);
-
+							//And a shot will be created and fired if the int is 0
 							if (randomShot == 0)
 							{
 								enemyShotAudio.cloneNode(true).play();
@@ -606,8 +664,27 @@
 			
 			}
 
+			//All of the game objects are then redrawn, due to the updated positions
 			drawGameObjects(gameObjects);
+			//The lives of the enemies are then kept track of
+			for (let i = gameObjects.length - 1; i >= 0; i--)
+			{
+				if (gameObjects[i].classPlace == "one")
+				{
+					firstLives = gameObjects[i].lives;
+				}
+				else if (gameObjects[i].classPlace == "two")
+				{
+					secondLives = gameObjects[i].lives;
+				}
+			}
 
+			//The lives of the players and enemies are then displayed
+			livesText.innerHTML = "Your Lives:" + playerLives + "&nbsp Enemy Lives: " + firstLives + ", " + secondLives;
+
+			//If the player dies, then the lives of the player is set to zero,
+			//it is marked that the player has died, the gameArea and win text is removed
+			//and the lossAudio is then played
 			if (playerLives <= 0 && hasDied == false)
 			{
 				playerLives = 0;
@@ -615,9 +692,12 @@
 				gameArea.remove();
 				document.querySelector("#win").remove();
 				gameObjects = [];
+				battleMusic.pause();
 				lossAudio.play();
 			}
 			
+			//If guards exist in the game, then this is kept track of and
+			//if they don't exist, then the player has won
 			if (hasGuard)
 			{
 				for (let i = 0; i < gameObjects.length; i++)
@@ -637,6 +717,9 @@
 					
 				}
 			}
+			//If the player wins, then the battleMusic is paused,
+			//has won is set to false to avoid repeated actions, the gameArea and loss text are removed,
+			//and the win audio is played
 			else if (hasWon)
 			{
 				battleMusic.pause();
@@ -649,18 +732,23 @@
 			
 		}
 
+		//updatePositions is called every 0.5 seconds, which moves the all the gameObjects and
+		//determines collisions, winStates, and music frequently
 		setInterval(updatePositions, 500);
 
+		//This function brings the user back to the world section of the game
 		function backClicked(){
 			window.open(href="world.html", "_self");
 		}
 
-		//Eventually add clearing all local storage
+		//This function also brings the user back to the world section, but also resets
+		//the game
 		function restartClicked(){
 			localStorage.setItem("rcc3452-exists", JSON.stringify(false));
 			window.open(href="world.html", "_self");
 		}
 		
+		//These functions are then applied to the correct text sections
 		document.querySelector("#back").onclick = backClicked;
 		document.querySelector("#restart").onclick = restartClicked;
 

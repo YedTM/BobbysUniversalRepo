@@ -1,3 +1,5 @@
+/* All of the background color is a dark grey and all of the elements
+are to be centered horizontally */
 body{
 	display: flex;
 	justify-content: center;
@@ -8,6 +10,8 @@ body{
 	color: white;
 }
 
+/* h1 and #desc are placed above the game area and instruction section to ensure
+they are always visible */
 h1{
 	display: inline-block;
 	position:absolute;
@@ -29,6 +33,7 @@ h2 {
 	z-index: 2;
 }
 
+/* The sections are placed in the center of the screen */
 section {
 	margin: 0;
   	position: absolute;
@@ -44,6 +49,8 @@ section p {
 	font-size: 1.5em;
 }
 
+/* The win text is placed below everything else, which keeps it hidden until
+game area is removed */
 #win {
 	z-index: -1;
 }
@@ -59,6 +66,8 @@ section p {
 	font-style: italic;
 }
 
+/* The instruction section is placed above the game area and has
+its own background color and padding to hide game area */
 #instruct {
 	z-index: 1;
 	background-color: #333;
@@ -66,6 +75,8 @@ section p {
 	padding-right: 25px;
 }
 
+/* The following @media sections determine where the instruction section
+is placed in order to keep it hiding game area at all screen dimensions*/
 @media screen and (min-height: 1190px) {
 	#instruct {
 		margin-top: -55px;
@@ -84,16 +95,19 @@ section p {
 	}
 }
 
+/* The game area has to be offset using transform due to its large size and 
+its anchoring point not being its center */
 div#game{
 	margin: 0;
   	position: absolute;
 	top: 50%;
  	left: 50%;
-  	transform: translate(-272px, -20.147vh); /* -20.147vh used to be 192px if you need to revert them */
-	z-index: 0; /* underneath everything */
+  	transform: translate(-272px, -20.147vh);
+	z-index: 0; 
 }
 
-/* Background Tile Styles */
+/* The following spans are used to display the correct sprites for 
+the floors, walls, and shelves */
 span.floor{
 	width:32px;
 	height:32px;
@@ -115,7 +129,7 @@ span.shelf {
 span.cell{
 	height:32px;
 	width:32px;
-	border: 1px solid #333; /* actual width & height is 32px because of border */
+	border: 1px solid #333; 
 	background-color: #ccc;
 	padding:0;
 	margin:0;
@@ -133,7 +147,7 @@ span.cellSelected{
 }
 
 
-/* Game Object Styles */
+/* These spans are used to display the sprites of the game objects */
 span.gameObject{
 	height:32px;
 	width:32px;
