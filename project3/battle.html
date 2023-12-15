@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Til The Very Bookend - Battle</title>
+	<link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playball&display=swap" rel="stylesheet">
@@ -51,6 +53,7 @@
 		let hasDied = false;
 		let hasWon = false;
 		let hasGuard = true;
+		let hasMoved = false;
 
         let keyboard = ({
 			SPACE: 32,
@@ -244,6 +247,8 @@
         function movePlayer(e){
         	let nextX;
         	let nextY;
+			hasMoved = true;
+			e.preventDefault();
         	switch(e.keyCode){
         		case keyboard.RIGHT:
         		nextX = player.x + 2;
@@ -283,9 +288,10 @@
 				if (player.x != 11 && player.x != 12 && 
 					player.y != 1 && player.y != 2 && player.y != 13 && player.y != 14)
 				{
-					if (usedPower1 == false)
+					if (usedPower1 == false && JSON.parse(localStorage.getItem("rcc3452-fire")) == true)
 					{
 						createProjectile("powerOne");
+						fireAudio.playbackRate = 3;
 						fireAudio.play();
 						usedPower1 = true;
 					}
@@ -295,9 +301,10 @@
         		case keyboard.X:
 				if (player.x != 11 && player.x != 12)
 				{
-					if (usedPower2 == false)
+					if (usedPower2 == false && JSON.parse(localStorage.getItem("rcc3452-lightning")) == true)
 					{
 						createProjectile("powerTwo");
+						lightningAudio.playbackRate = 3;
 						lightningAudio.play();
 						usedPower2 = true;
 					}
@@ -308,9 +315,10 @@
 				if (player.x != 9 && player.x != 10 && player.x != 11 && player.x != 12 && 
 					player.y != 1 && player.y != 2 && player.y != 13 && player.y != 14)
 				{
-					if (usedPower3 == false)
+					if (usedPower3 == false && JSON.parse(localStorage.getItem("rcc3452-tree")) == true)
 					{
 						createPowerThree("powerThree");
+						treeAudio.playbackRate = 3;
 						treeAudio.play();
 						usedPower3 = true;
 					}
@@ -393,83 +401,63 @@
         }
 		
 		function updatePositions(){
-			if (hasDied  == false && hasGuard == true)
+			if (hasMoved)
 			{
-				battleMusic.play();
-			}
-			for (let i = gameObjects.length - 1; i >= 0; i--)
-			{
-				if (gameObjects[i].className == "pShot" || gameObjects[i].className == "power1" || 
-					gameObjects[i].className == "power2")
+				if (hasDied  == false && hasGuard == true)
 				{
-					if ((gameObjects[i].className == "power1" || gameObjects[i].className == "power2") 
-						&& gameObjects[i].x == 12)
+					battleMusic.play();
+				}
+				else if (document.hidden)
+				{
+					worldMusic.pause();
+				}
+				for (let i = gameObjects.length - 1; i >= 0; i--)
+				{
+					if (gameObjects[i].className == "pShot" || gameObjects[i].className == "power1" || 
+						gameObjects[i].className == "power2")
 					{
-						if (gameObjects[i].className == "power1")
+						if ((gameObjects[i].className == "power1" || gameObjects[i].className == "power2") 
+							&& gameObjects[i].x == 12)
 						{
-							let power1 = document.querySelector(".power1");
-							let position = gameObjects.indexOf(power1);
-							if (gameArea.contains(power1))
+							if (gameObjects[i].className == "power1")
 							{
-								gameArea.removeChild(power1);
-								gameObjects.splice(i, 1);
-							}
-						}
-						else if (gameObjects[i].className == "power2")
-						{
-							let power2 = document.querySelector(".power2");
-							if (gameArea.contains(power2))
-							{
-								gameArea.removeChild(power2);
-								gameObjects.splice(i, 1);
-							}
-						}
-						
-					}
-					else if (gameObjects[i].className == "pShot" && gameObjects[i].x == 13)
-					{
-						let pShot = document.querySelector(".pShot");
-						if (gameArea.contains(pShot))
-						{
-							gameArea.removeChild(pShot);
-							gameObjects.splice(i, 1);
-						}
-					}
-					else
-					{
-						gameObjects[i].x++;
-
-						for (let j = gameObjects.length - 1; j >= 0; j--)
-						{
-							if (gameObjects[j].className == "monster1" && gameObjects[j].lives != 0)
-							{
-								if (gameObjects[i].x == gameObjects[j].x 
-									&& (gameObjects[i].y == gameObjects[j].y || gameObjects[i].y == gameObjects[j].y + 1))
+								let power1 = document.querySelector(".power1");
+								let position = gameObjects.indexOf(power1);
+								if (gameArea.contains(power1))
 								{
-									gameArea.removeChild(document.querySelector("." + gameObjects[i].className));
+									gameArea.removeChild(power1);
 									gameObjects.splice(i, 1);
-									gameObjects[j].lives--;
-									enemyHitAudio.cloneNode(true).play();
-									break;
 								}
-								else if (gameObjects[i].className == "power1")
+							}
+							else if (gameObjects[i].className == "power2")
+							{
+								let power2 = document.querySelector(".power2");
+								if (gameArea.contains(power2))
 								{
-									for (let k = 0; k < 6; k++)
-									{
-										if ((gameObjects[i].x == gameObjects[j].x || gameObjects[i].x + 1 == gameObjects[j].x) 
-											&& (gameObjects[i].y + k == gameObjects[j].y || gameObjects[i].y + k == gameObjects[j].y + 1))
-										{
-											gameArea.removeChild(document.querySelector("." + gameObjects[i].className));
-											gameObjects.splice(i, 1);
-											gameObjects[j].lives--;
-											enemyHitAudio.cloneNode(true).play();
-											break;
-										}
-									}
+									gameArea.removeChild(power2);
+									gameObjects.splice(i, 1);
 								}
-								else if (gameObjects[i].className == "power2")
+							}
+
+						}
+						else if (gameObjects[i].className == "pShot" && gameObjects[i].x == 13)
+						{
+							let pShot = document.querySelector(".pShot");
+							if (gameArea.contains(pShot))
+							{
+								gameArea.removeChild(pShot);
+								gameObjects.splice(i, 1);
+							}
+						}
+						else
+						{
+							gameObjects[i].x++;
+
+							for (let j = gameObjects.length - 1; j >= 0; j--)
+							{
+								if (gameObjects[j].className == "monster1" && gameObjects[j].lives != 0)
 								{
-									if ((gameObjects[i].x == gameObjects[j].x || gameObjects[i].x + 1 == gameObjects[j].x) 
+									if (gameObjects[i].x == gameObjects[j].x 
 										&& (gameObjects[i].y == gameObjects[j].y || gameObjects[i].y == gameObjects[j].y + 1))
 									{
 										gameArea.removeChild(document.querySelector("." + gameObjects[i].className));
@@ -478,116 +466,144 @@
 										enemyHitAudio.cloneNode(true).play();
 										break;
 									}
-								}
-							}
-						}
-					}
-					
-
-				}
-				else if (gameObjects[i].className == "eShot")
-				{
-					if (gameObjects[i].x <= 1)
-					{
-						if (document.querySelector("." + gameObjects[i].numShot))
-						{
-							gameArea.removeChild(document.querySelector("." + gameObjects[i].numShot));
-							gameObjects.splice(i, 1);
-						}
-					}
-					else if ((gameObjects[i].x == player.x || gameObjects[i].x == player.x + 1) && (gameObjects[i].y == player.y || gameObjects[i].y == player.y + 1))
-					{
-						playerLives--;
-						playerHitAudio.cloneNode(true).play();
-						if (document.querySelector("." + gameObjects[i].numShot))
-						{
-							gameArea.removeChild(document.querySelector("." + gameObjects[i].numShot));
-							gameObjects.splice(i, 1);
-						}
-
-					}
-					else if (usedPower3)
-					{
-						for (let j = gameObjects.length - 1; j >= 0; j--)
-						{
-							if (gameObjects[j].className == "power3")
-							{
-								if ((gameObjects[i].x == gameObjects[j].x || gameObjects[i].x == gameObjects[j].x + 1) && 
-									(gameObjects[i].y == gameObjects[j].y || gameObjects[i].y == gameObjects[j].y + 1 || 
-								 	 gameObjects[i].y == gameObjects[j].y + 2 || gameObjects[i].y == gameObjects[j].y + 3 || 
-									 gameObjects[i].y == gameObjects[j].y + 4 || gameObjects[i].y == gameObjects[j].y + 5))
-								{
-									if (document.querySelector("." + gameObjects[i].numShot))
+									else if (gameObjects[i].className == "power1")
 									{
-										gameArea.removeChild(document.querySelector("." + gameObjects[i].numShot));
-										gameObjects.splice(i, 1);
+										for (let k = 0; k < 6; k++)
+										{
+											if ((gameObjects[i].x == gameObjects[j].x || gameObjects[i].x + 1 == gameObjects[j].x) 
+												&& (gameObjects[i].y + k == gameObjects[j].y || gameObjects[i].y + k == gameObjects[j].y + 1))
+											{
+												gameArea.removeChild(document.querySelector("." + gameObjects[i].className));
+												gameObjects.splice(i, 1);
+												gameObjects[j].lives--;
+												enemyHitAudio.cloneNode(true).play();
+												break;
+											}
+										}
+									}
+									else if (gameObjects[i].className == "power2")
+									{
+										if ((gameObjects[i].x == gameObjects[j].x || gameObjects[i].x + 1 == gameObjects[j].x) 
+											&& (gameObjects[i].y == gameObjects[j].y || gameObjects[i].y == gameObjects[j].y + 1))
+										{
+											gameArea.removeChild(document.querySelector("." + gameObjects[i].className));
+											gameObjects.splice(i, 1);
+											gameObjects[j].lives -= 3;
+											enemyHitAudio.cloneNode(true).play();
+											break;
+										}
 									}
 								}
 							}
-							
 						}
-					}
 
-					if (gameObjects[i])
-					{
-						gameObjects[i].x--;
+
 					}
-					
+					else if (gameObjects[i].className == "eShot")
+					{
+						if (gameObjects[i].x <= 1)
+						{
+							if (document.querySelector("." + gameObjects[i].numShot))
+							{
+								gameArea.removeChild(document.querySelector("." + gameObjects[i].numShot));
+								gameObjects.splice(i, 1);
+							}
+						}
+						else if ((gameObjects[i].x == player.x || gameObjects[i].x == player.x + 1) && (gameObjects[i].y == player.y || gameObjects[i].y == player.y + 1))
+						{
+							playerLives--;
+							playerHitAudio.cloneNode(true).play();
+							if (document.querySelector("." + gameObjects[i].numShot))
+							{
+								gameArea.removeChild(document.querySelector("." + gameObjects[i].numShot));
+								gameObjects.splice(i, 1);
+							}
+
+						}
+						else if (usedPower3)
+						{
+							for (let j = gameObjects.length - 1; j >= 0; j--)
+							{
+								if (gameObjects[j].className == "power3")
+								{
+									if ((gameObjects[i].x == gameObjects[j].x || gameObjects[i].x == gameObjects[j].x + 1) && 
+										(gameObjects[i].y == gameObjects[j].y || gameObjects[i].y == gameObjects[j].y + 1 || 
+									 	 gameObjects[i].y == gameObjects[j].y + 2 || gameObjects[i].y == gameObjects[j].y + 3 || 
+										 gameObjects[i].y == gameObjects[j].y + 4 || gameObjects[i].y == gameObjects[j].y + 5))
+									{
+										if (document.querySelector("." + gameObjects[i].numShot))
+										{
+											gameArea.removeChild(document.querySelector("." + gameObjects[i].numShot));
+											gameObjects.splice(i, 1);
+										}
+									}
+								}
+
+							}
+						}
+
+						if (gameObjects[i])
+						{
+							gameObjects[i].x--;
+						}
+
+					}
+					else if (gameObjects[i].className == "monster1")
+					{
+						if (gameObjects[i].lives <= 0)
+						{
+							if (gameObjects[i].x == 8)
+							{
+								gameArea.removeChild(document.querySelector("." + gameObjects[i].className + "." + gameObjects[i].classPlace));
+								gameObjects.splice(i, 1);
+							}
+							else
+							{
+								gameArea.removeChild(document.querySelector("." + gameObjects[i].className + "." + gameObjects[i].classPlace));
+								gameObjects.splice(i, 1);
+							}
+
+						}
+						else 
+						{
+							function getRandomInt(e) {
+  								return Math.floor(Math.random() * e);
+							}
+							let randomDirection = getRandomInt(3);
+							if (randomDirection == 0 && checkIsLegalMove(gameObjects[i].x, gameObjects[i].y - 1))
+							{
+								gameObjects[i].y--;
+							}
+							else if (randomDirection == 1 && checkIsLegalMove(gameObjects[i].x, gameObjects[i].y + 2))
+							{
+								gameObjects[i].y++;
+							}
+
+							let randomShot = getRandomInt(5);
+
+							if (randomShot == 0)
+							{
+								enemyShotAudio.cloneNode(true).play();
+								const node =  document.createElement("span");
+								let obj = allGameObjects["enemyShot"];
+								obj.x = gameObjects[i].x - 1;
+								obj.y = gameObjects[i].y;
+								shotCount++; 
+								obj.numShot = "shot" + shotCount;
+        						const clone = Object.assign({}, obj);
+        						clone.element = node.cloneNode(true); 		
+        						clone.element.classList.add(obj.className);
+								clone.element.classList.add(obj.numShot);
+        						gameObjects.push(clone);				
+        						gameArea.appendChild(clone.element);
+								clone.element.style.left = `${clone.x * (spaceWidth + spaceSpacing)}px`;
+        						clone.element.style.top = `${clone.y * (spaceWidth + spaceSpacing)}px`;
+							}
+						}
+
+					}
 				}
-				else if (gameObjects[i].className == "monster1")
-				{
-					if (gameObjects[i].lives == 0)
-					{
-						if (gameObjects[i].x == 8)
-						{
-							gameArea.removeChild(document.querySelector("." + gameObjects[i].className + "." + gameObjects[i].classPlace));
-							gameObjects.splice(i, 1);
-						}
-						else
-						{
-							gameArea.removeChild(document.querySelector("." + gameObjects[i].className + "." + gameObjects[i].classPlace));
-							gameObjects.splice(i, 1);
-						}
-						
-					}
-					else 
-					{
-						function getRandomInt(e) {
-  							return Math.floor(Math.random() * e);
-						}
-						let randomDirection = getRandomInt(3);
-						if (randomDirection == 0 && checkIsLegalMove(gameObjects[i].x, gameObjects[i].y - 1))
-						{
-							gameObjects[i].y--;
-						}
-						else if (randomDirection == 1 && checkIsLegalMove(gameObjects[i].x, gameObjects[i].y + 2))
-						{
-							gameObjects[i].y++;
-						}
-
-						let randomShot = getRandomInt(5);
-
-						if (randomShot == 0)
-						{
-							enemyShotAudio.cloneNode(true).play();
-							const node =  document.createElement("span");
-							let obj = allGameObjects["enemyShot"];
-							obj.x = gameObjects[i].x - 1;
-							obj.y = gameObjects[i].y;
-							shotCount++; 
-							obj.numShot = "shot" + shotCount;
-        					const clone = Object.assign({}, obj);
-        					clone.element = node.cloneNode(true); 		
-        					clone.element.classList.add(obj.className);
-							clone.element.classList.add(obj.numShot);
-        					gameObjects.push(clone);				
-        					gameArea.appendChild(clone.element);
-							clone.element.style.left = `${clone.x * (spaceWidth + spaceSpacing)}px`;
-        					clone.element.style.top = `${clone.y * (spaceWidth + spaceSpacing)}px`;
-						}
-					}
-					
-				}
+			
 			}
 
 			drawGameObjects(gameObjects);
@@ -636,12 +652,13 @@
 		setInterval(updatePositions, 500);
 
 		function backClicked(){
-			window.open(href="world.html", "_blank");
+			window.open(href="world.html", "_self");
 		}
 
 		//Eventually add clearing all local storage
 		function restartClicked(){
-			window.open(href="world.html", "_blank");
+			localStorage.setItem("rcc3452-exists", JSON.stringify(false));
+			window.open(href="world.html", "_self");
 		}
 		
 		document.querySelector("#back").onclick = backClicked;

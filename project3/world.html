@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Til The Very Bookend - World</title>
+	<link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playball&display=swap" rel="stylesheet">
@@ -41,9 +43,10 @@
         let spaceSpacing = 0;
         let gameArea = document.querySelector("#game");
         let spaces = [];
-		let arrayContents = [];
 		let cont = document.querySelector("#continue");
 		let hasWon = false;
+		let hasClicked = false;
+		let prefix = "rcc3452-"
 
         let keyboard = ({
 			SPACE: 32,
@@ -67,11 +70,11 @@
 
         let currentLevelNumber = 1;
         let gameWorld = undefined;
-        let gameObjects = undefined;
+        let gameObjects = [];
 
         let player = ({
-            x: -1,
-            y: -1,
+            x: 1,
+            y: 1,
             element: undefined,
             moveRight(){this.x++},
             moveDown(){this.y++;},
@@ -79,12 +82,27 @@
 	        moveUp(){this.y--;}
         });
 
+		// When the window is opened the game world is created and the gameObjects, tiles, 
+		// and audio is created and placed. Local storage is also created if it exists/is reset
 		window.onload = ()=>{
 			gameWorld = worldLayout["layout"];
 			let numCols = gameWorld[0].length;
 			let numRows = gameWorld.length;
 			createGridElements(numRows,numCols);
 			drawGrid(gameWorld);
+			// This is where local storage is checked to see if it exists, which will then
+			// create keys in local storage if it doesn't exist.
+			// These keys are used to track if local exists, if the powers have been picked up, and the positions
+			// of the gameObjects and the player
+			if (JSON.parse(localStorage.getItem(prefix + "exists")) == null || JSON.parse(localStorage.getItem(prefix + "exists")) == false)
+			{
+				localStorage.setItem(prefix + "exists", JSON.stringify(true));
+				localStorage.setItem(prefix + "fire", JSON.stringify(false));
+				localStorage.setItem(prefix + "lightning", JSON.stringify(false));
+				localStorage.setItem(prefix + "tree", JSON.stringify(false));
+				localStorage.setItem(prefix + "GO", JSON.stringify(gameObjects));
+				localStorage.setItem(prefix + "player", JSON.stringify(player));
+			}
 			loadLevel(currentLevelNumber);
 			drawGameObjects(gameObjects);
 			wallAudio = document.querySelector("#wallAudio");
@@ -95,8 +113,7 @@
 			setupEvents();
 		}
 
-        // III. FUNCTIONS
-        // the elements on the screen that won't change - our "view"
+        // This function creates the cells that create the grid that the player traverses
         function createGridElements(numRows,numCols){
         	const span = document.createElement('span');
         	span.className = 'cell';
@@ -112,39 +129,78 @@
         	}
         }
         
-        // the elements on the screen that can move and change - also part of the "view"
+        // This function loads in the parts of the game that either move or meant to be collected,
+		// such as the player, monsters, powers, etc.
         function loadLevel(levelNum = 1){
-        	gameObjects = []; // clear out the old array
+			gameObjects = [];
         	const node =  document.createElement("span");
         	node.className = "gameObject";
         
-        	// now initialize our player
-        	player.x = 1;
-        	player.y = 1;
+        	// If the player in local storage exists, then its x and y data is put into the game's player
+			if (JSON.parse(localStorage.getItem(prefix + "player")) != null)
+			{
+				player.x = JSON.parse(localStorage.getItem("rcc3452-player")).x;
+				player.y = JSON.parse(localStorage.getItem("rcc3452-player")).y;
+			}
+			// If player is not in local storage, it will default to [1,1]
+			else
+			{
+				player.x = 1;
+        		player.y = 1;
+			}
+			// Player is then added to the gameArea
         	player.element = node.cloneNode(true);
         	player.element.classList.add("player");
         	gameArea.appendChild(player.element);
-        
-        
-        	/* let's instantiate our game objects */
-        	// pull the current level data
-        	const levelObjects = allGameObjects["level" + levelNum];
-        
-        	// loop through this level's objects ... 
-        	for (let obj of levelObjects){
-        		const clone = Object.assign({}, obj); 		// clone the object
-        		clone.element = node.cloneNode(true); 		// clone the element
-        		clone.element.classList.add(obj.className); // add the className so we see the right image
-				if (obj.className == "monster1" || obj.className == "monster2")
+			
+			// If the gameObjects array exists in local storage, then the following will occur:
+			if (JSON.parse(localStorage.getItem(prefix + "GO")) != null && JSON.parse(localStorage.getItem(prefix + "GO")).length != [])
+			{
+				// localObjects is created in order to allow the info in local storage to be 
+				// transfered to gameObjects
+				let localObjects = JSON.parse(localStorage.getItem(prefix + "GO"));
+				for (let obj of localObjects)
 				{
-					clone.element.classList.add(obj.classPlace);
+					// The object is clone and has the necessary info placed into it before being 
+					// pushed to the gameArea and gameObjects array
+					const clone = Object.assign({}, obj);
+        			clone.element = node.cloneNode(true);
+        			clone.element.classList.add(obj.entity.className);
+					if (obj.entity.className == "monster1" || obj.entity.className == "monster2")
+					{
+						clone.element.classList.add(obj.entity.classPlace);
+					}
+					gameObjects.push(clone);
+        			gameArea.appendChild(clone.element);
 				}
-        		gameObjects.push(clone);				// add to currentGameObjects array  (so it gets moved onto the map)
-				arrayContents.push(clone);
-        		gameArea.appendChild(clone.element);		// add to DOM tree (so we can see it!)
-        	}
+			}
+			// If the array doesn't exist in local storage, then: 
+			else
+			{
+				// levelObjects is filled in with the info found in allGameObjects (world.js)
+        		const levelObjects = allGameObjects["level" + levelNum];
+				
+        		// This is then used to loop through levelObjects, where
+				// each object is cloned, assigned the right information, and then
+				// pushed to gameObjects and gameArea
+        		for (let obj of levelObjects){
+        			const clone = Object.assign({}, obj); 		
+        			clone.element = node.cloneNode(true); 		
+        			clone.element.classList.add(obj.entity.className); 
+					if (obj.entity.className == "monster1" || obj.entity.className == "monster2")
+					{
+						clone.element.classList.add(obj.entity.classPlace);
+					}
+        			gameObjects.push(clone);		
+        			gameArea.appendChild(clone.element);
+        		}
+			}
+
+        	
         }
         
+		// This function creates the tiles that fill the grid cells, which
+		// lets you see the nice textures
         function drawGrid(array){
         	const numCols = array[0].length;
         	const numRows = array.length;
@@ -152,8 +208,7 @@
         		for (let col=0;col<numCols;col++){
         			const tile = array[row][col];
         			const element = spaces[row][col];
-                
-        			// ** can you figure our how to get rid of this switch? Maybe another enumeration, of the tile CSS classes? **
+
         			switch(tile) {
             			case worldTile.FLOOR:
                 		element.classList.add("floor")
@@ -171,7 +226,9 @@
         	}
         }
         
-        
+        // This function makes sure that the objects in the game are 
+		// displayed in the right positions by adjusting their left and top
+		// values based on the object's x and y value
         function drawGameObjects(array){
         	// player
         	player.element.style.left = `${player.x * (spaceWidth + spaceSpacing)}px`;
@@ -179,16 +236,21 @@
         
         	// game object
         	for (let gameObject of array){
-        		gameObject.element.style.left = `${gameObject.x * (spaceWidth + spaceSpacing)}px`;
-        		gameObject.element.style.top = `${gameObject.y * (spaceWidth + spaceSpacing)}px`;
+        		gameObject.element.style.left = `${gameObject.entity.x * (spaceWidth + spaceSpacing)}px`;
+        		gameObject.element.style.top = `${gameObject.entity.y * (spaceWidth + spaceSpacing)}px`;
         	}
         
         }
         
-        
+        // This function involves keyboard controls of the player character
+		// It has functionality for the player's movement, but also has
+		// functionality for picking up items scattered about the game world
         function movePlayer(e){
         	let nextX;
         	let nextY;
+			// This switch statement is for movement, if the user presses the 
+			// arrow keys, then the player character will move in the respective direction
+			// If the space bar is pressed, then it will determine if the player can pick up an item
         	switch(e.keyCode){
         		case keyboard.RIGHT:
         		nextX = player.x + 1;
@@ -213,53 +275,103 @@
         		nextY = player.y - 1;
         		if(checkIsLegalMove(nextX,nextY)) player.moveUp();
         		break;
-        	}
 
-			switch(e.keyCode){
 				case keyboard.SPACE:
 				//If the player is on the nature power, then remove it from the game and 
-				//add it to the currently equipped power in local storage
-				//(Add that last part)
+				//mark it as held in local storage. The pickup audio is then played and
+				//the gameObjects array in localStorage is updated to keep track of the removed
+				//item. The player is also saved to local storage to act as a checkpoint of sorts
 				if (player.x == 15 && player.y == 1)
 				{
 					let treePower = document.querySelector(".gameObject.power3");
 					if (gameArea.contains(treePower))
 					{
 						gameArea.removeChild(treePower);
-						gameObjects.splice(gameObjects.indexOf(arrayContents[9]), 1);
+						for (let i = gameObjects.length - 1; i >= 0; i--)
+						{
+							if (gameObjects[i].entity.className == "power3")
+							{
+								gameObjects.splice(i, 1);
+							}
+						}
 						correctAudio.play();
+						localStorage.setItem(prefix + "tree", JSON.stringify(true));
+						localStorage.setItem(prefix + "GO", JSON.stringify(gameObjects));
+						localStorage.setItem(prefix + "player", JSON.stringify(player));
 					}
 				}
+				//If the player is on the lightning power, then remove it from the game and 
+				//mark it as held in local storage. The pickup audio is then played and
+				//the gameObjects array in localStorage is updated to keep track of the removed
+				//item. The player is also saved to local storage to act as a checkpoint of sorts
 				else if (player.x == 1 && player.y == 3)
 				{
 					let lightningPower = document.querySelector(".gameObject.power2");
 					if (gameArea.contains(lightningPower))
 					{
 						gameArea.removeChild(lightningPower);
-						gameObjects.splice(gameObjects.indexOf(arrayContents[8]), 1);
+						for (let i = gameObjects.length - 1; i >= 0; i--)
+						{
+							if (gameObjects[i].entity.className == "power2")
+							{
+								gameObjects.splice(i, 1);
+							}
+						}
 						correctAudio.play();
+						localStorage.setItem(prefix + "lightning", JSON.stringify(true));
+						localStorage.setItem(prefix + "GO", JSON.stringify(gameObjects));
+						localStorage.setItem(prefix + "player", JSON.stringify(player));
 					}
 				}
+				//If the player is on the fire power, then remove it from the game and 
+				//mark it as held in local storage. The pickup audio is then played and
+				//the gameObjects array in localStorage is updated to keep track of the removed
+				//item. The player is also saved to local storage to act as a checkpoint of sorts
 				else if (player.x == 1 && player.y == 11)
 				{
 					let firePower = document.querySelector(".gameObject.power1");
 					if (gameArea.contains(firePower))
 					{
 						gameArea.removeChild(firePower);
-						gameObjects.splice(gameObjects.indexOf(arrayContents[7]), 1);
+						for (let i = gameObjects.length - 1; i >= 0; i--)
+						{
+							if (gameObjects[i].entity.className == "power1")
+							{
+								gameObjects.splice(i, 1);
+							}
+						}
 						correctAudio.play();
+						localStorage.setItem(prefix + "fire", JSON.stringify(true));
+						localStorage.setItem(prefix + "GO", JSON.stringify(gameObjects));
+						localStorage.setItem(prefix + "player", JSON.stringify(player));
 					}
 				}
+				//If the player is on the key, then remove it from the game and 
+				//mark it as held in local storage. The pickup audio is then played and
+				//the gameObjects array in localStorage is updated to keep track of the removed
+				//item. The player is also saved to local storage to act as a checkpoint of sorts
 				else if (player.x == 1 && player.y == 9)
 				{
 					let key = document.querySelector(".gameObject.key1");
 					if (gameArea.contains(key))
 					{
 						gameArea.removeChild(key);
-						gameObjects.splice(gameObjects.indexOf(arrayContents[6]), 1);
+						for (let i = gameObjects.length - 1; i >= 0; i--)
+						{
+							if (gameObjects[i].entity.className == "key1")
+							{
+								gameObjects.splice(i, 1);
+							}
+						}
 						correctAudio.play();
+						localStorage.setItem(prefix + "GO", JSON.stringify(gameObjects));
+						localStorage.setItem(prefix + "player", JSON.stringify(player));
 					}
 				}
+				//If the player is on the locked pedestal and has the key, then remove the pedestal  
+				//from the game and mark it as held in local storage. The pickup audio is then played and
+				//the gameObjects array in localStorage is updated to keep track of the removed
+				//item. The player is also saved to local storage to act as a checkpoint of sorts
 				else if (player.x == 15 && player.y == 11)
 				{
 					let key = document.querySelector(".gameObject.key1");
@@ -267,14 +379,28 @@
 					if (gameArea.contains(key) == false && gameArea.contains(locked))
 					{
 						gameArea.removeChild(locked);
-						gameObjects.splice(gameObjects.indexOf(arrayContents[5]), 1);
+						for (let i = gameObjects.length - 1; i >= 0; i--)
+						{
+							if (gameObjects[i].entity.className == "locked")
+							{
+								gameObjects.splice(i, 1);
+							}
+						}
 						correctAudio.play();
+						localStorage.setItem(prefix + "GO", JSON.stringify(gameObjects));
+						localStorage.setItem(prefix + "player", JSON.stringify(player));
 					}
+					// However, if the player does not have the key, then nothing will be removed and 
+					// the incorrect audio is played
 					else if (gameArea.contains(key))
 					{
 						incorrectAudio.cloneNode(true).play();
 					}
 				}
+				//If the player is on the portal and has the pedestal, then remove the portal  
+				//from the game and remove everything else from the game. This shows the win message.
+				//hasWon is set to true, the world music stops and lets the win music play and 
+				//local storage is "reset" (bool is set to false).
 				else if (player.x == 1 && player.y == 1)
 				{
 					let locked = document.querySelector(".gameObject.locked")
@@ -282,123 +408,152 @@
 					if (gameArea.contains(locked) == false && gameArea.contains(portal))
 					{
 						gameArea.removeChild(portal);
-						gameObjects.splice(gameObjects.indexOf(arrayContents[10]), 1);
+						for (let i = gameObjects.length - 1; i >= 0; i--)
+						{
+							if (gameObjects[i].entity.className == "portal")
+							{
+								gameObjects.splice(i, 1);
+							}
+						}
 						gameArea.remove();
 						gameObjects = [];
 						hasWon = true;
+						localStorage.setItem(prefix + "exists", JSON.stringify(false));
 						worldMusic.pause();
 						winMusic.play();
 						//correctAudio is not played on purpose to avoid conflicting with the victory audio
 					}
+					// If the pedestal isn't held, then nothing prior occurs and the incorrect
+					// audio is played
 					else if (gameArea.contains(locked))
 					{
 						incorrectAudio.cloneNode(true).play();
 					}
 				}
-			}
+				break;
+        	}
 			
+			//If the player moves onto the space that a monster/guard is on, then they will be moved to 
+			//the battle part of the game and the enemy will be removed from the world. This is kept track of 
+			//in local storage, where the player is also stored so they stay in the same place they encountered
+			//the enemy
 			for (let i = gameObjects.length - 1; i >= 0; i--)
 			{
-				if ((gameObjects[i].className == "monster1" || gameObjects[i].className == "monster2") 
-					&& player.x == gameObjects[i].x && player.y == gameObjects[i].y)
+				if ((gameObjects[i].entity.className == "monster1" || gameObjects[i].entity.className == "monster2") 
+					&& player.x == gameObjects[i].entity.x && player.y == gameObjects[i].entity.y)
 				{
-					window.open(href="battle.html", "_blank"); //Use "_self" in the final product
+					window.open(href="battle.html", "_self");
 
-					gameArea.removeChild(document.querySelector(".gameObject." + gameObjects[i].className + "." + gameObjects[i].classPlace));
+					gameArea.removeChild(document.querySelector(".gameObject." + gameObjects[i].entity.className + "." + gameObjects[i].entity.classPlace));
 					gameObjects.splice(i, 1);
+					localStorage.setItem(prefix + "GO", JSON.stringify(gameObjects));
+					localStorage.setItem(prefix + "player", JSON.stringify(player));
 				}
 			}
+			// (A nice side effect of having encounters start by moving into enemies is that players can avoid combat
+			// if they let an enemy move over them instead of trying to move around them)
         }
 
+		//This checks if the player or enemy can move to their desired tile.
+		//If they can't, then the collision audio is played and the object doesn't move.
 		function checkIsLegalMove(nextX,nextY){
         	let nextTile = gameWorld[nextY][nextX];
         	if (nextTile != worldTile.WALL && nextTile != worldTile.SHELF){
         		return true;
-        	}else{
+        	}
+			else{
         		wallAudio.cloneNode(true).play();
         		return false;
         	}
         }
-		//settimeout for mi8lliseconds, check for time methods
         
-        
-        // IV. EVENTS
+		//This function prevents the user from highlighting any elements
+		//by clicking (anything that isn't text for clarification purposes).
+		//It also calls movePlayer and drawGameObjects when a key is pressed
         function setupEvents(){
         	window.onmouseup = (e) => {
         		e.preventDefault();
-        		gridClicked(e);
         	};
         
         	window.onkeydown = (e)=>{
-        		//console.log("keydown=" + e.keyCode);
-            
-        		// checking for other keys - ex. 'p' and 'P' for pausing
-        		var char = String.fromCharCode(e.keyCode);
-        		if (char == "p" || char == "P"){
-                
-        		}
         		movePlayer(e);
         		drawGameObjects(gameObjects);
         	};
         }
-        
-        function gridClicked(e){
-        	let rect = gameArea.getBoundingClientRect();
-        	let mouseX = e.clientX - rect.x;
-        	let mouseY = e.clientY - rect.y;
-        	let columnWidth = spaceWidth+spaceSpacing;
-        	let col = Math.floor(mouseX/columnWidth);
-        	let row = Math.floor(mouseY/columnWidth);
-        	let selectedCell = spaces[row][col];
-        	// selectedCell.classList.add('cellSelected');
-        	console.log(`${col},${row}`);
-        }
 
+		//If the continue text in the instructions section is clicked, then 
+		//the instructions are removed and hasClicked is set to true
 		function continueClicked(){
 			let instruct = document.querySelector("#instruct");
 			instruct.remove();
+			hasClicked = true;
 		}
 
+		//continueClicked is applied to the continue section
 		cont.onclick = continueClicked;
 
+		// This function is used to played the worldMusic and move the moving guards
+		// around the playable area
 		function updatePositions(){
-			if (hasWon == false)
+			// This makes sure the user has read the instructions section and clicked continue before
+			// the game begins to run. It also prevents enemies from moving and the music from playing 
+			// when the user isn't on the tab
+			if (hasClicked == true && !document.hidden)
 			{
-				worldMusic.play();
-			}
-			function getRandomInt() {
-  				return Math.floor(Math.random() * 5);
-			}
-
-			for (let i = gameObjects.length - 1; i >= 0; i--)
-			{
-				if (gameObjects[i].className == "monster1")
+				// World music will play as long as the player hasn't won
+				if (hasWon == false)
 				{
-					let randomDirection = getRandomInt();
-					if (randomDirection == 0 && checkIsLegalMove(gameObjects[i].x - 1, gameObjects[i].y))
+					worldMusic.play();
+				}
+
+				//This is used to get a random int, which is then used to
+				//determine where and if the guards move
+				function getRandomInt() {
+  					return Math.floor(Math.random() * 5);
+				}
+
+				//Each object in gameObjects in looped through-
+				for (let i = gameObjects.length - 1; i >= 0; i--)
+				{
+					//Where each moving guard-
+					if (gameObjects[i].entity.className == "monster1")
 					{
-						gameObjects[i].x--;
-					}
-					else if (randomDirection == 1 && checkIsLegalMove(gameObjects[i].x, gameObjects[i].y + 1))
-					{
-						gameObjects[i].y++;
-					}
-					else if (randomDirection == 2 && checkIsLegalMove(gameObjects[i].x, gameObjects[i].y - 1))
-					{
-						gameObjects[i].y--;
-					}
-					else if (randomDirection == 3 && checkIsLegalMove(gameObjects[i].x + 1, gameObjects[i].y))
-					{
-						gameObjects[i].x++;
+						let randomDirection = getRandomInt();
+
+						//Will be potentially moved, depending on the random int generated.
+						if (randomDirection == 0 && checkIsLegalMove(gameObjects[i].entity.x - 1, gameObjects[i].entity.y))
+						{
+							gameObjects[i].entity.x--;
+						}
+						else if (randomDirection == 1 && checkIsLegalMove(gameObjects[i].entity.x, gameObjects[i].entity.y + 1))
+						{
+							gameObjects[i].entity.y++;
+						}
+						else if (randomDirection == 2 && checkIsLegalMove(gameObjects[i].entity.x, gameObjects[i].entity.y - 1))
+						{
+							gameObjects[i].entity.y--;
+						}
+						else if (randomDirection == 3 && checkIsLegalMove(gameObjects[i].entity.x + 1, gameObjects[i].entity.y))
+						{
+							gameObjects[i].entity.x++;
+						}
 					}
 				}
-			}
 
-			drawGameObjects(gameObjects);
+				// The newly moved guards are then updated visually
+				drawGameObjects(gameObjects);
+			}
+			//World music is also stopped if the user isn't on the tab of the game
+			else if (document.hidden)
+			{
+				worldMusic.pause();
+			}
+			
 		}
 
-		
-
+		//This calls updatePositions every one and a half seconds, which will move the
+		//guards and play the world music everytime it ends (the music will not overlap every
+		//1.5 seconds)
 		setInterval(updatePositions, 1500);
 		
     </script>

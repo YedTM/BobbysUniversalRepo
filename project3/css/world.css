@@ -15,6 +15,7 @@ h1{
 	top: 0;
 	line-height:1.5em;
 	margin-top: 7.9vh;
+	z-index: 2;
 }
 
 h2 {
@@ -22,8 +23,10 @@ h2 {
 }
 
 #desc {
+	height: 72px;
 	margin-top: 18.36vh;
 	font-weight: 600;
+	z-index: 2;
 }
 
 section {
@@ -61,6 +64,24 @@ section p {
 	background-color: #333;
 	padding-left: 25px;
 	padding-right: 25px;
+}
+
+@media screen and (min-height: 1190px) {
+	#instruct {
+		margin-top: -55px;
+	}
+}
+
+@media screen and (max-height: 905px) {
+	#instruct {
+		margin-top: 35px;
+	}
+}
+
+@media screen and (max-height: 735px) {
+	#instruct {
+		margin-top: 60px;
+	}
 }
 
 div#game{
