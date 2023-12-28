@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+guid: 88223d9139c07014b915d2fda5cde6a5
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - creaturePrefab: {fileID: 4382556881031189459, guid: 4efa301edd8546141bd2b684c2f44c2a, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

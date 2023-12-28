@@ -1,0 +1,81 @@
+C:\Users\casab\OneDrive\Desktop\Team Game Repo\A Bump in the Light\A Bump in the Light\bin\Debug\net6.0\Content\BURGGG.xnb
+C:\Users\casab\OneDrive\Desktop\Team Game Repo\A Bump in the Light\A Bump in the Light\bin\Debug\net6.0\A Bump in the Light.exe
+C:\Users\casab\OneDrive\Desktop\Team Game Repo\A Bump in the Light\A Bump in the Light\bin\Debug\net6.0\A Bump in the Light.deps.json
+C:\Users\casab\OneDrive\Desktop\Team Game Repo\A Bump in the Light\A Bump in the Light\bin\Debug\net6.0\A Bump in the Light.runtimeconfig.json
+C:\Users\casab\OneDrive\Desktop\Team Game Repo\A Bump in the Light\A Bump in the Light\bin\Debug\net6.0\A Bump in the Light.dll
+C:\Users\casab\OneDrive\Desktop\Team Game Repo\A Bump in the Light\A Bump in the Light\bin\Debug\net6.0\A Bump in the Light.pdb
+C:\Users\casab\OneDrive\Desktop\Team Game Repo\A Bump in the Light\A Bump in the Light\bin\Debug\net6.0\MonoGame.Framework.dll
+C:\Users\casab\OneDrive\Desktop\Team Game Repo\A Bump in the Light\A Bump in the Light\bin\Debug\net6.0\runtimes\linux-x64\native\libSDL2-2.0.so.0
+C:\Users\casab\OneDrive\Desktop\Team Game Repo\A Bump in the Light\A Bump in the Light\bin\Debug\net6.0\runtimes\linux-x64\native\libopenal.so.1
+C:\Users\casab\OneDrive\Desktop\Team Game Repo\A Bump in the Light\A Bump in the Light\bin\Debug\net6.0\runtimes\osx\native\libSDL2.dylib
+C:\Users\casab\OneDrive\Desktop\Team Game Repo\A Bump in the Light\A Bump in the Light\bin\Debug\net6.0\runtimes\osx\native\libopenal.1.dylib
+C:\Users\casab\OneDrive\Desktop\Team Game Repo\A Bump in the Light\A Bump in the Light\bin\Debug\net6.0\runtimes\win-x64\native\SDL2.dll
+C:\Users\casab\OneDrive\Desktop\Team Game Repo\A Bump in the Light\A Bump in the Light\bin\Debug\net6.0\runtimes\win-x64\native\soft_oal.dll
+C:\Users\casab\OneDrive\Desktop\Team Game Repo\A Bump in the Light\A Bump in the Light\bin\Debug\net6.0\runtimes\win-x86\native\SDL2.dll
+C:\Users\casab\OneDrive\Desktop\Team Game Repo\A Bump in the Light\A Bump in the Light\bin\Debug\net6.0\runtimes\win-x86\native\soft_oal.dll
+C:\Users\casab\OneDrive\Desktop\Team Game Repo\A Bump in the Light\A Bump in the Light\obj\Debug\net6.0\A Bump in the Light.csproj.AssemblyReference.cache
+C:\Users\casab\OneDrive\Desktop\Team Game Repo\A Bump in the Light\A Bump in the Light\obj\Debug\net6.0\A Bump in the Light.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\casab\OneDrive\Desktop\Team Game Repo\A Bump in the Light\A Bump in the Light\obj\Debug\net6.0\A Bump in the Light.AssemblyInfoInputs.cache
+C:\Users\casab\OneDrive\Desktop\Team Game Repo\A Bump in the Light\A Bump in the Light\obj\Debug\net6.0\A Bump in the Light.AssemblyInfo.cs
+C:\Users\casab\OneDrive\Desktop\Team Game Repo\A Bump in the Light\A Bump in the Light\obj\Debug\net6.0\A Bump in the Light.csproj.CoreCompileInputs.cache
+C:\Users\casab\OneDrive\Desktop\Team Game Repo\A Bump in the Light\A Bump in the Light\obj\Debug\net6.0\A Bump in the Light.csproj.CopyComplete
+C:\Users\casab\OneDrive\Desktop\Team Game Repo\A Bump in the Light\A Bump in the Light\obj\Debug\net6.0\A Bump in the Light.dll
+C:\Users\casab\OneDrive\Desktop\Team Game Repo\A Bump in the Light\A Bump in the Light\obj\Debug\net6.0\refint\A Bump in the Light.dll
+C:\Users\casab\OneDrive\Desktop\Team Game Repo\A Bump in the Light\A Bump in the Light\obj\Debug\net6.0\A Bump in the Light.pdb
+C:\Users\casab\OneDrive\Desktop\Team Game Repo\A Bump in the Light\A Bump in the Light\obj\Debug\net6.0\A Bump in the Light.genruntimeconfig.cache
+C:\Users\casab\OneDrive\Desktop\Team Game Repo\A Bump in the Light\A Bump in the Light\obj\Debug\net6.0\ref\A Bump in the Light.dll
+C:\Users\casab\OneDrive\Desktop\Team Game Repo\A Bump in the Light\A Bump in the Light\bin\Debug\net6.0\Content\arial30.xnb
+C:\Users\casab\OneDrive\Desktop\Team Game Repo\A Bump in the Light\A Bump in the Light\bin\Debug\net6.0\Content\PlayButton.xnb
+C:\Users\casab\OneDrive\Desktop\Team Game Repo\A Bump in the Light\A Bump in the Light\bin\Debug\net6.0\Content\playerFeet.xnb
+C:\Users\casab\OneDrive\Desktop\Team Game Repo\A Bump in the Light\A Bump in the Light\bin\Debug\net6.0\Content\terrainTexture.xnb
+C:\Users\casab\OneDrive\Desktop\Team Game Repo\A Bump in the Light\A Bump in the Light\bin\Debug\net6.0\Content\GuardAsset.xnb
+C:\Users\casab\OneDrive\Desktop\Team Game Repo\A Bump in the Light\A Bump in the Light\bin\Debug\net6.0\Content\GuardLightAsset.xnb
+C:\Users\casab\OneDrive\Desktop\Team Game Repo\A Bump in the Light\A Bump in the Light\bin\Debug\net6.0\Content\playerFeetPlaytestImage.xnb
+C:\Users\casab\OneDrive\Desktop\Team Game Repo\A Bump in the Light\A Bump in the Light\bin\Debug\net6.0\Content\CameraAsset.xnb
+C:\Users\casab\OneDrive\Desktop\Team Game Repo\A Bump in the Light\A Bump in the Light\bin\Debug\net6.0\Content\terrainTextureFixed.xnb
+C:\Users\casab\OneDrive\Desktop\Team Game Repo\A Bump in the Light\A Bump in the Light\bin\Debug\net6.0\Content\QuitButton.xnb
+C:\Users\casab\OneDrive\Desktop\Team Game Repo\A Bump in the Light\A Bump in the Light\bin\Debug\net6.0\Content\SettingsButton.xnb
+C:\Users\casab\OneDrive\Desktop\Team Game Repo\A Bump in the Light\A Bump in the Light\bin\Debug\net6.0\Content\StealButton.xnb
+C:\Users\casab\OneDrive\Desktop\Team Game Repo\A Bump in the Light\A Bump in the Light\bin\Debug\net6.0\Content\temporaryWinGateTexture.xnb
+C:\Users\casab\OneDrive\Desktop\Team Game Repo\A Bump in the Light\A Bump in the Light\bin\Debug\net6.0\Content\treasure.xnb
+C:\Users\casab\OneDrive\Desktop\Team Game Repo\A Bump in the Light\A Bump in the Light\bin\Debug\net6.0\Content\GameOverScreen.xnb
+C:\Users\casab\OneDrive\Desktop\Team Game Repo\A Bump in the Light\A Bump in the Light\bin\Debug\net6.0\Content\06 It's Pizza Time!.ogg
+C:\Users\casab\OneDrive\Desktop\Team Game Repo\A Bump in the Light\A Bump in the Light\bin\Debug\net6.0\Content\06 It's Pizza Time!.xnb
+C:\Users\casab\OneDrive\Desktop\Team Game Repo\A Bump in the Light\A Bump in the Light\bin\Debug\net6.0\Content\McSteelyBandana (1).xnb
+C:\Users\casab\OneDrive\Desktop\Team Game Repo\A Bump in the Light\A Bump in the Light\bin\Debug\net6.0\Content\McSteelyBandana (2).xnb
+C:\Users\casab\OneDrive\Desktop\Team Game Repo\A Bump in the Light\A Bump in the Light\bin\Debug\net6.0\Content\BlackAndWhiteBackground.xnb
+C:\Users\casab\OneDrive\Desktop\Team Game Repo\A Bump in the Light\A Bump in the Light\bin\Debug\net6.0\Content\CharacterMock-Idle.xnb
+C:\Users\casab\OneDrive\Desktop\Team Game Repo\A Bump in the Light\A Bump in the Light\bin\Debug\net6.0\Content\Jumping_Animation.xnb
+C:\Users\casab\OneDrive\Desktop\Team Game Repo\A Bump in the Light\A Bump in the Light\bin\Debug\net6.0\Content\TestBackgroundImg.xnb
+C:\Users\casab\OneDrive\Desktop\Team Game Repo\A Bump in the Light\A Bump in the Light\bin\Debug\net6.0\Content\GaurdWalking (1).xnb
+C:\Users\casab\OneDrive\Desktop\Team Game Repo\A Bump in the Light\A Bump in the Light\bin\Debug\net6.0\Content\RazorMind.ogg
+C:\Users\casab\OneDrive\Desktop\Team Game Repo\A Bump in the Light\A Bump in the Light\bin\Debug\net6.0\Content\RazorMind.xnb
+C:\Users\casab\OneDrive\Desktop\Team Game Repo\A Bump in the Light\A Bump in the Light\bin\Debug\net6.0\Content\TitleArtwork.xnb
+C:\Users\casab\OneDrive\Desktop\Team Game Repo\A Bump in the Light\A Bump in the Light\bin\Debug\net6.0\Content\WaitStealth.ogg
+C:\Users\casab\OneDrive\Desktop\Team Game Repo\A Bump in the Light\A Bump in the Light\bin\Debug\net6.0\Content\WaitStealth.xnb
+C:\Users\casab\OneDrive\Desktop\Team Game Repo\A Bump in the Light\A Bump in the Light\bin\Debug\net6.0\Content\ExitDoor.xnb
+C:\Users\casab\OneDrive\Desktop\Team Game Repo\A Bump in the Light\A Bump in the Light\bin\Debug\net6.0\Content\GuardLight.xnb
+C:\Users\casab\OneDrive\Desktop\Team Game Repo\A Bump in the Light\A Bump in the Light\bin\Debug\net6.0\Content\NewGuardLight.xnb
+C:\Users\casab\OneDrive\Desktop\Team Game Repo\A Bump in the Light\A Bump in the Light\bin\Debug\net6.0\Content\CameraLookingDown.xnb
+C:\Users\casab\OneDrive\Desktop\Team Game Repo\A Bump in the Light\A Bump in the Light\bin\Debug\net6.0\Content\CameraLookingSide.xnb
+C:\Users\casab\OneDrive\Desktop\Team Game Repo\A Bump in the Light\A Bump in the Light\bin\Debug\net6.0\Content\McWinScreen.xnb
+C:\Users\casab\OneDrive\Desktop\Team Game Repo\A Bump in the Light\A Bump in the Light\bin\Debug\net6.0\Content\CameraDownWithLight.xnb
+C:\Users\casab\OneDrive\Desktop\Team Game Repo\A Bump in the Light\A Bump in the Light\bin\Debug\net6.0\Content\CameraFacingWithLight.xnb
+C:\Users\casab\OneDrive\Desktop\Team Game Repo\A Bump in the Light\A Bump in the Light\bin\Debug\net6.0\Content\DownLight.xnb
+C:\Users\casab\OneDrive\Desktop\Team Game Repo\A Bump in the Light\A Bump in the Light\bin\Debug\net6.0\Content\DownLight2.xnb
+C:\Users\casab\OneDrive\Desktop\Team Game Repo\A Bump in the Light\A Bump in the Light\bin\Debug\net6.0\Content\DownLight3.0.xnb
+C:\Users\casab\OneDrive\Desktop\Team Game Repo\A Bump in the Light\A Bump in the Light\bin\Debug\net6.0\Content\SideLight.xnb
+C:\Users\casab\OneDrive\Desktop\Team Game Repo\A Bump in the Light\A Bump in the Light\bin\Debug\net6.0\Content\platform remake.xnb
+C:\Users\casab\OneDrive\Desktop\Team Game Repo\A Bump in the Light\A Bump in the Light\bin\Debug\net6.0\Content\platformRemake2.xnb
+C:\Users\casab\OneDrive\Desktop\Team Game Repo\A Bump in the Light\A Bump in the Light\bin\Debug\net6.0\Content\Victory1.0.ogg
+C:\Users\casab\OneDrive\Desktop\Team Game Repo\A Bump in the Light\A Bump in the Light\bin\Debug\net6.0\Content\Victory1.0.xnb
+C:\Users\casab\OneDrive\Desktop\Team Game Repo\A Bump in the Light\A Bump in the Light\bin\Debug\net6.0\Content\Victory2.0.ogg
+C:\Users\casab\OneDrive\Desktop\Team Game Repo\A Bump in the Light\A Bump in the Light\bin\Debug\net6.0\Content\Victory2.0.xnb
+C:\Users\casab\OneDrive\Desktop\Team Game Repo\A Bump in the Light\A Bump in the Light\bin\Debug\net6.0\Content\FancyPainting.xnb
+C:\Users\casab\OneDrive\Desktop\Team Game Repo\A Bump in the Light\A Bump in the Light\bin\Debug\net6.0\Content\Window.xnb
+C:\Users\casab\OneDrive\Desktop\Team Game Repo\A Bump in the Light\A Bump in the Light\bin\Debug\net6.0\Content\finalMainScreen.xnb
+C:\Users\casab\OneDrive\Desktop\Team Game Repo\A Bump in the Light\A Bump in the Light\bin\Debug\net6.0\Content\finalMainScreenFixed.xnb
+C:\Users\casab\OneDrive\Desktop\Team Game Repo\A Bump in the Light\A Bump in the Light\bin\Debug\net6.0\Content\finalPlayButton.xnb
+C:\Users\casab\OneDrive\Desktop\Team Game Repo\A Bump in the Light\A Bump in the Light\bin\Debug\net6.0\Content\finalQuitButton.xnb
+C:\Users\casab\OneDrive\Desktop\Team Game Repo\A Bump in the Light\A Bump in the Light\bin\Debug\net6.0\Content\finalTreasure.xnb
+C:\Users\casab\OneDrive\Desktop\Team Game Repo\A Bump in the Light\A Bump in the Light\bin\Debug\net6.0\Content\pitGameOverTexture.xnb
