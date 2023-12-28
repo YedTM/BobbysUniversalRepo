@@ -1,0 +1,113 @@
+﻿#include "pch-c.h"
+#ifndef _MSC_VER
+# include <alloca.h>
+#else
+# include <malloc.h>
+#endif
+
+
+#include "codegen/il2cpp-codegen-metadata.h"
+
+
+
+
+
+extern void CollisionManager_Start_mE7E167305545D5AE178227002EB885D489E1B64A (void);
+extern void CollisionManager_Update_m90F50B81CDEA8B1F258E18603792130F8DC2F1A0 (void);
+extern void CollisionManager_AABBCheck_m7D8EAB7B52C7DA83C81E895095730AEBC9C0DC1D (void);
+extern void CollisionManager_CircleCollision_m23B3141A17B9C379D0338D1C1B75EDAB9EA482D0 (void);
+extern void CollisionManager_ChangeCollisionType_m446077B3FB1750DA347EAC89B9F938655823D69C (void);
+extern void CollisionManager__ctor_mBEC94EB4286A420398D1AE7C7A07E9AE2E302ABC (void);
+extern void InputController_OnMove_m34043009A0C23946CED4BB47FF23CED1F81E4722 (void);
+extern void InputController_Start_mC887BF47D15F6F54A07FCE6717EBB85DFBDEE479 (void);
+extern void InputController_Update_mE06250661752A777E36B045F124B6E47E9209BD2 (void);
+extern void InputController__ctor_m0EDBE66635C62BD8D770DC8E9C8D90BECD52A00D (void);
+extern void MovementController_Start_mC610545030D9B7CBC2A3F61C8931CF147AAE09E9 (void);
+extern void MovementController_Update_mB72AA3FFD41BE01F39C18D80DA2C7D5D8D69F3E0 (void);
+extern void MovementController_SetDirection_mEDA60C24FB497FEF5D758388A368DC5044CD501B (void);
+extern void MovementController_OnDrawGizmos_mDE2A2FCB65B4A5C66BB335422F646308BED3D54F (void);
+extern void MovementController__ctor_mBA50A088FED8B4A0F7727D69277B39BB0D385C26 (void);
+extern void SpriteInfo_get_RectMin_mD8DE9F59D20806B8E77BC371447FEBF9D61D3A9B (void);
+extern void SpriteInfo_get_RectMax_m62C48334783BBEFE46EF8BFD8C7ADC518D91E1F2 (void);
+extern void SpriteInfo_set_IsColliding_m7682C581EA4F5C0923DB561A3860F4DBBCB14302 (void);
+extern void SpriteInfo_get_Radius_mDA1BB0FEB695EED965AC0A932648F13A22C450AB (void);
+extern void SpriteInfo_Update_m37E7F74F520860E9EAD4EE79289DF0FF5170C781 (void);
+extern void SpriteInfo_OnDrawGizmos_m7BFFCD2209E05DA3CEEFC97F27397E08F5FF87B0 (void);
+extern void SpriteInfo__ctor_m61F528361339306167C8A245D5D683DFE6702B67 (void);
+extern void UnitySourceGeneratedAssemblyMonoScriptTypes_v1_Get_mBEB95BEB954BB63E9710BBC7AD5E78C4CB0A0033 (void);
+extern void UnitySourceGeneratedAssemblyMonoScriptTypes_v1__ctor_mE70FB23ACC1EA12ABC948AA22C2E78B2D0AA39B1 (void);
+static Il2CppMethodPointer s_methodPointers[24] = 
+{
+	CollisionManager_Start_mE7E167305545D5AE178227002EB885D489E1B64A,
+	CollisionManager_Update_m90F50B81CDEA8B1F258E18603792130F8DC2F1A0,
+	CollisionManager_AABBCheck_m7D8EAB7B52C7DA83C81E895095730AEBC9C0DC1D,
+	CollisionManager_CircleCollision_m23B3141A17B9C379D0338D1C1B75EDAB9EA482D0,
+	CollisionManager_ChangeCollisionType_m446077B3FB1750DA347EAC89B9F938655823D69C,
+	CollisionManager__ctor_mBEC94EB4286A420398D1AE7C7A07E9AE2E302ABC,
+	InputController_OnMove_m34043009A0C23946CED4BB47FF23CED1F81E4722,
+	InputController_Start_mC887BF47D15F6F54A07FCE6717EBB85DFBDEE479,
+	InputController_Update_mE06250661752A777E36B045F124B6E47E9209BD2,
+	InputController__ctor_m0EDBE66635C62BD8D770DC8E9C8D90BECD52A00D,
+	MovementController_Start_mC610545030D9B7CBC2A3F61C8931CF147AAE09E9,
+	MovementController_Update_mB72AA3FFD41BE01F39C18D80DA2C7D5D8D69F3E0,
+	MovementController_SetDirection_mEDA60C24FB497FEF5D758388A368DC5044CD501B,
+	MovementController_OnDrawGizmos_mDE2A2FCB65B4A5C66BB335422F646308BED3D54F,
+	MovementController__ctor_mBA50A088FED8B4A0F7727D69277B39BB0D385C26,
+	SpriteInfo_get_RectMin_mD8DE9F59D20806B8E77BC371447FEBF9D61D3A9B,
+	SpriteInfo_get_RectMax_m62C48334783BBEFE46EF8BFD8C7ADC518D91E1F2,
+	SpriteInfo_set_IsColliding_m7682C581EA4F5C0923DB561A3860F4DBBCB14302,
+	SpriteInfo_get_Radius_mDA1BB0FEB695EED965AC0A932648F13A22C450AB,
+	SpriteInfo_Update_m37E7F74F520860E9EAD4EE79289DF0FF5170C781,
+	SpriteInfo_OnDrawGizmos_m7BFFCD2209E05DA3CEEFC97F27397E08F5FF87B0,
+	SpriteInfo__ctor_m61F528361339306167C8A245D5D683DFE6702B67,
+	UnitySourceGeneratedAssemblyMonoScriptTypes_v1_Get_mBEB95BEB954BB63E9710BBC7AD5E78C4CB0A0033,
+	UnitySourceGeneratedAssemblyMonoScriptTypes_v1__ctor_mE70FB23ACC1EA12ABC948AA22C2E78B2D0AA39B1,
+};
+static const int32_t s_InvokerIndices[24] = 
+{
+	5456,
+	5456,
+	1364,
+	1364,
+	5456,
+	5456,
+	4436,
+	5456,
+	5456,
+	5456,
+	5456,
+	5456,
+	4406,
+	5456,
+	5456,
+	5445,
+	5445,
+	4222,
+	5390,
+	5456,
+	5456,
+	5456,
+	8016,
+	5456,
+};
+IL2CPP_EXTERN_C const Il2CppCodeGenModule g_AssemblyU2DCSharp_CodeGenModule;
+const Il2CppCodeGenModule g_AssemblyU2DCSharp_CodeGenModule = 
+{
+	"Assembly-CSharp.dll",
+	24,
+	s_methodPointers,
+	0,
+	NULL,
+	s_InvokerIndices,
+	0,
+	NULL,
+	0,
+	NULL,
+	0,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+};
