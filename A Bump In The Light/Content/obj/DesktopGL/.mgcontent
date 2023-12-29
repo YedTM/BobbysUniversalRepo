@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SourceFileCollection xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Profile>Reach</Profile>
+  <Platform>DesktopGL</Platform>
+  <Config />
+  <SourceFiles>
+    <File>C:/Users/casab/OneDrive/Desktop/Team Game Repo/A Bump in the Light/A Bump in the Light/Content/06 It's Pizza Time!.mp3</File>
+    <File>C:/Users/casab/OneDrive/Desktop/Team Game Repo/A Bump in the Light/A Bump in the Light/Content/arial30.spritefont</File>
+    <File>C:/Users/casab/OneDrive/Desktop/Team Game Repo/A Bump in the Light/A Bump in the Light/Content/BlackAndWhiteBackground.png</File>
+    <File>C:/Users/casab/OneDrive/Desktop/Team Game Repo/A Bump in the Light/A Bump in the Light/Content/BURGGG.png</File>
+    <File>C:/Users/casab/OneDrive/Desktop/Team Game Repo/A Bump in the Light/A Bump in the Light/Content/CameraAsset.png</File>
+    <File>C:/Users/casab/OneDrive/Desktop/Team Game Repo/A Bump in the Light/A Bump in the Light/Content/CameraLookingDown.png</File>
+    <File>C:/Users/casab/OneDrive/Desktop/Team Game Repo/A Bump in the Light/A Bump in the Light/Content/CameraLookingSide.png</File>
+    <File>C:/Users/casab/OneDrive/Desktop/Team Game Repo/A Bump in the Light/A Bump in the Light/Content/CharacterMock-Idle.png</File>
+    <File>C:/Users/casab/OneDrive/Desktop/Team Game Repo/A Bump in the Light/A Bump in the Light/Content/ExitDoor.png</File>
+    <File>C:/Users/casab/OneDrive/Desktop/Team Game Repo/A Bump in the Light/A Bump in the Light/Content/GameOverScreen.png</File>
+    <File>C:/Users/casab/OneDrive/Desktop/Team Game Repo/A Bump in the Light/A Bump in the Light/Content/GaurdWalking (1).png</File>
+    <File>C:/Users/casab/OneDrive/Desktop/Team Game Repo/A Bump in the Light/A Bump in the Light/Content/GuardAsset.png</File>
+    <File>C:/Users/casab/OneDrive/Desktop/Team Game Repo/A Bump in the Light/A Bump in the Light/Content/GuardLight.png</File>
+    <File>C:/Users/casab/OneDrive/Desktop/Team Game Repo/A Bump in the Light/A Bump in the Light/Content/GuardLightAsset.png</File>
+    <File>C:/Users/casab/OneDrive/Desktop/Team Game Repo/A Bump in the Light/A Bump in the Light/Content/Jumping_Animation.png</File>
+    <File>C:/Users/casab/OneDrive/Desktop/Team Game Repo/A Bump in the Light/A Bump in the Light/Content/McSteelyBandana (1).png</File>
+    <File>C:/Users/casab/OneDrive/Desktop/Team Game Repo/A Bump in the Light/A Bump in the Light/Content/McSteelyBandana (2).png</File>
+    <File>C:/Users/casab/OneDrive/Desktop/Team Game Repo/A Bump in the Light/A Bump in the Light/Content/McWinScreen.png</File>
+    <File>C:/Users/casab/OneDrive/Desktop/Team Game Repo/A Bump in the Light/A Bump in the Light/Content/NewGuardLight.png</File>
+    <File>C:/Users/casab/OneDrive/Desktop/Team Game Repo/A Bump in the Light/A Bump in the Light/Content/PlayButton.png</File>
+    <File>C:/Users/casab/OneDrive/Desktop/Team Game Repo/A Bump in the Light/A Bump in the Light/Content/playerFeet.png</File>
+    <File>C:/Users/casab/OneDrive/Desktop/Team Game Repo/A Bump in the Light/A Bump in the Light/Content/playerFeetPlaytestImage.png</File>
+    <File>C:/Users/casab/OneDrive/Desktop/Team Game Repo/A Bump in the Light/A Bump in the Light/Content/QuitButton.png</File>
+    <File>C:/Users/casab/OneDrive/Desktop/Team Game Repo/A Bump in the Light/A Bump in the Light/Content/RazorMind.mp3</File>
+    <File>C:/Users/casab/OneDrive/Desktop/Team Game Repo/A Bump in the Light/A Bump in the Light/Content/SettingsButton.png</File>
+    <File>C:/Users/casab/OneDrive/Desktop/Team Game Repo/A Bump in the Light/A Bump in the Light/Content/StealButton.png</File>
+    <File>C:/Users/casab/OneDrive/Desktop/Team Game Repo/A Bump in the Light/A Bump in the Light/Content/temporaryWinGateTexture.png</File>
+    <File>C:/Users/casab/OneDrive/Desktop/Team Game Repo/A Bump in the Light/A Bump in the Light/Content/terrainTexture.png</File>
+    <File>C:/Users/casab/OneDrive/Desktop/Team Game Repo/A Bump in the Light/A Bump in the Light/Content/terrainTextureFixed.png</File>
+    <File>C:/Users/casab/OneDrive/Desktop/Team Game Repo/A Bump in the Light/A Bump in the Light/Content/TestBackgroundImg.png</File>
+    <File>C:/Users/casab/OneDrive/Desktop/Team Game Repo/A Bump in the Light/A Bump in the Light/Content/TitleArtwork.png</File>
+    <File>C:/Users/casab/OneDrive/Desktop/Team Game Repo/A Bump in the Light/A Bump in the Light/Content/treasure.png</File>
+    <File>C:/Users/casab/OneDrive/Desktop/Team Game Repo/A Bump in the Light/A Bump in the Light/Content/WaitStealth.mp3</File>
+  </SourceFiles>
+  <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+  </DestFiles>
+</SourceFileCollection>
